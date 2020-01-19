@@ -1,0 +1,206 @@
+{
+    "extends": "../tslint.json",
+    "rules": {
+        "directive-selector": { // нотация именования сущностей camel-case (MyNameClass)
+            "severity": "error",
+            "options": ["attribute", "camelCase"]
+        },
+        "component-selector": {
+            "severity": "error",
+            "options": ["element", "kebab-case"]
+        },
+        "no-console": {
+            "severity": "error"
+        },
+        "no-output-native": false,
+        "encoding": { // кодировка документа UTF-8
+            "severity": "error"
+        },
+        "indent": {
+            "severity": "error",
+            "options": ["spaces", 4] // величина отступа 4 пробела
+        },
+        "eofline": { // файл должен заканчиваться пустой строкой (EOF),
+            "severity": "error"
+        },
+        "quotemark": {
+            "severity": "error",
+            "options": ["single", "jsx-double"]
+        },
+        "typedef": {
+            "severity": "warning",
+            "options": ["call-signature", "parameter", "arrow-parameter", "property-declaration", "variable-declaration",
+                "member-variable-declaration", "object-destructuring", "array-destructuring"
+            ]
+        },
+        "curly": {
+            "severity": "error"
+        },
+        "interface-name": {
+            "severity": "error",
+            "options": ["always-prefix"]
+        },
+        "class-name": {
+            "severity": "error"
+        },
+        "space-before-function-paren": {
+            "severity": "error",
+            "options": [{
+                "anonymous": "never",
+                "named": "never",
+                "asyncArrow": "never",
+                "method": "never",
+                "constructor": "never"
+            }]
+        },
+        "switch-final-break": {
+            "severity": "error",
+            "options": ["always"]
+        },
+        "unnecessary-else": {
+            "severity": "warning",
+            "options": [{
+                "allow-else-if": true
+            }]
+        },
+        "variable-name": {
+            "severity": "error",
+            "options": ["check-format", "allow-pascal-case"]
+        },
+        "prefer-const": {
+            "severity": "error",
+            "options": [{
+                "destructuring": "any"
+            }]
+        },
+        "new-parens": {
+            "severity": "error"
+        },
+        "no-any": {
+            "severity": "warning"
+        },
+        "semicolon": {
+            "severity": "error",
+            "options": ["always"]
+        },
+        "whitespace": {
+            "severity": "error",
+            "options": ["check-branch", "check-decl", "check-operator", "check-module", "check-separator",
+                "check-rest-spread", "check-type", "check-typecast", "check-type-operator", "check-preblock"
+            ]
+        },
+        /*"member-access": {
+            "severity": "error",
+            "options": ["check-constructor", "check-parameter-property"]
+        },*/
+        "ordered-imports": {
+            "severity": "error",
+            "options": [{
+                "named-imports-order": "lowercase-first",
+                "import-sources-order": "lowercase-first",
+                "grouped-imports": true,
+                "groups": [{
+                        "name": "angular core modules",
+                        "match": "^@angular",
+                        "order": 1
+                    },
+                    {
+                        "name": "ionic",
+                        "match": "^@ionic",
+                        "order": 9
+                    },
+                    {
+                        "name": "rxjs",
+                        "match": "^rxjs",
+                        "order": 10
+                    },
+                    {
+                        "name": "logger",
+                        "match": "^ngx-logger",
+                        "order": 20
+                    },
+                    {
+                        "name": "translate",
+                        "match": "ngx-translate",
+                        "order": 30
+                    },
+                    {
+                        "name": "grpc-web",
+                        "match": "^@improbable-eng/grpc-web",
+                        "order": 40
+                    },
+                    {
+                        "name": "tradingview",
+                        "match": "^@tradingview",
+                        "order": 60
+                    },
+                    {
+                        "name": "environments",
+                        "match": "^@environments",
+                        "order": 61
+                    },
+                    {
+                        "name": "ui",
+                        "match": "^@ui",
+                        "order": 62
+                    },
+                    {
+                        "name": "core",
+                        "match": "^@core",
+                        "order": 63
+                    },
+                    {
+                        "name": "grpc",
+                        "match": "^@grpc",
+                        "order": 64
+                    },
+                    {
+                        "name": "share",
+                        "match": "^@share",
+                        "order": 65
+                    },
+                    {
+                        "name": "local",
+                        "match": "^(../|./)",
+                        "order": 70
+                    },
+                    {
+                        "name": "other @",
+                        "match": "^@",
+                        "order": 50
+                    },
+                    {
+                        "name": "other",
+                        "match": ".*",
+                        "order": 50
+                    }
+                ]
+            }]
+        },
+        "contextual-lifecycle": {
+            "severity": "error"
+        },
+        "use-lifecycle-interface": {
+            "severity": "error"
+        },
+        "no-conflicting-lifecycle": {
+            "severity": "error"
+        },
+        "no-host-metadata-property": false,
+        "angular-whitespace": {
+            "severity": "error",
+            "options": ["check-interpolation", "check-pipe", "check-semicolon"]
+        },
+        "component-class-suffix": {
+            "severity": "error",
+            "options": ["Component"]
+        },
+        "directive-class-suffix": {
+            "severity": "error",
+            "options": ["Directive"]
+        },
+        "prefer-inline-decorator": {
+            "severity": "error"
+        }
+    }
+}
