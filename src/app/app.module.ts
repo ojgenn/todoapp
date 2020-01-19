@@ -10,6 +10,7 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TranslocoRootModule } from './transloco-root.module';
+import {IonicStorageModule} from '@ionic/storage';
 
 @NgModule({
     declarations: [AppComponent],
@@ -19,7 +20,8 @@ import { TranslocoRootModule } from './transloco-root.module';
         IonicModule.forRoot(),
         AppRoutingModule,
         HttpClientModule,
-        TranslocoRootModule
+        TranslocoRootModule,
+        IonicStorageModule.forRoot(),
     ],
     providers: [
         StatusBar,
