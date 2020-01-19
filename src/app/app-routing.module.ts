@@ -9,11 +9,13 @@ const routes: Routes = [
     },
     {
         path: 'home',
+        // tslint:disable-next-line:typedef
         loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule)
     },
     {
         path: 'list',
-        loadChildren: () => import('./pages/list/list.module').then(m => m.ListPageModule)
+        // tslint:disable-next-line:typedef
+        loadChildren: () => import('./pages/catalog/catalog.module').then(m => m.CatalogModule)
     }
 ];
 

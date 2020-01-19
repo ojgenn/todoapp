@@ -10,14 +10,14 @@ import { Platform } from '@ionic/angular';
     styleUrls: ['app.component.scss']
 })
 export class AppComponent {
-    public appPages = [
+    public appPages: { title: string; url: string; icon: string }[] = [
         {
-            title: 'Home',
+            title: 'side-menu.Home',
             url: '/home',
             icon: 'home'
         },
         {
-            title: 'List',
+            title: 'side-menu.LIST',
             url: '/list',
             icon: 'list'
         }
@@ -31,7 +31,7 @@ export class AppComponent {
         this.initializeApp();
     }
 
-    initializeApp() {
+    public initializeApp(): void {
         this.platform.ready().then(() => {
             this.statusBar.styleDefault();
             this.splashScreen.hide();
