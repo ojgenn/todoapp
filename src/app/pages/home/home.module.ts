@@ -4,13 +4,23 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from '../../shared/shared.module';
 import { HomePageComponent } from './home.page';
 import { ManageCatalogComponent } from './manage-catalog/manage-catalog.component';
+import { TaskListComponent } from './task-list/task-list.component';
 
 @NgModule({
     imports: [
         RouterModule.forChild([
             {
                 path: '',
-                component: HomePageComponent
+                children: [
+                    {
+                        path: '',
+                        component: HomePageComponent
+                    },
+                    {
+                        path: ':id',
+                        component: TaskListComponent,
+                    }
+                ]
             }
         ]),
         SharedModule,
@@ -18,6 +28,7 @@ import { ManageCatalogComponent } from './manage-catalog/manage-catalog.componen
     declarations: [
         HomePageComponent,
         ManageCatalogComponent,
+        TaskListComponent,
     ],
     entryComponents: [
         ManageCatalogComponent,

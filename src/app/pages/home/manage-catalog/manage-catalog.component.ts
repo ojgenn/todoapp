@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 
-import { ModalController } from '@ionic/angular';
+import { ModalController, NavParams } from '@ionic/angular';
 
 import { BehaviorSubject, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -9,6 +9,7 @@ import { takeUntil } from 'rxjs/operators';
 import { TranslocoService } from '@ngneat/transloco';
 
 import { regex } from '../../../shared/helpers/regex';
+import { ICategory } from '../../../shared/interfaces/category.interface';
 import { StoreService } from '../../../shared/services/store.service';
 
 @Component({
@@ -18,6 +19,8 @@ import { StoreService } from '../../../shared/services/store.service';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ManageCatalogComponent implements OnInit, OnDestroy {
+    // tslint:disable-next-line:prefer-inline-decorator
+    @Input() public category: ICategory;
     private ngOnDestroy$: Subject<void> = new Subject();
 
     public errorMessage$: BehaviorSubject<string> = new BehaviorSubject(null);
@@ -27,10 +30,13 @@ export class ManageCatalogComponent implements OnInit, OnDestroy {
         private modalController: ModalController,
         private storeService: StoreService,
         private translateService: TranslocoService,
+        private navParams: NavParams,
     ) { }
 
     ngOnInit(): void {
-        this.form = new FormControl('',
+        const category: ICategory = this.navParams.get('category');
+
+        this.form = new FormControl(category ? category.name : '',
             [
                 Validators.required,
                 Validators.pattern(regex.safe),
@@ -50,11 +56,26 @@ export class ManageCatalogComponent implements OnInit, OnDestroy {
             () => this.errorMessage$.next(this.translateService.translate('errors.SAVE_ERR')));
     }
 
+    private edit(form: FormControl): void {
+        this.errorMessage$.next('');
+        const category: ICategory = { ...this.navParams.get('category') };
+        category.name = this.form.value;
+
+        this.storeService.edit(this.navParams.get('category').id, form.value).pipe(
+            takeUntil(this.ngOnDestroy$),
+        ).subscribe(() => this.modalController.dismiss(),
+            () => this.errorMessage$.next(this.translateService.translate('errors.SAVE_ERR')));
+    }
+
     public close(): void {
         this.modalController.dismiss();
     }
 
     public manage(form: FormControl): void {
-        this.save(form);
+        if (this.navParams.get('category')) {
+            this.edit(form);
+        } else {
+            this.save(form);
+        }
     }
 }

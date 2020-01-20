@@ -108,4 +108,18 @@ export class HomePageComponent implements OnInit, OnDestroy {
 
         await alert.present();
     }
+
+    public async edit(category: ICategory, slidingItem: IonItemSliding): Promise<void> {
+        const modal: HTMLIonModalElement = await this.modalController.create({
+            component: ManageCatalogComponent,
+            componentProps: {
+                category,
+            },
+        });
+        await modal.present();
+
+        modal.onDidDismiss().then(() => {
+            slidingItem.close();
+        });
+    }
 }

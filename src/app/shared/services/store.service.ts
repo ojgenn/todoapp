@@ -39,6 +39,10 @@ export class StoreService {
         return this.store$.asObservable();
     }
 
+    public getCategory(id: string): ICategory {
+        return this.store$.value.find((category: ICategory) => category.id === id);
+    }
+
     public addCatalog(name: string): Observable<unknown> {
         const category: ICategory = {
             id: uuid.v4(),
@@ -51,6 +55,20 @@ export class StoreService {
 
         const catalog: ICategory[] = [...this.store$.value];
         catalog.push(category);
+        catalog.sort(compareCatalogsByTime);
+        const modifiedCatalog: ICategory[] = sortCatalog(catalog);
+
+        return fromPromise(this.storage.set(STORE_NAME, modifiedCatalog)).pipe(
+            tap(() => this.store$.next(modifiedCatalog))
+        );
+    }
+
+    public edit(id: string, name: string): Observable<unknown> {
+        const catalog: ICategory[] = [...this.store$.value];
+        const index: number = catalog.findIndex((category: ICategory) => category.id === id);
+        if (index) {
+            catalog[index].name = name;
+        }
         catalog.sort(compareCatalogsByTime);
         const modifiedCatalog: ICategory[] = sortCatalog(catalog);
 

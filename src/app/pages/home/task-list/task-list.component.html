@@ -1,0 +1,17 @@
+<ng-container *appLet="category$ | async as category">
+    <ion-header>
+        <ion-toolbar>
+            <ion-buttons slot="start">
+                <ion-back-button></ion-back-button>
+            </ion-buttons>
+            <ion-buttons slot="end">
+                <ion-button>{{ 'buttons.ADD' | transloco }}</ion-button>
+            </ion-buttons>
+            <ion-title>{{ category?.name }}</ion-title>
+        </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+
+    </ion-content>
+</ng-container>
