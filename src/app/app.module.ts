@@ -6,11 +6,12 @@ import { RouteReuseStrategy } from '@angular/router';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { IonicStorageModule } from '@ionic/storage';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { SharedModule } from './shared/shared.module';
 import { TranslocoRootModule } from './transloco-root.module';
-import {IonicStorageModule} from '@ionic/storage';
 
 @NgModule({
     declarations: [AppComponent],
@@ -21,6 +22,7 @@ import {IonicStorageModule} from '@ionic/storage';
         AppRoutingModule,
         HttpClientModule,
         TranslocoRootModule,
+        SharedModule,
         IonicStorageModule.forRoot(),
     ],
     providers: [

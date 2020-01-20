@@ -1,14 +1,53 @@
 <ion-header>
     <ion-toolbar>
+
         <ion-buttons slot="start">
             <ion-menu-button></ion-menu-button>
         </ion-buttons>
-        <ion-title>
-            Home
-        </ion-title>
+
+        <ion-buttons slot="end">
+            <ion-button (click)="addCatalog()">{{ 'buttons.ADD' | transloco }}</ion-button>
+        </ion-buttons>
+
     </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    <ion-item>home works</ion-item>
+    <ion-list *ngIf="categoryList$ | async as categoryList">
+
+        <ion-item-sliding *ngFor="let categoryId of categoryList?.keys; trackBy: trackByFn"
+                          #slidingItem>
+            <ion-item-options side="end"
+                              *ngIf="!categoryList?.map[categoryId].readonly">
+                <ion-item-option expandable
+                                 color="light">
+
+                    <ion-button fill="clear"
+                                (click)="deleteCategory(categoryId)">
+                        <ion-icon name="trash"
+                                  color="danger"></ion-icon>
+                    </ion-button>
+
+                    <ng-container *ngIf="categoryList?.map[categoryId].status !== categoryStatus.DONE">
+                        <ion-button fill="clear">
+                            <ion-icon name="create"
+                                      color="medium"></ion-icon>
+                        </ion-button>
+
+                        <ion-button fill="clear"
+                                    (click)="markAsDone(categoryId, slidingItem)">
+                            <ion-icon name="checkmark"
+                                      color="dark"></ion-icon>
+                        </ion-button>
+                    </ng-container>
+
+                </ion-item-option>
+            </ion-item-options>
+
+            <ion-item *appCategoryColor="{readonly: categoryList?.map[categoryId].readonly, status: categoryList?.map[categoryId].status} as color"
+                      detail>
+                <ion-label [color]="color">{{ categoryList?.map[categoryId].name }}</ion-label>
+            </ion-item>
+        </ion-item-sliding>
+    </ion-list>
 </ion-content>

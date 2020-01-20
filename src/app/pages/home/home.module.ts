@@ -1,24 +1,26 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-import { IonicModule } from '@ionic/angular';
-
+import { SharedModule } from '../../shared/shared.module';
 import { HomePageComponent } from './home.page';
+import { ManageCatalogComponent } from './manage-catalog/manage-catalog.component';
 
 @NgModule({
     imports: [
-        CommonModule,
-        FormsModule,
-        IonicModule,
         RouterModule.forChild([
             {
                 path: '',
                 component: HomePageComponent
             }
-        ])
+        ]),
+        SharedModule,
     ],
-    declarations: [HomePageComponent]
+    declarations: [
+        HomePageComponent,
+        ManageCatalogComponent,
+    ],
+    entryComponents: [
+        ManageCatalogComponent,
+    ],
 })
 export class HomePageModule { }
