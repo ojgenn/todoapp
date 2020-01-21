@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 
 import { of, BehaviorSubject, Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
+import { sortTaskList } from '../helpers/sort-tasks';
 import { ICategory } from '../interfaces/category.interface';
+import { ITask } from '../interfaces/task.interface';
 import { StoreService } from './store.service';
 
 @Injectable({
@@ -14,10 +17,21 @@ export class CategoryService {
     constructor(private storeService: StoreService) {
     }
 
-    public initCategory(id: string): Observable<ICategory> {
-        const category: ICategory = this.storeService.getCategory(id);
+    public initCategory(id: string): void {
         this.category$.next(this.storeService.getCategory(id));
-        return of(category);
     }
 
+    public getCategory(): Observable<ICategory> {
+        return this.category$.asObservable();
+    }
+
+    public addTask(task: ITask): Observable<unknown> {
+        const category: ICategory = this.category$.value;
+        const list: ITask[] = [...category.list];
+        list.push(task);
+        category.list = sortTaskList(list);
+        return this.storeService.renewCategory(category).pipe(
+            tap(() => this.category$.next(category)),
+        );
+    }
 }

@@ -4,13 +4,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IonInput, ModalController, NavParams } from '@ionic/angular';
 
 import { combineLatest, BehaviorSubject, Subject } from 'rxjs';
-import { take } from 'rxjs/operators';
+import { take, takeUntil } from 'rxjs/operators';
 
 import { TranslocoService } from '@ngneat/transloco';
+import * as uuid from 'uuid';
 
 import { getMonthNames } from '../../../../shared/helpers/month-names';
 import { regex } from '../../../../shared/helpers/regex';
-import { ICategory } from '../../../../shared/interfaces/category.interface';
+import { ITask } from '../../../../shared/interfaces/task.interface';
 import { CategoryService } from '../../../../shared/services/category.service';
 
 @Component({
@@ -102,10 +103,23 @@ export class ManageTaskComponent implements OnInit, OnDestroy {
         this.modalController.dismiss();
     }
 
-    public manage(form: FormGroup): void {
-        console.log(form);
-        console.log(this.categoryId);
-        this.categoryService.getCategory().subscribe(res => console.log(res));
+    addTask(form: FormGroup): void {
+        const task: ITask = {
+            id: uuid.v4(),
+            name: form.get('name').value,
+            created: Date.now(),
+            alertTime: form.get('alertTime').value,
+            parentId: this.categoryId,
+            doneStatus: false,
+        };
+        this.categoryService.addTask(task).pipe(
+            takeUntil(this.ngOnDestroy$)
+        ).subscribe(() => {
+            this.modalController.dismiss();
+        });
+    }
 
+    public manage(form: FormGroup): void {
+        this.addTask(form);
     }
 }

@@ -1,9 +1,10 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { ModalController } from '@ionic/angular';
+import {IonItemSliding, ModalController} from '@ionic/angular';
 
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { takeUntil, tap } from 'rxjs/operators';
 
 import { ICategory } from '../../../shared/interfaces/category.interface';
 import { CategoryService } from '../../../shared/services/category.service';
@@ -15,19 +16,29 @@ import { ManageTaskComponent } from './manage-task/manage-task.component';
     styleUrls: ['./task-list.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TaskListComponent implements OnInit {
+export class TaskListComponent implements OnInit, OnDestroy {
     private id: string;
+    private ngOnDestroy$: Subject<void> = new Subject();
 
-    public category$: Observable<ICategory>;
+    public category$: BehaviorSubject<ICategory> = new BehaviorSubject(null);
+
     constructor(
         private route: ActivatedRoute,
         private categoryService: CategoryService,
         private modalController: ModalController,
-    ) { }
+    ) {
+    }
 
     ngOnInit(): void {
         this.id = this.route.snapshot.params.id;
-        this.category$ = this.categoryService.initCategory(this.id);
+        this.categoryService.initCategory(this.id);
+        this.categoryService.getCategory().pipe(
+            takeUntil(this.ngOnDestroy$)
+        ).subscribe((category: ICategory) => this.category$.next(category));
+    }
+
+    ngOnDestroy(): void {
+        this.ngOnDestroy$.next();
     }
 
     public async addTask(): Promise<void> {
@@ -38,5 +49,17 @@ export class TaskListComponent implements OnInit {
             }
         });
         await modal.present();
+    }
+
+    public deleteTask(id: string): void {
+
+    }
+
+    public editTask(id: string, slidingItem: IonItemSliding): void {
+
+    }
+
+    public toggleDone(id: string, slidingItem: IonItemSliding): void {
+
     }
 }

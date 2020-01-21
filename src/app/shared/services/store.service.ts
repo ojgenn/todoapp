@@ -103,4 +103,16 @@ export class StoreService {
         }
         return of(EMPTY);
     }
+
+    public renewCategory(category: ICategory): Observable<unknown> {
+        const catalog: ICategory[] = [...this.store$.value];
+        const index: number = catalog.findIndex((item: ICategory) => item.id === category.id);
+        if (index) {
+            catalog[index] = category;
+        }
+
+        return fromPromise(this.storage.set(STORE_NAME, catalog)).pipe(
+            switchMap(() => of(EMPTY)),
+        );
+    }
 }
