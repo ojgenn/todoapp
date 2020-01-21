@@ -1,10 +1,10 @@
-import { CategoryStatus } from '../enums/category-status.enum';
+import { ITask } from './task.interface';
 
 export interface ICategory {
     id: string;
     name: string;
     readonly: boolean;
     created: number;
-    list: any[];
-    status?: CategoryStatus;
+    list: ITask[];
+    doneStatus?: boolean;
 }

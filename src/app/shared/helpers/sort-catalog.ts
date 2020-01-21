@@ -1,4 +1,3 @@
-import { CategoryStatus } from '../enums/category-status.enum';
 import { ICategory } from '../interfaces/category.interface';
 
 export function sortCatalog(catalog: ICategory[]): ICategory[] {
@@ -7,7 +6,7 @@ export function sortCatalog(catalog: ICategory[]): ICategory[] {
         if (category.readonly) {
             modifiedCatalog.readonly.push(category);
         } else {
-            if (category.status === CategoryStatus.DONE) {
+            if (category.doneStatus) {
                 modifiedCatalog.done.push(category);
             } else {
                 modifiedCatalog.other.push(category);

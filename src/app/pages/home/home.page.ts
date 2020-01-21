@@ -7,7 +7,6 @@ import { takeUntil } from 'rxjs/operators';
 
 import { TranslocoService } from '@ngneat/transloco';
 
-import { CategoryStatus } from '../../shared/enums/category-status.enum';
 import { FlatMap } from '../../shared/helpers/flat-map';
 import { ICategory } from '../../shared/interfaces/category.interface';
 import { StoreService } from '../../shared/services/store.service';
@@ -22,7 +21,6 @@ export class HomePageComponent implements OnInit, OnDestroy {
     private ngOnDestroy$: Subject<void> = new Subject();
 
     public categoryList$: BehaviorSubject<FlatMap<ICategory>> = new BehaviorSubject(null);
-    public categoryStatus: typeof CategoryStatus = CategoryStatus;
 
     constructor(
         private alertController: AlertController,

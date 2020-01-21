@@ -5,7 +5,7 @@
                 <ion-back-button></ion-back-button>
             </ion-buttons>
             <ion-buttons slot="end">
-                <ion-button>{{ 'buttons.ADD' | transloco }}</ion-button>
+                <ion-button (click)="addTask()">{{ 'buttons.ADD' | transloco }}</ion-button>
             </ion-buttons>
             <ion-title>{{ category?.name }}</ion-title>
         </ion-toolbar>

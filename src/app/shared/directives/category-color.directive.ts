@@ -1,7 +1,5 @@
 import { Directive, Input, OnChanges, TemplateRef, ViewContainerRef } from '@angular/core';
 
-import { CategoryStatus } from '../enums/category-status.enum';
-
 interface ICategoryContext<T> {
     appCategoryColor: T;
 }
@@ -10,7 +8,7 @@ interface ICategoryContext<T> {
     selector: '[appCategoryColor]',
 })
 export class CategoryColorDirective<T> implements OnChanges {
-    @Input() private appCategoryColor: { readonly: boolean; status: CategoryStatus };
+    @Input() private appCategoryColor: { readonly: boolean; doneStatus: boolean };
 
     private context: ICategoryContext<string> = { appCategoryColor: null };
 
@@ -27,7 +25,7 @@ export class CategoryColorDirective<T> implements OnChanges {
             color = 'warning';
         }
 
-        if (this.appCategoryColor.status === CategoryStatus.DONE) {
+        if (this.appCategoryColor.doneStatus) {
             color = 'medium';
         }
         this.context.appCategoryColor = color;

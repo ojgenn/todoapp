@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 
-import { ModalController, NavParams } from '@ionic/angular';
+import { IonInput, ModalController, NavParams } from '@ionic/angular';
 
 import { BehaviorSubject, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -19,7 +19,8 @@ import { StoreService } from '../../../shared/services/store.service';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ManageCatalogComponent implements OnInit, OnDestroy {
-    // tslint:disable-next-line:prefer-inline-decorator
+    @ViewChild('input', { static: true }) private input: IonInput;
+
     @Input() public category: ICategory;
     private ngOnDestroy$: Subject<void> = new Subject();
 
@@ -46,6 +47,10 @@ export class ManageCatalogComponent implements OnInit, OnDestroy {
 
     ngOnDestroy(): void {
         this.ngOnDestroy$.next();
+    }
+
+    ionViewDidEnter(): void {
+        this.input.setFocus();
     }
 
     private save(form: FormControl): void {

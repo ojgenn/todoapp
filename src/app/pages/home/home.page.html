@@ -28,24 +28,23 @@
                                   color="danger"></ion-icon>
                     </ion-button>
 
-                    <ng-container *ngIf="categoryList?.map[categoryId].status !== categoryStatus.DONE">
-                        <ion-button fill="clear"
-                                    (click)="edit(categoryList?.map[categoryId], slidingItem)">
-                            <ion-icon name="create"
-                                      color="medium"></ion-icon>
-                        </ion-button>
+                    <ion-button fill="clear"
+                                (click)="edit(categoryList?.map[categoryId], slidingItem)">
+                        <ion-icon name="create"
+                                  color="medium"></ion-icon>
+                    </ion-button>
 
-                        <ion-button fill="clear"
-                                    (click)="markAsDone(categoryId, slidingItem)">
-                            <ion-icon name="checkmark"
-                                      color="dark"></ion-icon>
-                        </ion-button>
-                    </ng-container>
+                    <ion-button fill="clear"
+                                *ngIf="!categoryList?.map[categoryId].doneStatus"
+                                (click)="markAsDone(categoryId, slidingItem)">
+                        <ion-icon name="checkmark"
+                                  color="dark"></ion-icon>
+                    </ion-button>
 
                 </ion-item-option>
             </ion-item-options>
 
-            <ion-item *appCategoryColor="{readonly: categoryList?.map[categoryId].readonly, status: categoryList?.map[categoryId].status} as color"
+            <ion-item *appCategoryColor="{readonly: categoryList?.map[categoryId].readonly, doneStatus: categoryList?.map[categoryId].doneStatus} as color"
                       detail
                       [routerLink]="categoryId">
                 <ion-label [color]="color">{{ categoryList?.map[categoryId].name }}</ion-label>

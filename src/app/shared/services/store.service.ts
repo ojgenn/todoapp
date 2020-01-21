@@ -8,7 +8,6 @@ import { switchMap, tap } from 'rxjs/operators';
 
 import * as uuid from 'uuid';
 
-import { CategoryStatus } from '../enums/category-status.enum';
 import { compareCatalogsByTime } from '../helpers/compare-catalog-by-time';
 import { STORE_NAME } from '../helpers/config.config';
 import { sortCatalog } from '../helpers/sort-catalog';
@@ -50,7 +49,7 @@ export class StoreService {
             readonly: false,
             created: Date.now(),
             list: [],
-            status: CategoryStatus.NONE,
+            doneStatus: false,
         };
 
         const catalog: ICategory[] = [...this.store$.value];
@@ -95,7 +94,7 @@ export class StoreService {
         const index: number = catalog.findIndex((category: ICategory) => category.id === id);
 
         if (index >= 0) {
-            catalog[index].status = CategoryStatus.DONE;
+            catalog[index].doneStatus = true;
             catalog.sort(compareCatalogsByTime);
             const modifiedCatalog: ICategory[] = sortCatalog(catalog);
             return fromPromise(this.storage.set(STORE_NAME, modifiedCatalog)).pipe(

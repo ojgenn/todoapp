@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from '../../shared/shared.module';
 import { HomePageComponent } from './home.page';
 import { ManageCatalogComponent } from './manage-catalog/manage-catalog.component';
+import { ManageTaskComponent } from './task-list/manage-task/manage-task.component';
 import { TaskListComponent } from './task-list/task-list.component';
 
 @NgModule({
@@ -29,9 +30,11 @@ import { TaskListComponent } from './task-list/task-list.component';
         HomePageComponent,
         ManageCatalogComponent,
         TaskListComponent,
+        ManageTaskComponent,
     ],
     entryComponents: [
         ManageCatalogComponent,
+        ManageTaskComponent,
     ],
 })
 export class HomePageModule { }
