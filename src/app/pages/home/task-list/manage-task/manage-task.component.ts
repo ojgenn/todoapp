@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -13,7 +14,6 @@ import { getMonthNames } from '../../../../shared/helpers/month-names';
 import { regex } from '../../../../shared/helpers/regex';
 import { ITask } from '../../../../shared/interfaces/task.interface';
 import { CategoryService } from '../../../../shared/services/category.service';
-import {DatePipe} from '@angular/common';
 
 @Component({
     selector: 'app-manage-task',

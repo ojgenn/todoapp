@@ -7,8 +7,11 @@ import { takeUntil } from 'rxjs/operators';
 
 import { TranslocoService } from '@ngneat/transloco';
 
+import { compareCatalogsByTime } from '../../shared/helpers/compare-catalog-by-time';
 import { FlatMap } from '../../shared/helpers/flat-map';
+import { sortCatalog } from '../../shared/helpers/sort-catalog';
 import { ICategory } from '../../shared/interfaces/category.interface';
+import { ITask } from '../../shared/interfaces/task.interface';
 import { StoreService } from '../../shared/services/store.service';
 import { ManageCatalogComponent } from './manage-catalog/manage-catalog.component';
 
@@ -36,6 +39,13 @@ export class HomePageComponent implements OnInit, OnDestroy {
 
     ngOnDestroy(): void {
         this.ngOnDestroy$.next();
+    }
+
+    ionViewDidEnter() {
+        const catalog = this.categoryList$.value.asArray;
+        catalog.sort(compareCatalogsByTime);
+        const modifiedCatalog: ICategory[] = sortCatalog(catalog);
+        this.categoryList$.next(new FlatMap<ICategory>(modifiedCatalog, 'id'));
     }
 
     private setCatalog(): void {
@@ -117,5 +127,9 @@ export class HomePageComponent implements OnInit, OnDestroy {
         modal.onDidDismiss().then(() => {
             slidingItem.close();
         });
+    }
+
+    public hasDone(category: ICategory): boolean {
+        return category.list.length > 0 && category.list.every((task: ITask) => task.doneStatus === true);
     }
 }

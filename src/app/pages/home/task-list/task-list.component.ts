@@ -96,28 +96,10 @@ export class TaskListComponent implements OnInit, OnDestroy {
         });
     }
 
-    public async toggleDone(index: number, slidingItem: IonItemSliding): Promise<void> {
-        const alert: HTMLIonAlertElement = await this.alertController.create({
-            header: this.translateService.translate('catalogs.MARK_AS_DONE'),
-            buttons: [
-                {
-                    text: this.translateService.translate('buttons.CANCEL'),
-                    role: 'cancel',
-                    cssClass: 'secondary',
-                    handler: () => {
-                    },
-                }, {
-                    text: this.translateService.translate('buttons.OK'),
-                    handler: () => {
-                        this.categoryService.toggleDone(index).pipe(
-                            takeUntil(this.ngOnDestroy$),
-                        ).subscribe(() => slidingItem.close());
-                    }
-                }
-            ]
-        });
-
-        await alert.present();
+    public toggleDone(index: number, slidingItem: IonItemSliding): void {
+        this.categoryService.toggleDone(index).pipe(
+            takeUntil(this.ngOnDestroy$),
+        ).subscribe(() => slidingItem.close());
     }
 
     public trackByFn(_: number, item: ITask): string {

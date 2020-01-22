@@ -13,6 +13,7 @@ import { compareCatalogsByTime } from '../helpers/compare-catalog-by-time';
 import { STORE_NAME } from '../helpers/config.config';
 import { sortCatalog } from '../helpers/sort-catalog';
 import { ICategory } from '../interfaces/category.interface';
+import { ITask } from '../interfaces/task.interface';
 
 @Injectable({
     providedIn: 'root'
@@ -106,7 +107,10 @@ export class StoreService {
         const index: number = catalog.findIndex((category: ICategory) => category.id === id);
 
         if (index >= 0) {
-            catalog[index].doneStatus = true;
+            catalog[index].list = catalog[index].list.map((task: ITask) => {
+                task.doneStatus = true;
+                return task;
+            });
             catalog.sort(compareCatalogsByTime);
             const modifiedCatalog: ICategory[] = sortCatalog(catalog);
             return fromPromise(this.storage.set(STORE_NAME, modifiedCatalog)).pipe(
