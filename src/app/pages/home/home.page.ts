@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 
-import {AlertController, IonItemSliding, ModalController, Platform} from '@ionic/angular';
+import { AlertController, IonItemSliding, ModalController, Platform } from '@ionic/angular';
 
 import { BehaviorSubject, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';

@@ -4,7 +4,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { LoadingController, Platform } from '@ionic/angular';
 
-import { combineLatest, forkJoin, of, Subject } from 'rxjs';
+import { forkJoin, of, Subject } from 'rxjs';
 import { fromPromise } from 'rxjs/internal-compatibility';
 import { switchMap, takeUntil } from 'rxjs/operators';
 
@@ -69,7 +69,7 @@ export class AppComponent implements OnDestroy {
 
     public initializeApp(): void {
         this.platform.ready().then(() => {
-            this.statusBar.styleDefault();
+            this.statusBar.styleLightContent();
             this.splashScreen.hide();
             this.initStore();
         });

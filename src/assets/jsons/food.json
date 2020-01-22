@@ -1,0 +1,857 @@
+[{
+    "name": "Овощи",
+    "id": "14d7c9aa-8ff3-408d-ac6d-ae3ead9ea0d4",
+    "list": [{
+        "parentId": "14d7c9aa-8ff3-408d-ac6d-ae3ead9ea0d4",
+        "id": "505251ad-8070-4117-8b33-bd48c37a7bbb",
+        "name": "Авокадо"
+    }, {
+        "parentId": "14d7c9aa-8ff3-408d-ac6d-ae3ead9ea0d4",
+        "id": "d2eadd1a-2352-4e3e-bb16-d677eac3abab",
+        "name": "Баклажан"
+    }, {
+        "parentId": "14d7c9aa-8ff3-408d-ac6d-ae3ead9ea0d4",
+        "id": "b7ed8d73-a8be-410b-a4ea-a50d1a13d8f3",
+        "name": "Брокколи"
+    }, {
+        "parentId": "14d7c9aa-8ff3-408d-ac6d-ae3ead9ea0d4",
+        "id": "4161dd16-1eb3-4e91-8589-2b5b03013ea5",
+        "name": "Горох"
+    }, {
+        "parentId": "14d7c9aa-8ff3-408d-ac6d-ae3ead9ea0d4",
+        "id": "e1043eb5-96fa-4da2-a57f-79f42149be3d",
+        "name": "Кабачок"
+    }, {
+        "parentId": "14d7c9aa-8ff3-408d-ac6d-ae3ead9ea0d4",
+        "id": "f621fd29-bd51-46e8-a780-e2b06c12a03c",
+        "name": "Капуста"
+    }, {
+        "parentId": "14d7c9aa-8ff3-408d-ac6d-ae3ead9ea0d4",
+        "id": "a377fb58-e200-4130-a0cb-0d32a1af4de0",
+        "name": "Картофель"
+    }, {
+        "parentId": "14d7c9aa-8ff3-408d-ac6d-ae3ead9ea0d4",
+        "id": "2a28e6c7-e00c-4c12-b8d0-a69df4ac468a",
+        "name": "Кукуруза"
+    }, {
+        "parentId": "14d7c9aa-8ff3-408d-ac6d-ae3ead9ea0d4",
+        "id": "169de1ef-eb00-4405-b490-6ed4843a17d1",
+        "name": "Лук"
+    }, {
+        "parentId": "14d7c9aa-8ff3-408d-ac6d-ae3ead9ea0d4",
+        "id": "b9b060d3-4d9b-475b-9be8-3227f0842950",
+        "name": "Морковь"
+    }, {
+        "parentId": "14d7c9aa-8ff3-408d-ac6d-ae3ead9ea0d4",
+        "id": "bfd5cb0e-16fb-4349-8a77-7dd848e0cdf7",
+        "name": "Огурец"
+    }, {
+        "parentId": "14d7c9aa-8ff3-408d-ac6d-ae3ead9ea0d4",
+        "id": "d8072d83-1db3-403f-94e3-0768bed9dc74",
+        "name": "Перец"
+    }, {
+        "parentId": "14d7c9aa-8ff3-408d-ac6d-ae3ead9ea0d4",
+        "id": "f4eac41d-71e7-4de3-aa03-813807f1aeca",
+        "name": "Редис"
+    }, {
+        "parentId": "14d7c9aa-8ff3-408d-ac6d-ae3ead9ea0d4",
+        "id": "17cb6d28-c0b9-47bd-8bdc-ed73f526d39f",
+        "name": "Свекла"
+    }, {
+        "parentId": "14d7c9aa-8ff3-408d-ac6d-ae3ead9ea0d4",
+        "id": "dee08156-e841-4fe5-a74f-c18247d355f8",
+        "name": "Томат"
+    }, {
+        "parentId": "14d7c9aa-8ff3-408d-ac6d-ae3ead9ea0d4",
+        "id": "6f92b578-e778-4166-ac99-379f8470c7f6",
+        "name": "Тыква"
+    }, {
+        "parentId": "14d7c9aa-8ff3-408d-ac6d-ae3ead9ea0d4",
+        "id": "ba2080ee-2c4c-447b-8ae8-4c94de59b20f",
+        "name": "Фасоль"
+    }, {
+        "parentId": "14d7c9aa-8ff3-408d-ac6d-ae3ead9ea0d4",
+        "id": "68164734-16e1-4448-858d-d6ae946b44b1",
+        "name": "Чеснок"
+    }, {
+        "parentId": "14d7c9aa-8ff3-408d-ac6d-ae3ead9ea0d4",
+        "id": "727cfb21-4e1d-4440-8275-032102b04508",
+        "name": "Базилик"
+    }, {
+        "parentId": "14d7c9aa-8ff3-408d-ac6d-ae3ead9ea0d4",
+        "id": "7ad6502b-5333-42ae-b4f5-5a955e08a820",
+        "name": "Кинза"
+    }, {
+        "parentId": "14d7c9aa-8ff3-408d-ac6d-ae3ead9ea0d4",
+        "id": "ba57c2dd-ad05-4a85-aab6-a4124598dc2a",
+        "name": "Лук зеленый"
+    }, {
+        "parentId": "14d7c9aa-8ff3-408d-ac6d-ae3ead9ea0d4",
+        "id": "c24fec32-a54b-4592-be0f-0f0a2c6fe9d2",
+        "name": "Мята"
+    }, {
+        "parentId": "14d7c9aa-8ff3-408d-ac6d-ae3ead9ea0d4",
+        "id": "3b3099a9-1e5a-4bed-ad8a-d7c290d374eb",
+        "name": "Петрушка"
+    }, {
+        "parentId": "14d7c9aa-8ff3-408d-ac6d-ae3ead9ea0d4",
+        "id": "46855a75-c2c6-49de-9c04-01eebf76e013",
+        "name": "Салат"
+    }, {
+        "parentId": "14d7c9aa-8ff3-408d-ac6d-ae3ead9ea0d4",
+        "id": "1779a26a-4089-405f-bc31-a314492d0748",
+        "name": "Укроп"
+    }, {
+        "parentId": "14d7c9aa-8ff3-408d-ac6d-ae3ead9ea0d4",
+        "id": "0c5e22f1-4c34-4a54-8460-738fba1f2137",
+        "name": "Шпинат"
+    }, {
+        "parentId": "14d7c9aa-8ff3-408d-ac6d-ae3ead9ea0d4",
+        "id": "7865aab2-65f3-4309-99d2-7bb1e14f4df2",
+        "name": "Щавель"
+    }]
+}, {
+    "name": "Фрукты",
+    "id": "23ee59eb-2bb9-485f-87e5-ccd5f470337e",
+    "list": [{
+        "parentId": "23ee59eb-2bb9-485f-87e5-ccd5f470337e",
+        "id": "3eb295cd-5465-4bde-b4ed-1cfbfe6794df",
+        "name": "Ананас"
+    }, {
+        "parentId": "23ee59eb-2bb9-485f-87e5-ccd5f470337e",
+        "id": "83f4072f-ef53-4d48-9c70-95054078d09b",
+        "name": "Апельсин"
+    }, {
+        "parentId": "23ee59eb-2bb9-485f-87e5-ccd5f470337e",
+        "id": "5e7c0bdc-d9f2-4b63-98d2-b16553fc334c",
+        "name": "Арбуз"
+    }, {
+        "parentId": "23ee59eb-2bb9-485f-87e5-ccd5f470337e",
+        "id": "3f606062-d046-4fd1-b086-5faaa59e1303",
+        "name": "Банан"
+    }, {
+        "parentId": "23ee59eb-2bb9-485f-87e5-ccd5f470337e",
+        "id": "38057d54-8d98-47d7-934a-bad4e5db72a1",
+        "name": "Виноград"
+    }, {
+        "parentId": "23ee59eb-2bb9-485f-87e5-ccd5f470337e",
+        "id": "4cad4e2d-095a-4cc7-a842-944ce8a64258",
+        "name": "Голубика"
+    }, {
+        "parentId": "23ee59eb-2bb9-485f-87e5-ccd5f470337e",
+        "id": "e4cd7925-b3a4-4ba0-942f-a0b2fb2fd705",
+        "name": "Гранат"
+    }, {
+        "parentId": "23ee59eb-2bb9-485f-87e5-ccd5f470337e",
+        "id": "efdb1189-6f73-4955-9770-139dc6405b36",
+        "name": "Грейпфрут"
+    }, {
+        "parentId": "23ee59eb-2bb9-485f-87e5-ccd5f470337e",
+        "id": "f5186b12-d524-4ac2-8e2c-a9c85de48a64",
+        "name": "Груша"
+    }, {
+        "parentId": "23ee59eb-2bb9-485f-87e5-ccd5f470337e",
+        "id": "29d4dc15-ed62-4bae-838d-8fa1996976d7",
+        "name": "Дыня"
+    }, {
+        "parentId": "23ee59eb-2bb9-485f-87e5-ccd5f470337e",
+        "id": "35b1e785-16d6-458b-b11e-88e07d50a5f3",
+        "name": "Ежевика"
+    }, {
+        "parentId": "23ee59eb-2bb9-485f-87e5-ccd5f470337e",
+        "id": "e476c8ca-4e42-45f0-b22c-9a275b034a4b",
+        "name": "Киви"
+    }, {
+        "parentId": "23ee59eb-2bb9-485f-87e5-ccd5f470337e",
+        "id": "471b7a0c-db5f-42d4-9da2-c3d86b389c90",
+        "name": "Клубника"
+    }, {
+        "parentId": "23ee59eb-2bb9-485f-87e5-ccd5f470337e",
+        "id": "3f24835a-96ba-4b95-9230-3ac42da3e1b6",
+        "name": "Лимон"
+    }, {
+        "parentId": "23ee59eb-2bb9-485f-87e5-ccd5f470337e",
+        "id": "e8b84d8a-27dc-41d4-a8bb-3a6c4b8ab9cc",
+        "name": "Малина"
+    }, {
+        "parentId": "23ee59eb-2bb9-485f-87e5-ccd5f470337e",
+        "id": "a8d4fe9d-2633-4db7-81fb-8f3bfe30b56b",
+        "name": "Мандарин"
+    }, {
+        "parentId": "23ee59eb-2bb9-485f-87e5-ccd5f470337e",
+        "id": "0e698d06-d4c1-40ad-a0e7-03ec384556ac",
+        "name": "Персик"
+    }, {
+        "parentId": "23ee59eb-2bb9-485f-87e5-ccd5f470337e",
+        "id": "40eb6b46-a555-4867-94ae-8e8fe3c56397",
+        "name": "Помело"
+    }, {
+        "parentId": "23ee59eb-2bb9-485f-87e5-ccd5f470337e",
+        "id": "2d1c0008-0c2f-44ad-9394-bf7b64a73158",
+        "name": "Слива"
+    }, {
+        "parentId": "23ee59eb-2bb9-485f-87e5-ccd5f470337e",
+        "id": "70485c09-a24c-4b54-8239-8fc4785a91c3",
+        "name": "Смородина"
+    }, {
+        "parentId": "23ee59eb-2bb9-485f-87e5-ccd5f470337e",
+        "id": "03ca8151-b6be-4353-94e7-7092b036d581",
+        "name": "Хурма"
+    }, {
+        "parentId": "23ee59eb-2bb9-485f-87e5-ccd5f470337e",
+        "id": "ec39473b-813e-4165-8ac5-6fcac7c82c6b",
+        "name": "Черника"
+    }, {
+        "parentId": "23ee59eb-2bb9-485f-87e5-ccd5f470337e",
+        "id": "037f83f2-fa08-44f3-96e0-406a615a72cd",
+        "name": "Яблоко"
+    }]
+}, {
+    "name": "Мясо",
+    "id": "bfe15e23-d0fe-4cda-b3b3-1cf4b9796d35",
+    "list": [{
+        "parentId": "bfe15e23-d0fe-4cda-b3b3-1cf4b9796d35",
+        "id": "3f93e47b-fc86-4bdc-9824-96b5b825e077",
+        "name": "Говядина"
+    }, {
+        "parentId": "bfe15e23-d0fe-4cda-b3b3-1cf4b9796d35",
+        "id": "e36bd149-7663-4b19-8cf6-1fb8d1cf60eb",
+        "name": "Индейка"
+    }, {
+        "parentId": "bfe15e23-d0fe-4cda-b3b3-1cf4b9796d35",
+        "id": "6031ffa2-f47d-4639-83c3-1aea92dc85e0",
+        "name": "Колбаса"
+    }, {
+        "parentId": "bfe15e23-d0fe-4cda-b3b3-1cf4b9796d35",
+        "id": "eb81c03b-8afb-457b-a88a-dc8ca5e93a60",
+        "name": "Курица"
+    }, {
+        "parentId": "bfe15e23-d0fe-4cda-b3b3-1cf4b9796d35",
+        "id": "88e498ea-b0da-4055-9838-e3181fc86cfc",
+        "name": "Паштет"
+    }, {
+        "parentId": "bfe15e23-d0fe-4cda-b3b3-1cf4b9796d35",
+        "id": "6c5b9289-d5cf-45af-9c59-abf12fa57ec4",
+        "name": "Пельмени"
+    }, {
+        "parentId": "bfe15e23-d0fe-4cda-b3b3-1cf4b9796d35",
+        "id": "02d8dde1-9061-4841-82e4-160e8442f08c",
+        "name": "Печень куриная"
+    }, {
+        "parentId": "bfe15e23-d0fe-4cda-b3b3-1cf4b9796d35",
+        "id": "83cbc5c6-0b52-447a-bca0-9987fd3c50c8",
+        "name": "Свинина"
+    }, {
+        "parentId": "bfe15e23-d0fe-4cda-b3b3-1cf4b9796d35",
+        "id": "9369331c-d76d-4083-9bec-ebeb3a3a369d",
+        "name": "Сосиски"
+    }, {
+        "parentId": "bfe15e23-d0fe-4cda-b3b3-1cf4b9796d35",
+        "id": "7bb3d5ae-12e0-44d7-a9e7-56318a60fd76",
+        "name": "Сосиски детские"
+    }, {
+        "parentId": "bfe15e23-d0fe-4cda-b3b3-1cf4b9796d35",
+        "id": "3397a613-32d4-4d6c-9782-68abc5f1ec74",
+        "name": "Утка"
+    }, {
+        "parentId": "bfe15e23-d0fe-4cda-b3b3-1cf4b9796d35",
+        "id": "84e9b38b-86c9-4a7c-8683-e0bb2e74f2fb",
+        "name": "Фарш куриный"
+    }, {
+        "parentId": "bfe15e23-d0fe-4cda-b3b3-1cf4b9796d35",
+        "id": "ff93a6d2-296b-41b4-b7b5-235d9e8e647e",
+        "name": "Фарш свино-говяжий"
+    }, {
+        "parentId": "bfe15e23-d0fe-4cda-b3b3-1cf4b9796d35",
+        "id": "41462b80-b756-4b41-8d25-2b7503138a53",
+        "name": "Шашлык"
+    }, {
+        "parentId": "bfe15e23-d0fe-4cda-b3b3-1cf4b9796d35",
+        "id": "3290e682-6f9d-4a7b-a95c-ecff161301e5",
+        "name": "Икра красная"
+    }, {
+        "parentId": "bfe15e23-d0fe-4cda-b3b3-1cf4b9796d35",
+        "id": "bfaa5618-da08-4dca-b579-7c1191772c05",
+        "name": "Крабовое мясо"
+    }, {
+        "parentId": "bfe15e23-d0fe-4cda-b3b3-1cf4b9796d35",
+        "id": "070c7ef2-bd10-4762-a335-1e5e9575580b",
+        "name": "Креветки"
+    }, {
+        "parentId": "bfe15e23-d0fe-4cda-b3b3-1cf4b9796d35",
+        "id": "771cee1e-1474-4dad-903d-f17f26fbfe06",
+        "name": "Морепродукты"
+    }, {
+        "parentId": "bfe15e23-d0fe-4cda-b3b3-1cf4b9796d35",
+        "id": "051762b7-b0e0-463f-aea8-6a3a30b0b2ef",
+        "name": "Рыба замороженная"
+    }, {
+        "parentId": "bfe15e23-d0fe-4cda-b3b3-1cf4b9796d35",
+        "id": "2db3d2a9-8e47-4ff1-b896-31e2d37cea49",
+        "name": "Рыба копченая"
+    }, {
+        "parentId": "bfe15e23-d0fe-4cda-b3b3-1cf4b9796d35",
+        "id": "a50cc686-35c0-4d04-9309-bd74fd5de111",
+        "name": "Рыба соленая"
+    }, {
+        "parentId": "bfe15e23-d0fe-4cda-b3b3-1cf4b9796d35",
+        "id": "5081834c-92b0-4dbb-a7e0-7d625154c1c2",
+        "name": "Рыбные консервы"
+    }]
+}, {
+    "name": "Молоко",
+    "id": "120fad57-611f-4f9b-acac-02a832e97048",
+    "list": [{
+        "parentId": "120fad57-611f-4f9b-acac-02a832e97048",
+        "id": "abe3e9f2-36d3-4938-90bf-64e0a1491b38",
+        "name": "Ацидофилин"
+    }, {
+        "parentId": "120fad57-611f-4f9b-acac-02a832e97048",
+        "id": "0ee2d0fa-284a-42c9-9621-f8aa2fde75f8",
+        "name": "Йогурт"
+    }, {
+        "parentId": "120fad57-611f-4f9b-acac-02a832e97048",
+        "id": "6fe3bc61-f926-4d90-af8d-8e7a1c369f58",
+        "name": "Кефир"
+    }, {
+        "parentId": "120fad57-611f-4f9b-acac-02a832e97048",
+        "id": "934d0d82-778c-4eb3-963e-09915c609a1e",
+        "name": "Масло сливочное"
+    }, {
+        "parentId": "120fad57-611f-4f9b-acac-02a832e97048",
+        "id": "d98f53de-c021-4d9b-b234-63642132d5c0",
+        "name": "Мацони"
+    }, {
+        "parentId": "120fad57-611f-4f9b-acac-02a832e97048",
+        "id": "5bed197f-0026-46f4-9847-5cbd42fb047a",
+        "name": "Молоко"
+    }, {
+        "parentId": "120fad57-611f-4f9b-acac-02a832e97048",
+        "id": "8b47122a-f2b0-4a55-9831-bdc5fe262820",
+        "name": "Молоко сгущеное"
+    }, {
+        "parentId": "120fad57-611f-4f9b-acac-02a832e97048",
+        "id": "0da8654e-2f82-4f81-9b09-45c468da8320",
+        "name": "Мороженое"
+    }, {
+        "parentId": "120fad57-611f-4f9b-acac-02a832e97048",
+        "id": "a89350fe-8a97-4b02-b88a-d1dbc3dff4c4",
+        "name": "Ряженка"
+    }, {
+        "parentId": "120fad57-611f-4f9b-acac-02a832e97048",
+        "id": "857e1177-4bf4-4e77-b59e-bf60b602c26c",
+        "name": "Сливки"
+    }, {
+        "parentId": "120fad57-611f-4f9b-acac-02a832e97048",
+        "id": "ee20f20b-8ace-4873-bd8a-096b27b92e83",
+        "name": "Сметана"
+    }, {
+        "parentId": "120fad57-611f-4f9b-acac-02a832e97048",
+        "id": "e18e6b1b-3c7b-4890-b86f-fae0f77b9e02",
+        "name": "Сыр мягкий"
+    }, {
+        "parentId": "120fad57-611f-4f9b-acac-02a832e97048",
+        "id": "43234a7c-dada-498c-b4fe-f0b04f7909c2",
+        "name": "Сыр плавленный"
+    }, {
+        "parentId": "120fad57-611f-4f9b-acac-02a832e97048",
+        "id": "f528ed42-ad98-4166-a722-3eecf93ace55",
+        "name": "Сыр твердый"
+    }, {
+        "parentId": "120fad57-611f-4f9b-acac-02a832e97048",
+        "id": "3d86d8da-aa00-46fb-9fa4-25f59160720a",
+        "name": "Сыр творожный"
+    }, {
+        "parentId": "120fad57-611f-4f9b-acac-02a832e97048",
+        "id": "dd4a2b35-00d9-4626-8ca5-cd7fe5d35700",
+        "name": "Творог"
+    }, {
+        "parentId": "120fad57-611f-4f9b-acac-02a832e97048",
+        "id": "3a4b3707-f33e-44a4-86df-4cfab9bfec9e",
+        "name": "Творожок детский"
+    }, {
+        "parentId": "120fad57-611f-4f9b-acac-02a832e97048",
+        "id": "6ff16bae-889a-4b54-962d-e5549d22c93f",
+        "name": "Яйцо"
+    }]
+}, {
+    "name": "Напитки",
+    "id": "e2efae1c-2cc4-4027-98c3-e633e9d8d668",
+    "list": [{
+        "parentId": "e2efae1c-2cc4-4027-98c3-e633e9d8d668",
+        "id": "5a398b58-afb4-4311-b922-504b33cd9ef0",
+        "name": "Боржоми"
+    }, {
+        "parentId": "e2efae1c-2cc4-4027-98c3-e633e9d8d668",
+        "id": "42e4c51c-f409-4b27-805f-ef8e365cb5aa",
+        "name": "Вино"
+    }, {
+        "parentId": "e2efae1c-2cc4-4027-98c3-e633e9d8d668",
+        "id": "a5f47be0-4f21-4a50-b9f0-a374ade27dc4",
+        "name": "Вода детская"
+    }, {
+        "parentId": "e2efae1c-2cc4-4027-98c3-e633e9d8d668",
+        "id": "2446dac5-e9de-4ead-9f03-2cb28c02bcb0",
+        "name": "Какао"
+    }, {
+        "parentId": "e2efae1c-2cc4-4027-98c3-e633e9d8d668",
+        "id": "cfda14bc-93df-4366-9093-de8a5752408a",
+        "name": "Кофе заварной"
+    }, {
+        "parentId": "e2efae1c-2cc4-4027-98c3-e633e9d8d668",
+        "id": "76aea18b-793f-43b7-aefb-e19fdc4a1d05",
+        "name": "Кофе растворимый"
+    }, {
+        "parentId": "e2efae1c-2cc4-4027-98c3-e633e9d8d668",
+        "id": "bf83775f-ffac-42ae-b627-aecd3106d053",
+        "name": "Чай зеленый"
+    }, {
+        "parentId": "e2efae1c-2cc4-4027-98c3-e633e9d8d668",
+        "id": "1aa54054-65d9-409c-96ad-ae095579ec29",
+        "name": "Чай зеленый в пакетиках"
+    }, {
+        "parentId": "e2efae1c-2cc4-4027-98c3-e633e9d8d668",
+        "id": "50547863-085c-41a0-bf3e-8b6d6004da1e",
+        "name": "Чай черный"
+    }, {
+        "parentId": "e2efae1c-2cc4-4027-98c3-e633e9d8d668",
+        "id": "51ea9cee-72ad-474b-bd2f-3e2936096623",
+        "name": "Чай черный в пакетиках"
+    }]
+}, {
+    "name": "Сладости",
+    "id": "57038934-e52c-4da3-a038-b834e33d5d19",
+    "list": [{
+        "parentId": "57038934-e52c-4da3-a038-b834e33d5d19",
+        "id": "6d8bafe6-9e29-4cf4-882b-715ffd855698",
+        "name": "Вафли"
+    }, {
+        "parentId": "57038934-e52c-4da3-a038-b834e33d5d19",
+        "id": "464e9951-847f-4e51-9dea-d938668f75d0",
+        "name": "Зефир"
+    }, {
+        "parentId": "57038934-e52c-4da3-a038-b834e33d5d19",
+        "id": "e029af37-982f-4515-af9a-aab9fca32626",
+        "name": "Карамель"
+    }, {
+        "parentId": "57038934-e52c-4da3-a038-b834e33d5d19",
+        "id": "56793b1b-6110-4c07-897f-049fda7e8469",
+        "name": "Конфеты шоколадные"
+    }, {
+        "parentId": "57038934-e52c-4da3-a038-b834e33d5d19",
+        "id": "204a3838-11b6-491b-9b61-4ac2096bcdac",
+        "name": "Леденцы"
+    }, {
+        "parentId": "57038934-e52c-4da3-a038-b834e33d5d19",
+        "id": "5d6f088e-dd87-4fcf-99dc-09702f0298c7",
+        "name": "Мармелад"
+    }, {
+        "parentId": "57038934-e52c-4da3-a038-b834e33d5d19",
+        "id": "d45d3e97-469a-4c7f-bbc7-b434e5bf687d",
+        "name": "Пахлава"
+    }, {
+        "parentId": "57038934-e52c-4da3-a038-b834e33d5d19",
+        "id": "5d9350bc-5856-4fc1-b1f0-d2a5d1e69967",
+        "name": "Печенье"
+    }, {
+        "parentId": "57038934-e52c-4da3-a038-b834e33d5d19",
+        "id": "5cb6b8fe-7160-4534-b143-2a30063bf4b6",
+        "name": "Пирог"
+    }, {
+        "parentId": "57038934-e52c-4da3-a038-b834e33d5d19",
+        "id": "6e5b15be-26ad-4eab-9ec7-2a7de6baf2a4",
+        "name": "Пряники"
+    }, {
+        "parentId": "57038934-e52c-4da3-a038-b834e33d5d19",
+        "id": "8f59820e-b6b0-4e87-86ea-bd732bbc4ab2",
+        "name": "Сахар"
+    }, {
+        "parentId": "57038934-e52c-4da3-a038-b834e33d5d19",
+        "id": "62ef8abb-a886-4820-99f4-c2ac7da24ea9",
+        "name": "Торт"
+    }, {
+        "parentId": "57038934-e52c-4da3-a038-b834e33d5d19",
+        "id": "f44cd892-ddd0-4215-b95a-497969346ce0",
+        "name": "Халва"
+    }, {
+        "parentId": "57038934-e52c-4da3-a038-b834e33d5d19",
+        "id": "ffb4a605-9ef4-4dc7-9852-7cf435815f81",
+        "name": "Шоколад"
+    }]
+}, {
+    "name": "Макароны, крупы",
+    "id": "53f76027-0d06-4527-8ee1-9cc2ffb6c954",
+    "list": [{
+        "parentId": "53f76027-0d06-4527-8ee1-9cc2ffb6c954",
+        "id": "8f708bb0-66b9-4490-8e81-0ea02ab8dd1d",
+        "name": "Булгур"
+    }, {
+        "parentId": "53f76027-0d06-4527-8ee1-9cc2ffb6c954",
+        "id": "631cd1e0-4d4a-44a5-9435-c8742108a44c",
+        "name": "Горох"
+    }, {
+        "parentId": "53f76027-0d06-4527-8ee1-9cc2ffb6c954",
+        "id": "f503b9f7-db13-4b2f-87fb-755443991939",
+        "name": "Гречка"
+    }, {
+        "parentId": "53f76027-0d06-4527-8ee1-9cc2ffb6c954",
+        "id": "d0b1d6f2-a8dc-499b-a937-56517fba9427",
+        "name": "Киноа"
+    }, {
+        "parentId": "53f76027-0d06-4527-8ee1-9cc2ffb6c954",
+        "id": "ad9c5194-7366-48ae-bdf4-b0fe458d2fc8",
+        "name": "Кукурузная крупа"
+    }, {
+        "parentId": "53f76027-0d06-4527-8ee1-9cc2ffb6c954",
+        "id": "d45293b3-a8fd-41ab-bd5f-2fb7e2b2fa12",
+        "name": "Кускус"
+    }, {
+        "parentId": "53f76027-0d06-4527-8ee1-9cc2ffb6c954",
+        "id": "2bcdec16-fe86-444a-bc56-e9dd4a140324",
+        "name": "Лаваш"
+    }, {
+        "parentId": "53f76027-0d06-4527-8ee1-9cc2ffb6c954",
+        "id": "15f4970a-34ce-41eb-9601-e933e39f22bf",
+        "name": "Льняная крупа"
+    }, {
+        "parentId": "53f76027-0d06-4527-8ee1-9cc2ffb6c954",
+        "id": "1b1d3641-ca3b-43ea-b94a-0ec04e038ad6",
+        "name": "Макароны"
+    }, {
+        "parentId": "53f76027-0d06-4527-8ee1-9cc2ffb6c954",
+        "id": "636ec380-8c62-4b22-9703-83e534ca82ff",
+        "name": "Манка"
+    }, {
+        "parentId": "53f76027-0d06-4527-8ee1-9cc2ffb6c954",
+        "id": "0eba5536-703c-45ce-8206-80a216305a9a",
+        "name": "Маш"
+    }, {
+        "parentId": "53f76027-0d06-4527-8ee1-9cc2ffb6c954",
+        "id": "c7c4d893-5e8c-4666-ad9d-f7642bfa2927",
+        "name": "Многозерновая крупа"
+    }, {
+        "parentId": "53f76027-0d06-4527-8ee1-9cc2ffb6c954",
+        "id": "f87cd748-c55a-4c88-85b4-1391219aa464",
+        "name": "Мука"
+    }, {
+        "parentId": "53f76027-0d06-4527-8ee1-9cc2ffb6c954",
+        "id": "b51e4787-a9d9-464a-bc6f-394cf8a598da",
+        "name": "Нут"
+    }, {
+        "parentId": "53f76027-0d06-4527-8ee1-9cc2ffb6c954",
+        "id": "525a1e14-b116-4e8e-ad39-a431e6c00a93",
+        "name": "Овсянка"
+    }, {
+        "parentId": "53f76027-0d06-4527-8ee1-9cc2ffb6c954",
+        "id": "7fa73fe2-ea29-4edf-9d5a-f4a5f9d33aca",
+        "name": "Перловка"
+    }, {
+        "parentId": "53f76027-0d06-4527-8ee1-9cc2ffb6c954",
+        "id": "1063ecbd-d1df-47c1-a194-12885d2d48ba",
+        "name": "Полбяная крупа"
+    }, {
+        "parentId": "53f76027-0d06-4527-8ee1-9cc2ffb6c954",
+        "id": "bf4d95ef-6fc8-45d0-b374-d5ccfdf681a9",
+        "name": "Пшеничная крупа"
+    }, {
+        "parentId": "53f76027-0d06-4527-8ee1-9cc2ffb6c954",
+        "id": "c10b6fb8-7949-4e24-b62a-9e8f490a9f21",
+        "name": "Пшенная крупа"
+    }, {
+        "parentId": "53f76027-0d06-4527-8ee1-9cc2ffb6c954",
+        "id": "4363a1f5-49bf-4a58-9145-3f08459f781f",
+        "name": "Рис"
+    }, {
+        "parentId": "53f76027-0d06-4527-8ee1-9cc2ffb6c954",
+        "id": "89e31054-7ab9-419c-b39b-00a5151fd2a8",
+        "name": "Фасоль"
+    }, {
+        "parentId": "53f76027-0d06-4527-8ee1-9cc2ffb6c954",
+        "id": "89f0867c-23f8-40eb-8fc5-8d06c98907fb",
+        "name": "Хлеб"
+    }, {
+        "parentId": "53f76027-0d06-4527-8ee1-9cc2ffb6c954",
+        "id": "141299cf-f9bb-459f-a3d5-006ccb164d5e",
+        "name": "Хлебцы"
+    }, {
+        "parentId": "53f76027-0d06-4527-8ee1-9cc2ffb6c954",
+        "id": "498a0c37-217c-40a7-aa0b-cc0dc65d3694",
+        "name": "Чечевица"
+    }, {
+        "parentId": "53f76027-0d06-4527-8ee1-9cc2ffb6c954",
+        "id": "f96cbd05-1020-41b9-87ec-fbac79ada09a",
+        "name": "Ячменная крупа"
+    }]
+}, {
+    "name": "Прочее",
+    "id": "fb60f074-4dc8-4760-914d-8201d9de579e",
+    "list": [{
+        "parentId": "fb60f074-4dc8-4760-914d-8201d9de579e",
+        "id": "c4014646-423d-4c61-93c5-ddb336f21a56",
+        "name": "Варенье"
+    }, {
+        "parentId": "fb60f074-4dc8-4760-914d-8201d9de579e",
+        "id": "cdc86f77-0bf8-4535-934f-d9d9d1d99192",
+        "name": "Гвоздика"
+    }, {
+        "parentId": "fb60f074-4dc8-4760-914d-8201d9de579e",
+        "id": "04b22467-d6d6-4e49-9bd4-9fc5da8dc999",
+        "name": "Горчица"
+    }, {
+        "parentId": "fb60f074-4dc8-4760-914d-8201d9de579e",
+        "id": "5e058001-0f68-4bbe-8a3b-f1e3b8b2a22e",
+        "name": "Грибы"
+    }, {
+        "parentId": "fb60f074-4dc8-4760-914d-8201d9de579e",
+        "id": "18478f3a-a7a9-4e33-80f4-ba098ce9af33",
+        "name": "Жевательная резинка"
+    }, {
+        "parentId": "fb60f074-4dc8-4760-914d-8201d9de579e",
+        "id": "5ab17abb-2e15-4101-8ec2-1f0c577e9b93",
+        "name": "Зеленый горошек"
+    }, {
+        "parentId": "fb60f074-4dc8-4760-914d-8201d9de579e",
+        "id": "ef1337d7-1ead-4f83-807f-ad797fc91f09",
+        "name": "Имбирь"
+    }, {
+        "parentId": "fb60f074-4dc8-4760-914d-8201d9de579e",
+        "id": "cdb55cea-6d0b-467d-8f4a-5857f6b0ab90",
+        "name": "Кардамон"
+    }, {
+        "parentId": "fb60f074-4dc8-4760-914d-8201d9de579e",
+        "id": "8c839c06-dba7-4c43-9f06-1d9a82f7b0e1",
+        "name": "Карри"
+    }, {
+        "parentId": "fb60f074-4dc8-4760-914d-8201d9de579e",
+        "id": "ebdffaf0-d3af-4d4f-a977-7bb39d365cdb",
+        "name": "Квашеная капуста"
+    }, {
+        "parentId": "fb60f074-4dc8-4760-914d-8201d9de579e",
+        "id": "44fb3786-27dd-4b7b-9710-b1428870a200",
+        "name": "Кетчуп"
+    }, {
+        "parentId": "fb60f074-4dc8-4760-914d-8201d9de579e",
+        "id": "37c03bc6-b864-4dee-b790-30e11c0a069d",
+        "name": "Кориандр"
+    }, {
+        "parentId": "fb60f074-4dc8-4760-914d-8201d9de579e",
+        "id": "977a1d4b-be50-43bb-8ad5-14b6220d746b",
+        "name": "Корица"
+    }, {
+        "parentId": "fb60f074-4dc8-4760-914d-8201d9de579e",
+        "id": "2fdd65e4-6858-4b9e-8dc7-08691b556be7",
+        "name": "Кошачий корм"
+    }, {
+        "parentId": "fb60f074-4dc8-4760-914d-8201d9de579e",
+        "id": "835de806-6bd8-45f7-8817-b0fc3f6fb932",
+        "name": "Кукуруза консервированная"
+    }, {
+        "parentId": "fb60f074-4dc8-4760-914d-8201d9de579e",
+        "id": "29b4306c-fb73-418e-ac13-6f9cfa933e2d",
+        "name": "Кунжут"
+    }, {
+        "parentId": "fb60f074-4dc8-4760-914d-8201d9de579e",
+        "id": "e9637573-aac2-457c-a478-91174b15fc72",
+        "name": "Лавровый лист"
+    }, {
+        "parentId": "fb60f074-4dc8-4760-914d-8201d9de579e",
+        "id": "4644bd48-d77a-4820-9645-c08356af74ec",
+        "name": "Майонез"
+    }, {
+        "parentId": "fb60f074-4dc8-4760-914d-8201d9de579e",
+        "id": "a3310fe4-38a5-4e4e-bffa-652d1869900e",
+        "name": "Масло растительное оливковое"
+    }, {
+        "parentId": "fb60f074-4dc8-4760-914d-8201d9de579e",
+        "id": "cedf9431-e276-46d3-a2e6-d8351fd604ea",
+        "name": "Масло растительное подсолнечное"
+    }, {
+        "parentId": "fb60f074-4dc8-4760-914d-8201d9de579e",
+        "id": "59946467-b4e9-40f6-90ea-df19979387d8",
+        "name": "Мед"
+    }, {
+        "parentId": "fb60f074-4dc8-4760-914d-8201d9de579e",
+        "id": "09f5df7e-4d0d-48f9-9ff9-cf6b785a3f74",
+        "name": "Морская капуста"
+    }, {
+        "parentId": "fb60f074-4dc8-4760-914d-8201d9de579e",
+        "id": "189a3e33-a408-487b-84ea-6ccfa98435c2",
+        "name": "Огурцы консервированные"
+    }, {
+        "parentId": "fb60f074-4dc8-4760-914d-8201d9de579e",
+        "id": "f79acbcf-93c6-461b-ade4-55c0f5cfffc4",
+        "name": "Орехи"
+    }, {
+        "parentId": "fb60f074-4dc8-4760-914d-8201d9de579e",
+        "id": "264c4915-2a62-4baa-aca6-0f26e53216d4",
+        "name": "Паприка"
+    }, {
+        "parentId": "fb60f074-4dc8-4760-914d-8201d9de579e",
+        "id": "98a846f5-221f-4f7f-b83d-727266ad35e1",
+        "name": "Перец душистый"
+    }, {
+        "parentId": "fb60f074-4dc8-4760-914d-8201d9de579e",
+        "id": "ab666d9d-8ec3-4236-a52d-aca3921e2ff3",
+        "name": "Перец черный"
+    }, {
+        "parentId": "fb60f074-4dc8-4760-914d-8201d9de579e",
+        "id": "83729c23-d67b-4c5b-9347-7a44ebe8bb8c",
+        "name": "Розмарин"
+    }, {
+        "parentId": "fb60f074-4dc8-4760-914d-8201d9de579e",
+        "id": "2c9e8a99-e6d3-49e0-a07d-e42657db9a71",
+        "name": "Соль"
+    }, {
+        "parentId": "fb60f074-4dc8-4760-914d-8201d9de579e",
+        "id": "f48c290a-1be9-494f-a4ec-ed97768fad2e",
+        "name": "Сухофрукты"
+    }, {
+        "parentId": "fb60f074-4dc8-4760-914d-8201d9de579e",
+        "id": "3e482c93-117d-4765-a045-5c187d067777",
+        "name": "Томатная паста"
+    }, {
+        "parentId": "fb60f074-4dc8-4760-914d-8201d9de579e",
+        "id": "7b17a2aa-73cd-44a2-90d8-68f301a46354",
+        "name": "Томаты консервированные"
+    }, {
+        "parentId": "fb60f074-4dc8-4760-914d-8201d9de579e",
+        "id": "19341306-59d1-4f33-8cff-b9526832a465",
+        "name": "Уксус"
+    }, {
+        "parentId": "fb60f074-4dc8-4760-914d-8201d9de579e",
+        "id": "3369e558-bcf0-469b-9484-a1d733087a0b",
+        "name": "Фасоль в томате"
+    }, {
+        "parentId": "fb60f074-4dc8-4760-914d-8201d9de579e",
+        "id": "a1d27852-6b58-45c1-9c60-df48a373cf44",
+        "name": "Хрен"
+    }, {
+        "parentId": "fb60f074-4dc8-4760-914d-8201d9de579e",
+        "id": "0a6e2f4a-6d84-4565-b5d0-2c7218b21ac1",
+        "name": "Цедра"
+    }, {
+        "parentId": "fb60f074-4dc8-4760-914d-8201d9de579e",
+        "id": "7ca13907-98f9-421c-9a16-2cbfdc75abb8",
+        "name": "Чили"
+    }]
+}, {
+    "name": "Гигиена, бытовая химия",
+    "id": "6eeb2bbb-6de3-4df2-a925-3c4b289ab634",
+    "list": [{
+        "parentId": "6eeb2bbb-6de3-4df2-a925-3c4b289ab634",
+        "id": "53c92c61-05c5-477f-8cc4-d98f78cb8db8",
+        "name": "Батарейки"
+    }, {
+        "parentId": "6eeb2bbb-6de3-4df2-a925-3c4b289ab634",
+        "id": "9cd2d065-7b2a-4688-bf6a-2fa57edbeb76",
+        "name": "Бумажные полотенца"
+    }, {
+        "parentId": "6eeb2bbb-6de3-4df2-a925-3c4b289ab634",
+        "id": "b9c2feb9-9300-42f6-b61f-bf1e125206a3",
+        "name": "Ватные диски"
+    }, {
+        "parentId": "6eeb2bbb-6de3-4df2-a925-3c4b289ab634",
+        "id": "71741c5e-ca05-4955-8c12-06d00025d49c",
+        "name": "Гель для бритья"
+    }, {
+        "parentId": "6eeb2bbb-6de3-4df2-a925-3c4b289ab634",
+        "id": "145f68a8-5ba8-4cc6-96a2-b653ec890b57",
+        "name": "Гель для душа"
+    }, {
+        "parentId": "6eeb2bbb-6de3-4df2-a925-3c4b289ab634",
+        "id": "de697200-527c-4bc0-badd-c444f33dbb4f",
+        "name": "Гель для душа детский"
+    }, {
+        "parentId": "6eeb2bbb-6de3-4df2-a925-3c4b289ab634",
+        "id": "8608124b-1e86-46b0-8f13-9db1504f818f",
+        "name": "Губки для обуви"
+    }, {
+        "parentId": "6eeb2bbb-6de3-4df2-a925-3c4b289ab634",
+        "id": "b3d12c26-2575-4b65-9720-bcb4307c178d",
+        "name": "Губки для посуды"
+    }, {
+        "parentId": "6eeb2bbb-6de3-4df2-a925-3c4b289ab634",
+        "id": "beb0990f-d49f-4b5e-a68e-73c6f6c7a36a",
+        "name": "Дезодорант"
+    }, {
+        "parentId": "6eeb2bbb-6de3-4df2-a925-3c4b289ab634",
+        "id": "12306cf5-7d92-4cac-a782-0caa05ce46c0",
+        "name": "Зубная паста"
+    }, {
+        "parentId": "6eeb2bbb-6de3-4df2-a925-3c4b289ab634",
+        "id": "3036f922-93f1-4b33-b7ac-67f3be4cd6ec",
+        "name": "Зубная паста детская"
+    }, {
+        "parentId": "6eeb2bbb-6de3-4df2-a925-3c4b289ab634",
+        "id": "cc306476-7c8d-45df-b5dd-079c1851c666",
+        "name": "Зубная щетка"
+    }, {
+        "parentId": "6eeb2bbb-6de3-4df2-a925-3c4b289ab634",
+        "id": "8520e87c-7fc5-4062-b5d5-6ffce16e9ff5",
+        "name": "Зубная щетка детская"
+    }, {
+        "parentId": "6eeb2bbb-6de3-4df2-a925-3c4b289ab634",
+        "id": "7225526b-71e7-4148-807a-50fc6c47a621",
+        "name": "Лезвия"
+    }, {
+        "parentId": "6eeb2bbb-6de3-4df2-a925-3c4b289ab634",
+        "id": "e4b81d47-c983-48e3-a543-6a93fbc10aaf",
+        "name": "Мешки для мусора"
+    }, {
+        "parentId": "6eeb2bbb-6de3-4df2-a925-3c4b289ab634",
+        "id": "6132370f-00f0-462d-aef0-990bb5e68b77",
+        "name": "Мыло"
+    }, {
+        "parentId": "6eeb2bbb-6de3-4df2-a925-3c4b289ab634",
+        "id": "ff6664f7-4cc4-44c2-88b0-0ed987db45b8",
+        "name": "Перчатки резиновые"
+    }, {
+        "parentId": "6eeb2bbb-6de3-4df2-a925-3c4b289ab634",
+        "id": "38478e9a-cf4f-442f-9af1-6f8f94592cb8",
+        "name": "Подгузники"
+    }, {
+        "parentId": "6eeb2bbb-6de3-4df2-a925-3c4b289ab634",
+        "id": "9b0c9b7f-83ca-486c-9db5-18298f0cee8f",
+        "name": "Прокладки"
+    }, {
+        "parentId": "6eeb2bbb-6de3-4df2-a925-3c4b289ab634",
+        "id": "67e5d802-99d6-4ace-b337-9827925ab1a2",
+        "name": "Прокладки ежедневные"
+    }, {
+        "parentId": "6eeb2bbb-6de3-4df2-a925-3c4b289ab634",
+        "id": "38bdd863-ef16-4205-8aef-612e25db6458",
+        "name": "Салфетки"
+    }, {
+        "parentId": "6eeb2bbb-6de3-4df2-a925-3c4b289ab634",
+        "id": "e930f5e1-6731-4c61-91c6-8d1cfdcefd6c",
+        "name": "Салфетки влажные"
+    }, {
+        "parentId": "6eeb2bbb-6de3-4df2-a925-3c4b289ab634",
+        "id": "fcf7d922-88b7-4793-a043-1c9ce327e329",
+        "name": "Средство для мытья ванн"
+    }, {
+        "parentId": "6eeb2bbb-6de3-4df2-a925-3c4b289ab634",
+        "id": "8fc8e88b-9fd3-44e7-866e-415399581b31",
+        "name": "Средство для мытья полов"
+    }, {
+        "parentId": "6eeb2bbb-6de3-4df2-a925-3c4b289ab634",
+        "id": "e865d2ea-c8fa-4a89-a6c4-266b860cc8a9",
+        "name": "Средство для мытья посуды"
+    }, {
+        "parentId": "6eeb2bbb-6de3-4df2-a925-3c4b289ab634",
+        "id": "647a368b-0716-4bce-86cc-83e678259945",
+        "name": "Стиральный порошок"
+    }, {
+        "parentId": "6eeb2bbb-6de3-4df2-a925-3c4b289ab634",
+        "id": "cbe43db2-778d-488c-8abd-4ece887c6371",
+        "name": "Туалетная бумага"
+    }, {
+        "parentId": "6eeb2bbb-6de3-4df2-a925-3c4b289ab634",
+        "id": "516b1cfa-c7bd-462f-8db9-022cbbd0f6e2",
+        "name": "Ушные палочки"
+    }, {
+        "parentId": "6eeb2bbb-6de3-4df2-a925-3c4b289ab634",
+        "id": "db05172c-2c82-43cb-807c-9f1bba455504",
+        "name": "Шампунь"
+    }]
+}]

@@ -5,7 +5,7 @@ import { Storage } from '@ionic/storage';
 
 import { of, BehaviorSubject, EMPTY, Observable } from 'rxjs';
 import { fromPromise } from 'rxjs/internal-compatibility';
-import { switchMap, tap } from 'rxjs/operators';
+import {switchMap, take, tap} from 'rxjs/operators';
 
 import * as uuid from 'uuid';
 
@@ -27,6 +27,13 @@ export class StoreService {
     ) { }
 
     public initStore(): Observable<boolean> {
+        // TODO: temporary initial
+        this.http.get('assets/jsons/food.json').pipe(
+            take(1),
+        ).subscribe(res => {
+            this.storage.set('food', res);
+        });
+
         return fromPromise(this.storage.keys()).pipe(
             switchMap((keyList: string[]) => {
                 if (keyList.includes(STORE_NAME)) {
