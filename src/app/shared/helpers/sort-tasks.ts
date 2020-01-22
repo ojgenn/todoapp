@@ -7,7 +7,6 @@ function sortTaskByParameter(tasklist: ITask[], key: string): ITask[] {
 }
 
 export function sortTaskList(list: ITask[]): ITask[] {
-    list.sort().reverse();
     const separatedTasks: Record<string, ITask[]> = {
         alertTime: [],
         done: [],
@@ -23,9 +22,9 @@ export function sortTaskList(list: ITask[]): ITask[] {
         }
     });
 
-    const alertTime: ITask[] = sortTaskByParameter(separatedTasks.alertTime, 'alertTime');
-    const done: ITask[] = sortTaskByParameter(separatedTasks.done, 'created');
-    const other: ITask[] = sortTaskByParameter(separatedTasks.other, 'created');
+    const alertTime: ITask[] = sortTaskByParameter(separatedTasks.alertTime, 'alertTime').reverse();
+    const done: ITask[] = sortTaskByParameter(separatedTasks.done, 'created').reverse();
+    const other: ITask[] = sortTaskByParameter(separatedTasks.other, 'created').reverse();
 
     return [...alertTime, ...other, ...done];
 }
