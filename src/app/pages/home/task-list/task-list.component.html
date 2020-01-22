@@ -13,6 +13,7 @@
 
     <ion-content>
         <ion-list *ngIf="category.list.length > 0; else emptyList">
+
             <ion-item-sliding *ngFor="let task of category.list; let index = index; trackBy: trackByFn"
                               #slidingItem>
                 <ion-item-options side="end">
@@ -45,7 +46,10 @@
                         {{ task.alertTime | date: 'dd.MM.yy' }}
                     </ion-chip>
                     <ng-container *appTaskColor="{alertTime: task.alertTime, doneStatus: task.doneStatus} as color">
-                        <ion-label [color]="color">{{ task.name }}</ion-label>
+                        <ion-label [color]="color">
+                            <h2>{{ task.name }}</h2>
+                            <ion-text color="medium" *ngIf="task.description">{{task.description}}</ion-text>
+                        </ion-label>
                     </ng-container>
                 </ion-item>
             </ion-item-sliding>

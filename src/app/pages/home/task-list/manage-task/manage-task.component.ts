@@ -49,7 +49,8 @@ export class ManageTaskComponent implements OnInit, OnDestroy {
                 Validators.required,
                 Validators.pattern(regex.safe),
             ]],
-            alertTime: [null]
+            alertTime: [null],
+            description: [null, [Validators.pattern(regex.safe)]]
         });
 
         this.currentYear = new Date().getFullYear();
@@ -112,6 +113,7 @@ export class ManageTaskComponent implements OnInit, OnDestroy {
             alertTime: alertTime ? new Date(alertTime).getTime() : null,
             parentId: this.categoryId,
             doneStatus: false,
+            description: form.get('description').value,
         };
         this.categoryService.addTask(task).pipe(
             takeUntil(this.ngOnDestroy$)
