@@ -1,0 +1,39 @@
+[{
+    "id": "230687d6-2653-46e4-a3a9-de811e4b8e29",
+    "name": "Задачи",
+    "readonly": true,
+    "created": 1579466315939,
+    "list": []
+}, {
+    "id": "d7db655c-09da-466a-b736-6b815f84efd5",
+    "name": "Покупки",
+    "readonly": true,
+    "created": 1579466315949,
+    "list": []
+}, {
+    "id": "63a90c02-055e-4863-a4be-2cf9797c1f32",
+    "name": "Продукты",
+    "readonly": true,
+    "created": 1579466315959,
+    "list": []
+}, {
+    "id": "acd6f4c9-9ecf-4d80-a33a-016b90592459",
+    "name": "Аптека",
+    "readonly": true,
+    "created": 1579466315969,
+    "list": []
+}, {
+    "id": "bcf65074-d50f-4575-8760-196ff1c87015",
+    "name": "Тестовая категория",
+    "readonly": false,
+    "created": 1579671838651,
+    "list": [{
+        "id": "367b9f5d-9fe4-4d88-a830-57d23fd2ed56",
+        "name": "Тестовая задача",
+        "created": 1579671852861,
+        "alertTime": 1579651200000,
+        "parentId": "bcf65074-d50f-4575-8760-196ff1c87015",
+        "doneStatus": false
+    }],
+    "doneStatus": false
+}]

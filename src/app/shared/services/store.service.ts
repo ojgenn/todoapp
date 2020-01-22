@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Storage } from '@ionic/storage';
@@ -19,19 +20,30 @@ import { ICategory } from '../interfaces/category.interface';
 export class StoreService {
     private store$: BehaviorSubject<ICategory[]> = new BehaviorSubject([]);
 
-    constructor(private storage: Storage) { }
+    constructor(
+        private storage: Storage,
+        private http: HttpClient,
+    ) { }
 
     public initStore(): Observable<boolean> {
-        return fromPromise(this.storage.get(STORE_NAME))
-            .pipe(
-                switchMap((categoryList: ICategory[]) => {
-                    categoryList.sort(compareCatalogsByTime);
-                    const modifiedCatalog: ICategory[] = sortCatalog(categoryList);
-                    this.store$.next(sortCatalog(modifiedCatalog));
+        return fromPromise(this.storage.keys()).pipe(
+            switchMap((keyList: string[]) => {
+                if (keyList.includes(STORE_NAME)) {
+                    return fromPromise(this.storage.get(STORE_NAME));
+                }
+                return this.http.get('assets/jsons/store.json').pipe(
+                    tap((categoryList: ICategory[]) => this.storage.set(STORE_NAME, categoryList))
+                );
+            })
+        ).pipe(
+            switchMap((categoryList: ICategory[]) => {
+                categoryList.sort(compareCatalogsByTime);
+                const modifiedCatalog: ICategory[] = sortCatalog(categoryList);
+                this.store$.next(sortCatalog(modifiedCatalog));
 
-                    return of(true);
-                }),
-            );
+                return of(true);
+            }),
+        );
     }
 
     public getCategoryList(): Observable<ICategory[]> {
