@@ -6,6 +6,7 @@ import { HomePageComponent } from './home.page';
 import { ManageCatalogComponent } from './manage-catalog/manage-catalog.component';
 import { ManageTaskComponent } from './task-list/manage-task/manage-task.component';
 import { TaskListComponent } from './task-list/task-list.component';
+import {DatePipe} from '@angular/common';
 
 @NgModule({
     imports: [
@@ -36,5 +37,8 @@ import { TaskListComponent } from './task-list/task-list.component';
         ManageCatalogComponent,
         ManageTaskComponent,
     ],
+    providers: [
+        DatePipe,
+    ]
 })
 export class HomePageModule { }

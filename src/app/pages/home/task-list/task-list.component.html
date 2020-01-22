@@ -27,7 +27,7 @@
                         </ion-button>
 
                         <ion-button fill="clear"
-                                    (click)="editTask(task.id, slidingItem)">
+                                    (click)="editTask(task, index, slidingItem)">
                             <ion-icon name="create"
                                       color="medium"></ion-icon>
                         </ion-button>
@@ -40,7 +40,7 @@
 
                     </ion-item-option>
                 </ion-item-options>
-                <ion-item [routerLink]="task.id">
+                <ion-item>
                     <ion-chip slot="end"
                               *ngIf="task.alertTime && !task.doneStatus">
                         {{ task.alertTime | date: 'dd.MM.yy' }}

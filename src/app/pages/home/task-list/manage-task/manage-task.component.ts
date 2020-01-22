@@ -13,6 +13,7 @@ import { getMonthNames } from '../../../../shared/helpers/month-names';
 import { regex } from '../../../../shared/helpers/regex';
 import { ITask } from '../../../../shared/interfaces/task.interface';
 import { CategoryService } from '../../../../shared/services/category.service';
+import {DatePipe} from '@angular/common';
 
 @Component({
     selector: 'app-manage-task',
@@ -25,6 +26,8 @@ export class ManageTaskComponent implements OnInit, OnDestroy {
 
     private ngOnDestroy$: Subject<void> = new Subject();
     private categoryId: string;
+    private task: ITask;
+    private index: number;
 
     public errorMessage$: BehaviorSubject<string> = new BehaviorSubject(null);
     public form: FormGroup;
@@ -40,23 +43,40 @@ export class ManageTaskComponent implements OnInit, OnDestroy {
         private translateService: TranslocoService,
         private navParams: NavParams,
         private categoryService: CategoryService,
+        private datePipe: DatePipe,
     ) { }
 
     ngOnInit(): void {
-        this.categoryId = this.navParams.get('categoryId');
         this.form = this.fb.group({
             name: ['', [
                 Validators.required,
                 Validators.pattern(regex.safe),
             ]],
             alertTime: [null],
-            description: [null, [Validators.pattern(regex.safe)]]
+            description: ['', [Validators.pattern(regex.safe)]]
         });
-
+        this.categoryId = this.navParams.get('categoryId');
         this.currentYear = new Date().getFullYear();
         this.maxYear = this.currentYear + 50;
 
         this.setCustomOptions();
+
+        this.task = this.navParams.get('task');
+        this.index = this.navParams.get('index');
+
+        if (!!this.task) {
+            let alertTime: string = null;
+
+            if (this.task.alertTime) {
+                alertTime = this.datePipe.transform(this.task.alertTime, 'yyyy-MM-dd') + 'T00:00:00Z';
+            }
+
+            this.form.patchValue({
+                name: this.task.name,
+                alertTime: alertTime,
+                description: this.task.description,
+            });
+        }
     }
 
     ngOnDestroy(): void {
@@ -104,7 +124,7 @@ export class ManageTaskComponent implements OnInit, OnDestroy {
         this.modalController.dismiss();
     }
 
-    addTask(form: FormGroup): void {
+    private addTask(form: FormGroup): void {
         const alertTime: string = form.get('alertTime').value;
         const task: ITask = {
             id: uuid.v4(),
@@ -122,7 +142,27 @@ export class ManageTaskComponent implements OnInit, OnDestroy {
         });
     }
 
+    private editTask(form: FormGroup): void {
+        const alertTime: string = form.get('alertTime').value;
+        this.task = {
+            ...this.task,
+            name: form.get('name').value,
+            alertTime: alertTime ? new Date(alertTime).getTime() : null,
+            description: form.get('description').value,
+        };
+
+        this.categoryService.editTask(this.task, this.index).pipe(
+            takeUntil(this.ngOnDestroy$)
+        ).subscribe(() => {
+            this.modalController.dismiss();
+        });
+    }
+
     public manage(form: FormGroup): void {
-        this.addTask(form);
+        if (this.task) {
+            this.editTask(form);
+        } else {
+            this.addTask(form);
+        }
     }
 }

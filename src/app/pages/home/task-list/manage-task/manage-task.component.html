@@ -39,14 +39,16 @@
             {{ 'validators.REQUIRED' | transloco }}
         </ion-note>
         <ion-note color="danger"
-                  *ngIf="form.controls['name'].dirty && form.controls['name'].errors?.pattern">
+                  *ngIf="form?.dirty && form?.controls['name'].errors?.pattern">
             {{ 'validators.PATTERN.SAFE' | transloco }}
         </ion-note>
+        <ion-item>
+            <ion-textarea formControlName="description"
+                          [placeholder]="'task-list.DESCRIPTION' | transloco"></ion-textarea>
+        </ion-item>
 
-        <ion-textarea formControlName="description"
-                      [placeholder]="'task-list.DESCRIPTION' | transloco"></ion-textarea>
         <ion-note color="danger"
-                  *ngIf="form.controls['description'].dirty && form.controls['description'].errors?.pattern">
+                  *ngIf="form?.dirty && form?.controls['description'].errors?.pattern">
             {{ 'validators.PATTERN.SAFE' | transloco }}
         </ion-note>
 

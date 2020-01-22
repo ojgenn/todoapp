@@ -80,8 +80,20 @@ export class TaskListComponent implements OnInit, OnDestroy {
         await alert.present();
     }
 
-    public editTask(id: string, slidingItem: IonItemSliding): void {
+    public async editTask(task: ITask, index: number, slidingItem: IonItemSliding): Promise<void> {
+        const modal: HTMLIonModalElement = await this.modalController.create({
+            component: ManageTaskComponent,
+            componentProps: {
+                categoryId: this.id,
+                index,
+                task,
+            }
+        });
+        await modal.present();
 
+        modal.onDidDismiss().then(() => {
+            slidingItem.close();
+        });
     }
 
     public async toggleDone(index: number, slidingItem: IonItemSliding): Promise<void> {
