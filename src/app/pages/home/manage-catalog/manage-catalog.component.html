@@ -1,0 +1,41 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="end">
+            <ion-button (click)="close()">
+                <ion-icon name="close"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+    <ion-row *ngIf="errorMessage$ | async as errorMessage"
+             class="ion-justify-content-center ion-padding-top">
+        <ion-note color="danger">
+            {{ errorMessage | transloco }}
+        </ion-note>
+    </ion-row>
+
+    <ion-item>
+        <ion-input [formControl]="form"
+                   #input
+                   [placeholder]="'catalogs.INPUT_NAME' | transloco"></ion-input>
+    </ion-item>
+    <ion-note color="danger"
+              *ngIf="form.dirty && form.errors?.required">
+        {{ 'validators.REQUIRED' | transloco }}
+    </ion-note>
+    <ion-note color="danger"
+              *ngIf="form.dirty && form.errors?.pattern">
+        {{ 'validators.PATTERN.SAFE' | transloco }}
+    </ion-note>
+
+    <ion-row class="ion-justify-content-between ion-padding-top">
+        <ion-button color="light"
+                    (click)="manage(form)"
+                    [disabled]="form.invalid">
+            {{ 'buttons.SAVE' | transloco }}
+        </ion-button>
+    </ion-row>
+</ion-content>

@@ -1,0 +1,12 @@
+:host {
+  ion-label {
+    &.ion-color-medium {
+      text-decoration: line-through;
+    }
+
+    ion-text {
+      font-size: 12px;
+      font-style: oblique;
+    }
+  }
+}

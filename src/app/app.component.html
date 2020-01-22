@@ -4,7 +4,7 @@
                   type="overlay">
             <ion-header>
                 <ion-toolbar>
-                    <ion-title>Menu</ion-title>
+                    <ion-title>{{ 'side-menu.MENU' | transloco }}</ion-title>
                 </ion-toolbar>
             </ion-header>
             <ion-content>
@@ -16,7 +16,7 @@
                             <ion-icon slot="start"
                                       [name]="p.icon"></ion-icon>
                             <ion-label>
-                                {{ p.title }}
+                                {{ p.title | transloco }}
                             </ion-label>
                         </ion-item>
                     </ion-menu-toggle>

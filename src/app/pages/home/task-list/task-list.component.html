@@ -1,0 +1,63 @@
+<ng-container *appLet="category$ | async as category">
+    <ion-header>
+        <ion-toolbar>
+            <ion-buttons slot="start">
+                <ion-back-button></ion-back-button>
+            </ion-buttons>
+            <ion-buttons slot="end">
+                <ion-button (click)="addTask()">{{ 'buttons.ADD' | transloco }}</ion-button>
+            </ion-buttons>
+            <ion-title>{{ category?.name }}</ion-title>
+        </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+        <ion-list *ngIf="category.list.length > 0; else emptyList">
+
+            <ion-item-sliding *ngFor="let task of category.list; let index = index; trackBy: trackByFn"
+                              #slidingItem>
+                <ion-item-options side="end">
+                    <ion-item-option expandable
+                                     color="light">
+
+                        <ion-button fill="clear"
+                                    (click)="deleteTask(index)">
+                            <ion-icon name="trash"
+                                      color="danger"></ion-icon>
+                        </ion-button>
+
+                        <ion-button fill="clear"
+                                    (click)="editTask(task, index, slidingItem)">
+                            <ion-icon name="create"
+                                      color="medium"></ion-icon>
+                        </ion-button>
+
+                        <ion-button fill="clear"
+                                    (click)="toggleDone(index, slidingItem)">
+                            <ion-icon name="checkmark"
+                                      color="dark"></ion-icon>
+                        </ion-button>
+
+                    </ion-item-option>
+                </ion-item-options>
+                <ion-item>
+                    <ion-chip slot="end"
+                              *ngIf="task.alertTime && !task.doneStatus">
+                        {{ task.alertTime | date: 'dd.MM.yy' }}
+                    </ion-chip>
+                    <ng-container *appTaskColor="{alertTime: task.alertTime, doneStatus: task.doneStatus} as color">
+                        <ion-label [color]="color">
+                            <h2>{{ task.name }}</h2>
+                            <ion-text color="medium"
+                                      *ngIf="task.description">{{ task.description }}</ion-text>
+                        </ion-label>
+                    </ng-container>
+                </ion-item>
+            </ion-item-sliding>
+        </ion-list>
+
+        <ng-template #emptyList>
+            <ion-item>{{ 'task-list.EMPTY_LIST' | transloco }}</ion-item>
+        </ng-template>
+    </ion-content>
+</ng-container>
