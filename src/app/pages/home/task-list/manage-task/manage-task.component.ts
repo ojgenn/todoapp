@@ -104,11 +104,12 @@ export class ManageTaskComponent implements OnInit, OnDestroy {
     }
 
     addTask(form: FormGroup): void {
+        const alertTime: string = form.get('alertTime').value;
         const task: ITask = {
             id: uuid.v4(),
             name: form.get('name').value,
             created: Date.now(),
-            alertTime: form.get('alertTime').value,
+            alertTime: alertTime ? new Date(alertTime).getTime() : null,
             parentId: this.categoryId,
             doneStatus: false,
         };

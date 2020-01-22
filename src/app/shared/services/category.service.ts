@@ -34,4 +34,24 @@ export class CategoryService {
             tap(() => this.category$.next(category)),
         );
     }
+
+    public deleteTask(index: number): Observable<unknown> {
+        const category: ICategory = this.category$.value;
+        const list: ITask[] = [...category.list];
+        list.splice(index, 1);
+        category.list = list;
+        return this.storeService.renewCategory(category).pipe(
+            tap(() => this.category$.next(category)),
+        );
+    }
+
+    public toggleDone(index: number): Observable<unknown> {
+        const category: ICategory = this.category$.value;
+        const list: ITask[] = [...category.list];
+        list[index].doneStatus = !list[index].doneStatus;
+        category.list = sortTaskList(list);
+        return this.storeService.renewCategory(category).pipe(
+            tap(() => this.category$.next(category)),
+        );
+    }
 }

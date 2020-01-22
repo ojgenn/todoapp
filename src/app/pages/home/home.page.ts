@@ -58,8 +58,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
     }
 
     public async deleteCategory(id: string): Promise<void> {
-        // tslint:disable-next-line:typedef
-        const alert = await this.alertController.create({
+        const alert: HTMLIonAlertElement = await this.alertController.create({
             header: `${this.translateService.translate('buttons.DELETE')}?`,
             buttons: [
                 {
@@ -83,8 +82,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
     }
 
     public async markAsDone(id: string, slidingItem: IonItemSliding): Promise<void> {
-        // tslint:disable-next-line:typedef
-        const alert = await this.alertController.create({
+        const alert: HTMLIonAlertElement = await this.alertController.create({
             header: this.translateService.translate('catalogs.MARK_AS_DONE'),
             buttons: [
                 {

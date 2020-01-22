@@ -1,12 +1,15 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import {IonItemSliding, ModalController} from '@ionic/angular';
+import { AlertController, IonItemSliding, ModalController } from '@ionic/angular';
 
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { takeUntil, tap } from 'rxjs/operators';
 
+import { TranslocoService } from '@ngneat/transloco';
+
 import { ICategory } from '../../../shared/interfaces/category.interface';
+import { ITask } from '../../../shared/interfaces/task.interface';
 import { CategoryService } from '../../../shared/services/category.service';
 import { ManageTaskComponent } from './manage-task/manage-task.component';
 
@@ -26,6 +29,8 @@ export class TaskListComponent implements OnInit, OnDestroy {
         private route: ActivatedRoute,
         private categoryService: CategoryService,
         private modalController: ModalController,
+        private alertController: AlertController,
+        private translateService: TranslocoService,
     ) {
     }
 
@@ -51,15 +56,59 @@ export class TaskListComponent implements OnInit, OnDestroy {
         await modal.present();
     }
 
-    public deleteTask(id: string): void {
+    public async deleteTask(index: number): Promise<void> {
+        const alert: HTMLIonAlertElement = await this.alertController.create({
+            header: `${this.translateService.translate('buttons.DELETE')}?`,
+            buttons: [
+                {
+                    text: this.translateService.translate('buttons.CANCEL'),
+                    role: 'cancel',
+                    cssClass: 'secondary',
+                    handler: () => {
+                    },
+                }, {
+                    text: this.translateService.translate('buttons.OK'),
+                    handler: () => {
+                        this.categoryService.deleteTask(index).pipe(
+                            takeUntil(this.ngOnDestroy$),
+                        ).subscribe();
+                    }
+                }
+            ]
+        });
 
+        await alert.present();
     }
 
     public editTask(id: string, slidingItem: IonItemSliding): void {
 
     }
 
-    public toggleDone(id: string, slidingItem: IonItemSliding): void {
+    public async toggleDone(index: number, slidingItem: IonItemSliding): Promise<void> {
+        const alert: HTMLIonAlertElement = await this.alertController.create({
+            header: this.translateService.translate('catalogs.MARK_AS_DONE'),
+            buttons: [
+                {
+                    text: this.translateService.translate('buttons.CANCEL'),
+                    role: 'cancel',
+                    cssClass: 'secondary',
+                    handler: () => {
+                    },
+                }, {
+                    text: this.translateService.translate('buttons.OK'),
+                    handler: () => {
+                        this.categoryService.toggleDone(index).pipe(
+                            takeUntil(this.ngOnDestroy$),
+                        ).subscribe(() => slidingItem.close());
+                    }
+                }
+            ]
+        });
 
+        await alert.present();
+    }
+
+    public trackByFn(_: number, item: ITask): string {
+        return item.id;
     }
 }

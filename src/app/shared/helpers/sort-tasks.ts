@@ -14,10 +14,10 @@ export function sortTaskList(list: ITask[]): ITask[] {
         other: []
     };
     list.forEach((task: ITask) => {
-        if (!!task.alertTime) {
-            separatedTasks.alertTime.push(task);
-        } else if (task.doneStatus) {
+        if (!!task.doneStatus) {
             separatedTasks.done.push(task);
+        } else if (task.alertTime) {
+            separatedTasks.alertTime.push(task);
         } else {
             separatedTasks.other.push(task);
         }
