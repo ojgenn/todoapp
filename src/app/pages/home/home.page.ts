@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 
-import { AlertController, IonItemSliding, ModalController } from '@ionic/angular';
+import {AlertController, IonItemSliding, ModalController, Platform} from '@ionic/angular';
 
 import { BehaviorSubject, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -22,6 +22,7 @@ import { ManageCatalogComponent } from './manage-catalog/manage-catalog.componen
 })
 export class HomePageComponent implements OnInit, OnDestroy {
     private ngOnDestroy$: Subject<void> = new Subject();
+    private willLeave$: Subject<void> = new Subject();
 
     public categoryList$: BehaviorSubject<FlatMap<ICategory>> = new BehaviorSubject(null);
 
@@ -30,6 +31,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
         private modalController: ModalController,
         private storeService: StoreService,
         private translateService: TranslocoService,
+        private platform: Platform,
     ) {
     }
 
@@ -41,11 +43,21 @@ export class HomePageComponent implements OnInit, OnDestroy {
         this.ngOnDestroy$.next();
     }
 
-    ionViewDidEnter() {
-        const catalog = this.categoryList$.value.asArray;
+    ionViewDidEnter(): void {
+        const catalog: ICategory[] = this.categoryList$.value.asArray;
         catalog.sort(compareCatalogsByTime);
         const modifiedCatalog: ICategory[] = sortCatalog(catalog);
         this.categoryList$.next(new FlatMap<ICategory>(modifiedCatalog, 'id'));
+
+        this.platform.backButton.pipe(
+            takeUntil(this.willLeave$),
+        ).subscribe(() => {
+            navigator['app'].exitApp();
+        });
+    }
+
+    ionViewWillLeave(): void {
+        this.willLeave$.next();
     }
 
     private setCatalog(): void {
