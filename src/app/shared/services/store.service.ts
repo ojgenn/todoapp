@@ -32,7 +32,7 @@ export class StoreService {
 
         return fromPromise(this.storage.keys()).pipe(
             switchMap((keyList: string[]) => {
-                if (keyList.includes(STORE_NAME)) {
+                if (keyList.includes(STORE_NAME) && keyList.includes(PRODUCTS_CATALOG_NAME)) {
                     return combineLatest([
                         fromPromise(this.storage.get(STORE_NAME)),
                         fromPromise(this.storage.get(PRODUCTS_CATALOG_NAME))
