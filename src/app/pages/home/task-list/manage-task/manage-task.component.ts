@@ -120,10 +120,6 @@ export class ManageTaskComponent implements OnInit, OnDestroy {
         });
     }
 
-    public close(): void {
-        this.modalController.dismiss();
-    }
-
     private addTask(form: FormGroup): void {
         const alertTime: string = form.get('alertTime').value;
         const task: ITask = {
@@ -156,6 +152,10 @@ export class ManageTaskComponent implements OnInit, OnDestroy {
         ).subscribe(() => {
             this.modalController.dismiss();
         });
+    }
+
+    public close(): void {
+        this.modalController.dismiss();
     }
 
     public manage(form: FormGroup): void {

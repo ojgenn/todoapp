@@ -5,7 +5,10 @@ import { RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
+import { SharedModule } from '../../shared/shared.module';
 import { CatalogPageComponent } from './catalog.page';
+import { ManageProductComponent } from './product-list/manage-product/manage-product.component';
+import { ProductListComponent } from './product-list/product-list.component';
 
 @NgModule({
     imports: [
@@ -15,10 +18,27 @@ import { CatalogPageComponent } from './catalog.page';
         RouterModule.forChild([
             {
                 path: '',
-                component: CatalogPageComponent
+                children: [
+                    {
+                        path: '',
+                        component: CatalogPageComponent
+                    },
+                    {
+                        path: ':id',
+                        component: ProductListComponent,
+                    }
+                ]
             }
-        ])
+        ]),
+        SharedModule
     ],
-    declarations: [CatalogPageComponent]
+    declarations: [
+        CatalogPageComponent,
+        ProductListComponent,
+        ManageProductComponent,
+    ],
+    entryComponents: [
+        ManageProductComponent,
+    ]
 })
 export class CatalogModule { }

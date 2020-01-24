@@ -148,4 +148,21 @@ export class StoreService {
     public getProducts(): Observable<IProductCategory[]> {
         return this.productsCatalog$.asObservable();
     }
+
+    public getProductCatalog(id: string): IProductCategory {
+        const productCatalog: IProductCategory[] = this.productsCatalog$.value;
+        return productCatalog.find((category: IProductCategory) => category.id === id);
+    }
+
+    public renewProducts(category: IProductCategory): Observable<unknown> {
+        const products: IProductCategory[] = this.productsCatalog$.value;
+        const index: number = products.findIndex((item: IProductCategory) => item.id === category.id);
+        if (index) {
+            products[index] = category;
+        }
+
+        return fromPromise(this.storage.set(PRODUCTS_CATALOG_NAME, products)).pipe(
+            switchMap(() => of(EMPTY)),
+        );
+    }
 }

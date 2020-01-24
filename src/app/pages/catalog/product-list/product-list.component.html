@@ -1,0 +1,50 @@
+<ng-container *appLet="category$ | async as category">
+    <ion-header>
+        <ion-toolbar>
+            <ion-buttons slot="start">
+                <ion-back-button></ion-back-button>
+            </ion-buttons>
+            <ion-buttons slot="end">
+                <ion-button (click)="addProduct()">{{ 'buttons.ADD' | transloco }}</ion-button>
+            </ion-buttons>
+            <ion-title>{{ category.name }}</ion-title>
+        </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+        <ion-list *ngIf="category.list.length > 0; else emptyList">
+
+            <ion-item-sliding *ngFor="let product of category.list; let index = index; trackBy: trackByFn"
+                              #slidingItem>
+                <ion-item-options side="end">
+                    <ion-item-option expandable
+                                     color="light">
+
+                        <ion-button fill="clear"
+                                    (click)="deleteProduct(index)">
+                            <ion-icon name="trash"
+                                      color="danger"></ion-icon>
+                        </ion-button>
+
+                        <ion-button fill="clear"
+                                    (click)="editProduct(product, index, slidingItem)">
+                            <ion-icon name="create"
+                                      color="medium"></ion-icon>
+                        </ion-button>
+                    </ion-item-option>
+                </ion-item-options>
+                <ion-item>
+                    <ng-container>
+                        <ion-label>
+                            {{ product.name }}
+                        </ion-label>
+                    </ng-container>
+                </ion-item>
+            </ion-item-sliding>
+        </ion-list>
+
+        <ng-template #emptyList>
+            <ion-item>{{ 'task-list.EMPTY_LIST' | transloco }}</ion-item>
+        </ng-template>
+    </ion-content>
+</ng-container>
