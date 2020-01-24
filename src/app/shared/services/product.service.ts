@@ -47,4 +47,15 @@ export class ProductService {
             tap(() => this.category$.next(category)),
         );
     }
+
+    public deleteProduct(index: number): Observable<unknown> {
+        const category: IProductCategory = this.category$.value;
+        const list: IProduct[] = [...category.list];
+        list.splice(index, 1);
+        category.list = list;
+
+        return this.storeService.renewProducts(category).pipe(
+            tap(() => this.category$.next(category)),
+        );
+    }
 }

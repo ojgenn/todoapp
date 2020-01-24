@@ -1,10 +1,12 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { IonItemSliding, ModalController } from '@ionic/angular';
+import { AlertController, IonItemSliding, ModalController } from '@ionic/angular';
 
 import { BehaviorSubject, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+
+import { TranslocoService } from '@ngneat/transloco';
 
 import { IProductCategory } from '../../../shared/interfaces/product--category.interface';
 import { IProduct } from '../../../shared/interfaces/product.interface';
@@ -25,9 +27,11 @@ export class ProductListComponent implements OnInit, OnDestroy {
     public category$: BehaviorSubject<IProductCategory> = new BehaviorSubject(null);
 
     constructor(
+        private alertController: AlertController,
         private route: ActivatedRoute,
         private modalController: ModalController,
         private productsService: ProductService,
+        private translateService: TranslocoService,
     ) {
     }
 
@@ -53,8 +57,28 @@ export class ProductListComponent implements OnInit, OnDestroy {
         await modal.present();
     }
 
-    public deleteProduct(index: number): void {
+    public async deleteProduct(index: number): Promise<void> {
+        const alert: HTMLIonAlertElement = await this.alertController.create({
+            header: `${this.translateService.translate('buttons.DELETE')}?`,
+            buttons: [
+                {
+                    text: this.translateService.translate('buttons.CANCEL'),
+                    role: 'cancel',
+                    cssClass: 'secondary',
+                    handler: () => {
+                    },
+                }, {
+                    text: this.translateService.translate('buttons.OK'),
+                    handler: () => {
+                        this.productsService.deleteProduct(index).pipe(
+                            takeUntil(this.ngOnDestroy$),
+                        ).subscribe();
+                    }
+                }
+            ]
+        });
 
+        await alert.present();
     }
 
     public async editProduct(product: IProduct, index: number, slidingItem: IonItemSliding): Promise<void> {
