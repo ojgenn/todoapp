@@ -4,11 +4,17 @@
             <ion-menu-button></ion-menu-button>
         </ion-buttons>
         <ion-title>
-            List
+            {{ 'product-catalog.T' | transloco }}
         </ion-title>
     </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    <ion-item>catalog works</ion-item>
+    <ion-list>
+        <ion-item detail
+                  *ngFor="let category of productsCatalog$ | async"
+                  [routerLink]="category.id">
+            <ion-label>{{ category?.name }}</ion-label>
+        </ion-item>
+    </ion-list>
 </ion-content>
