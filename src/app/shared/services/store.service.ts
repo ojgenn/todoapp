@@ -3,16 +3,17 @@ import { Injectable } from '@angular/core';
 
 import { Storage } from '@ionic/storage';
 
-import { of, BehaviorSubject, EMPTY, Observable } from 'rxjs';
+import { combineLatest, of, BehaviorSubject, EMPTY, Observable } from 'rxjs';
 import { fromPromise } from 'rxjs/internal-compatibility';
-import {switchMap, take, tap} from 'rxjs/operators';
+import { switchMap, tap } from 'rxjs/operators';
 
 import * as uuid from 'uuid';
 
 import { compareCatalogsByTime } from '../helpers/compare-catalog-by-time';
-import { STORE_NAME } from '../helpers/config.config';
+import { PRODUCTS_CATALOG_NAME, STORE_NAME } from '../helpers/config.config';
 import { sortCatalog } from '../helpers/sort-catalog';
 import { ICategory } from '../interfaces/category.interface';
+import { IProductCategory } from '../interfaces/product--category.interface';
 import { ITask } from '../interfaces/task.interface';
 
 @Injectable({
@@ -20,6 +21,7 @@ import { ITask } from '../interfaces/task.interface';
 })
 export class StoreService {
     private store$: BehaviorSubject<ICategory[]> = new BehaviorSubject([]);
+    private productsCatalog$: BehaviorSubject<IProductCategory[]> = new BehaviorSubject(null);
 
     constructor(
         private storage: Storage,
@@ -27,27 +29,31 @@ export class StoreService {
     ) { }
 
     public initStore(): Observable<boolean> {
-        // TODO: temporary initial
-        this.http.get('assets/jsons/food.json').pipe(
-            take(1),
-        ).subscribe(res => {
-            this.storage.set('food', res);
-        });
 
         return fromPromise(this.storage.keys()).pipe(
             switchMap((keyList: string[]) => {
                 if (keyList.includes(STORE_NAME)) {
-                    return fromPromise(this.storage.get(STORE_NAME));
+                    return combineLatest([
+                        fromPromise(this.storage.get(STORE_NAME)),
+                        fromPromise(this.storage.get(PRODUCTS_CATALOG_NAME))
+                    ]);
                 }
-                return this.http.get('assets/jsons/store.json').pipe(
-                    tap((categoryList: ICategory[]) => this.storage.set(STORE_NAME, categoryList))
-                );
+
+                return combineLatest([
+                    this.http.get('assets/jsons/store.json').pipe(
+                        tap((categoryList: ICategory[]) => this.storage.set(STORE_NAME, categoryList))
+                    ),
+                    this.http.get('assets/jsons/food.json').pipe(
+                        tap((productsCatalog: IProductCategory[]) => this.storage.set(PRODUCTS_CATALOG_NAME, productsCatalog))
+                    )
+                ]);
             })
         ).pipe(
-            switchMap((categoryList: ICategory[]) => {
+            switchMap(([categoryList, productsCatalog]: [ICategory[], IProductCategory[]]) => {
                 categoryList.sort(compareCatalogsByTime);
                 const modifiedCatalog: ICategory[] = sortCatalog(categoryList);
                 this.store$.next(sortCatalog(modifiedCatalog));
+                this.productsCatalog$.next(productsCatalog);
 
                 return of(true);
             }),
@@ -137,5 +143,9 @@ export class StoreService {
         return fromPromise(this.storage.set(STORE_NAME, catalog)).pipe(
             switchMap(() => of(EMPTY)),
         );
+    }
+
+    public getProducts(): Observable<IProductCategory[]> {
+        return this.productsCatalog$.asObservable();
     }
 }

@@ -11,6 +11,7 @@ import { switchMap, takeUntil } from 'rxjs/operators';
 import { TranslocoService } from '@ngneat/transloco';
 
 import { StoreService } from './shared/services/store.service';
+import { ToastService } from './shared/services/toast.service';
 
 @Component({
     selector: 'app-root',
@@ -40,6 +41,7 @@ export class AppComponent implements OnDestroy {
         private loadingController: LoadingController,
         private storeService: StoreService,
         private translateService: TranslocoService,
+        private toastService: ToastService,
     ) {
         this.initializeApp();
     }
@@ -63,8 +65,7 @@ export class AppComponent implements OnDestroy {
             takeUntil(this.ngOnDestroy$)
         ).subscribe(([loading, _]: [HTMLIonLoadingElement, boolean]) => {
             loading.dismiss();
-            // tslint:disable-next-line:typedef no-console
-        }, error => console.log(error));
+        }, () => this.toastService.show(this.translateService.translate('app.APP_INIT_ERR')));
     }
 
     public initializeApp(): void {
