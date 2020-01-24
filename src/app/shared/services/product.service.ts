@@ -35,4 +35,16 @@ export class ProductService {
             tap(() => this.category$.next(category)),
         );
     }
+
+    public editProduct(product: IProduct, index: number): Observable<unknown> {
+        const category: IProductCategory = this.category$.value;
+        const list: IProduct[] = [...category.list];
+        list[index] = product;
+        list.sort(compareProducts);
+        category.list = list;
+
+        return this.storeService.renewProducts(category).pipe(
+            tap(() => this.category$.next(category)),
+        );
+    }
 }

@@ -66,7 +66,7 @@ export class ManageProductComponent implements OnInit, OnDestroy {
     private addProduct(form: FormGroup): void {
         const product: IProduct = {
             id: uuid.v4(),
-            name: this.form.get('name').value,
+            name: form.get('name').value,
         };
 
         this.productsService.addProduct(product).pipe(
@@ -75,7 +75,14 @@ export class ManageProductComponent implements OnInit, OnDestroy {
     }
 
     private editProduct(form: FormGroup): void {
+        const product: IProduct = {
+            ...this.product,
+            name: form.get('name').value,
+        };
 
+        this.productsService.editProduct(product, this.index).pipe(
+            takeUntil(this.ngOnDestroy$),
+        ).subscribe(() => this.modalController.dismiss());
     }
 
     public close(): void {

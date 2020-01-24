@@ -57,8 +57,20 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
     }
 
-    public editProduct(product: IProduct, index: number, slidingItem: IonItemSliding): void {
+    public async editProduct(product: IProduct, index: number, slidingItem: IonItemSliding): Promise<void> {
+        const modal: HTMLIonModalElement = await this.modalController.create({
+            component: ManageProductComponent,
+            componentProps: {
+                categoryId: this.id,
+                index,
+                product,
+            }
+        });
+        await modal.present();
 
+        modal.onDidDismiss().then(() => {
+            slidingItem.close();
+        });
     }
 
     public trackByFn(_: number, item: ITask): string {
