@@ -9,12 +9,17 @@
             </ion-buttons>
             <ion-title>{{ category.name }}</ion-title>
         </ion-toolbar>
+        <article>
+            <ion-searchbar showCancelButton="never"
+                           [placeholder]="'app.SEARCH' | transloco"
+                           (ionChange)="setFilterValue($event)"></ion-searchbar>
+        </article>
     </ion-header>
 
-    <ion-content>
+    <ion-content *appLet="filteredList$ | async as list">
         <ion-list *ngIf="category.list.length > 0; else emptyList">
 
-            <ion-item-sliding *ngFor="let product of category.list; let index = index; trackBy: trackByFn"
+            <ion-item-sliding *ngFor="let product of list; let index = index; trackBy: trackByFn"
                               #slidingItem>
                 <ion-item-options side="end">
                     <ion-item-option expandable

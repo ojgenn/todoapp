@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { AlertController, IonItemSliding, ModalController } from '@ionic/angular';
@@ -24,7 +24,9 @@ export class ProductListComponent implements OnInit, OnDestroy {
     private id: string;
     private ngOnDestroy$: Subject<void> = new Subject();
 
+    public filterValue: string = '';
     public category$: BehaviorSubject<IProductCategory> = new BehaviorSubject(null);
+    public filteredList$: BehaviorSubject<IProduct[]> = new BehaviorSubject([]);
 
     constructor(
         private alertController: AlertController,
@@ -40,7 +42,10 @@ export class ProductListComponent implements OnInit, OnDestroy {
         this.productsService.initCategory(this.id);
         this.productsService.getCategory().pipe(
             takeUntil(this.ngOnDestroy$),
-        ).subscribe((category: IProductCategory) => this.category$.next(category));
+        ).subscribe((category: IProductCategory) => {
+            this.category$.next(category);
+            this.filterApply(category);
+        });
     }
 
     ngOnDestroy(): void {
@@ -99,6 +104,15 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
     public trackByFn(_: number, item: ITask): string {
         return item.id;
+    }
+
+    public setFilterValue(event: CustomEvent): void {
+        this.filterValue = event.detail.value;
+        this.filterApply(this.category$.value);
+    }
+
+    private filterApply(productList: IProductCategory): void {
+        this.filteredList$.next(productList.list.filter((product: IProduct) => (product.name.toUpperCase()).includes(this.filterValue.toUpperCase())));
     }
 
 }
