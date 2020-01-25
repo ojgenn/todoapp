@@ -30,6 +30,7 @@ export class CategoryService {
         const list: ITask[] = [...category.list];
         list.push(task);
         category.list = sortTaskList(list);
+
         return this.storeService.renewCategory(category).pipe(
             tap(() => this.category$.next(category)),
         );
@@ -40,6 +41,7 @@ export class CategoryService {
         const list: ITask[] = [...category.list];
         list.splice(index, 1);
         category.list = list;
+
         return this.storeService.renewCategory(category).pipe(
             tap(() => this.category$.next(category)),
         );
@@ -50,6 +52,7 @@ export class CategoryService {
         const list: ITask[] = [...category.list];
         list[index].doneStatus = !list[index].doneStatus;
         category.list = sortTaskList(list);
+
         return this.storeService.renewCategory(category).pipe(
             tap(() => this.category$.next(category)),
         );
@@ -60,8 +63,13 @@ export class CategoryService {
         const list: ITask[] = [...category.list];
         list[index] = task;
         category.list = sortTaskList(list);
+
         return this.storeService.renewCategory(category).pipe(
             tap(() => this.category$.next(category)),
         );
+    }
+
+    public updateCategory(category: ICategory): void {
+        this.category$.next(category);
     }
 }

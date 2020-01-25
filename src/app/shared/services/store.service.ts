@@ -112,6 +112,7 @@ export class StoreService {
                 tap(() => this.store$.next(catalog))
             );
         }
+
         return of(EMPTY);
     }
 
@@ -130,6 +131,7 @@ export class StoreService {
                 tap(() => this.store$.next(modifiedCatalog))
             );
         }
+
         return of(EMPTY);
     }
 
@@ -151,6 +153,7 @@ export class StoreService {
 
     public getProductCatalog(id: string): IProductCategory {
         const productCatalog: IProductCategory[] = this.productsCatalog$.value;
+
         return productCatalog.find((category: IProductCategory) => category.id === id);
     }
 

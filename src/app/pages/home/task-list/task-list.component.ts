@@ -111,7 +111,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
         const modal: HTMLIonModalElement = await this.modalController.create({
             component: FromCatalogComponent,
             componentProps: {
-                categoryId: this.id,
+                category: this.category$.value,
             }
         });
         await modal.present();

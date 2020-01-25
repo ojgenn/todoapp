@@ -12,7 +12,8 @@ export class ToastService {
     public async show(message: string, duration: number = 3000): Promise<void> {
         const toast: HTMLIonToastElement = await this.toastController.create({
             message,
-            duration
+            duration,
+            position: 'top',
         });
 
         toast.present();
