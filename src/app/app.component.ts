@@ -31,6 +31,11 @@ export class AppComponent implements OnDestroy {
             title: 'side-menu.LIST',
             url: '/list',
             icon: 'list'
+        },
+        {
+            title: 'side-menu.STORE_DATA',
+            url: '/store-data',
+            icon: 'save'
         }
     ];
 

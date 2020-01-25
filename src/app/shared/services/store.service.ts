@@ -15,6 +15,7 @@ import { sortCatalog } from '../helpers/sort-catalog';
 import { ICategory } from '../interfaces/category.interface';
 import { IProductCategory } from '../interfaces/product--category.interface';
 import { ITask } from '../interfaces/task.interface';
+import { StoreType } from '../types/store.type';
 
 @Injectable({
     providedIn: 'root'
@@ -49,7 +50,7 @@ export class StoreService {
                 ]);
             })
         ).pipe(
-            switchMap(([categoryList, productsCatalog]: [ICategory[], IProductCategory[]]) => {
+            switchMap(([categoryList, productsCatalog]: StoreType) => {
                 categoryList.sort(compareCatalogsByTime);
                 const modifiedCatalog: ICategory[] = sortCatalog(categoryList);
                 this.store$.next(sortCatalog(modifiedCatalog));
@@ -147,6 +148,10 @@ export class StoreService {
         );
     }
 
+    public getStore(): Observable<ICategory[]> {
+        return this.store$.asObservable();
+    }
+
     public getProducts(): Observable<IProductCategory[]> {
         return this.productsCatalog$.asObservable();
     }
@@ -167,5 +172,15 @@ export class StoreService {
         return fromPromise(this.storage.set(PRODUCTS_CATALOG_NAME, products)).pipe(
             switchMap(() => of(EMPTY)),
         );
+    }
+
+    public updateStore(store: ICategory[]): Observable<void> {
+        this.store$.next(sortCatalog(store));
+        return fromPromise(this.storage.set(STORE_NAME, store));
+    }
+
+    public updateProducts(products: IProductCategory[]): Observable<void> {
+        this.productsCatalog$.next(products);
+        return fromPromise(this.storage.set(PRODUCTS_CATALOG_NAME, products));
     }
 }

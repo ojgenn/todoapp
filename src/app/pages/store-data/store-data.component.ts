@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { File } from '@ionic-native/file/ngx';
 
-import { combineLatest, Subject } from 'rxjs';
+import {combineLatest, EMPTY, Subject} from 'rxjs';
 import { fromPromise } from 'rxjs/internal-compatibility';
 import { switchMap, takeUntil } from 'rxjs/operators';
 
@@ -63,11 +63,14 @@ export class StoreDataComponent implements OnInit, OnDestroy {
     public load(): void {
         fromPromise(this.file.readAsText(this.fileDir, this.fileName)).pipe(
             switchMap((data: string) => {
-                const parsedData: IStoreProductsInterface = JSON.parse(data);
-                return combineLatest([
-                    this.storeService.updateStore(parsedData.store),
-                    this.storeService.updateProducts(parsedData.products),
-                ]);
+                if (data) {
+                    const parsedData: IStoreProductsInterface = JSON.parse(data);
+                    return combineLatest([
+                        this.storeService.updateStore(parsedData.store),
+                        this.storeService.updateProducts(parsedData.products),
+                    ]);
+                }
+                return EMPTY;
             }),
             takeUntil(this.ngOnDestroy$),
         ).subscribe(() => this.toastService.show(this.translateService.translate('store-data.TOASTS.LOADED')),
