@@ -10,8 +10,12 @@ import { take, takeUntil } from 'rxjs/operators';
 import { TranslocoService } from '@ngneat/transloco';
 import * as uuid from 'uuid';
 
+import { EUnits } from '../../../../shared/enums/units.enum';
+import { FlatMap } from '../../../../shared/helpers/flat-map';
+import { UNITS } from '../../../../shared/helpers/get-units';
 import { getMonthNames } from '../../../../shared/helpers/month-names';
 import { regex } from '../../../../shared/helpers/regex';
+import { ISelect } from '../../../../shared/interfaces/select.interface';
 import { ITask } from '../../../../shared/interfaces/task.interface';
 import { CategoryService } from '../../../../shared/services/category.service';
 
@@ -36,6 +40,7 @@ export class ManageTaskComponent implements OnInit, OnDestroy {
     public currentYear: number;
     // tslint:disable-next-line:no-any
     public customOptions: any;
+    public units: FlatMap<ISelect<EUnits>> = UNITS;
 
     constructor(
         private modalController: ModalController,
@@ -53,7 +58,9 @@ export class ManageTaskComponent implements OnInit, OnDestroy {
                 Validators.pattern(regex.safe),
             ]],
             alertTime: [null],
-            description: ['', [Validators.pattern(regex.safe)]]
+            description: ['', [Validators.pattern(regex.safe)]],
+            qty: ['', [Validators.pattern(regex.safe)]],
+            units: [null],
         });
         this.categoryId = this.navParams.get('categoryId');
         this.currentYear = new Date().getFullYear();
@@ -68,13 +75,15 @@ export class ManageTaskComponent implements OnInit, OnDestroy {
             let alertTime: string = null;
 
             if (this.task.alertTime) {
-                alertTime = this.datePipe.transform(this.task.alertTime, 'yyyy-MM-dd') + 'T00:00:00Z';
+                alertTime = this.datePipe.transform(this.task.alertTime, 'yyyy-MM-dd HH:mm');
             }
 
             this.form.patchValue({
                 name: this.task.name,
                 alertTime: alertTime,
                 description: this.task.description,
+                qty: this.task.qty,
+                units: this.task.units,
             });
         }
     }
@@ -111,7 +120,10 @@ export class ManageTaskComponent implements OnInit, OnDestroy {
                             const year: string = data.year.value.toString();
                             const month: string = data.month.value < 10 ? '0' + data.month.value.toString() : data.month.value.toString();
                             const day: string = data.day.value.toString();
-                            const date: string = `${year}-${month}-${day}T00:00:00Z`;
+                            const hour: string = data.hour.value.toString();
+                            const minutes: string = data.minute.value.toString();
+                            const date: string = `${year}-${month}-${day}T${hour}:${minutes}`;
+
                             this.form.get('alertTime').setValue(date);
                         },
                     },
@@ -130,6 +142,8 @@ export class ManageTaskComponent implements OnInit, OnDestroy {
             parentId: this.categoryId,
             doneStatus: false,
             description: form.get('description').value,
+            qty: form.get('qty').value,
+            units: form.get('units').value,
         };
         this.categoryService.addTask(task).pipe(
             takeUntil(this.ngOnDestroy$)
@@ -145,6 +159,8 @@ export class ManageTaskComponent implements OnInit, OnDestroy {
             name: form.get('name').value,
             alertTime: alertTime ? new Date(alertTime).getTime() : null,
             description: form.get('description').value,
+            qty: form.get('qty').value,
+            units: form.get('units').value,
         };
 
         this.categoryService.editTask(this.task, this.index).pipe(

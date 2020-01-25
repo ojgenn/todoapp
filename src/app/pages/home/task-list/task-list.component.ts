@@ -3,14 +3,20 @@ import { ActivatedRoute } from '@angular/router';
 
 import { AlertController, IonItemSliding, ModalController } from '@ionic/angular';
 
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { takeUntil, tap } from 'rxjs/operators';
+import { BehaviorSubject, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import { TranslocoService } from '@ngneat/transloco';
 
+import { EUnits } from '../../../shared/enums/units.enum';
+import { PRODUCT_CATEGORY_ID, PRODUCTS_CATALOG_NAME } from '../../../shared/helpers/config.config';
+import { FlatMap } from '../../../shared/helpers/flat-map';
+import { UNITS } from '../../../shared/helpers/get-units';
 import { ICategory } from '../../../shared/interfaces/category.interface';
+import { ISelect } from '../../../shared/interfaces/select.interface';
 import { ITask } from '../../../shared/interfaces/task.interface';
 import { CategoryService } from '../../../shared/services/category.service';
+import { FromCatalogComponent } from './from-catalog/from-catalog.component';
 import { ManageTaskComponent } from './manage-task/manage-task.component';
 
 @Component({
@@ -24,6 +30,8 @@ export class TaskListComponent implements OnInit, OnDestroy {
     private ngOnDestroy$: Subject<void> = new Subject();
 
     public category$: BehaviorSubject<ICategory> = new BehaviorSubject(null);
+    public units: FlatMap<ISelect<EUnits>> = UNITS;
+    public productCategoryId: string = PRODUCT_CATEGORY_ID;
 
     constructor(
         private route: ActivatedRoute,
@@ -104,5 +112,15 @@ export class TaskListComponent implements OnInit, OnDestroy {
 
     public trackByFn(_: number, item: ITask): string {
         return item.id;
+    }
+
+    public async fromCatalog(): Promise<void> {
+        const modal: HTMLIonModalElement = await this.modalController.create({
+            component: FromCatalogComponent,
+            componentProps: {
+                category: this.category$.value,
+            }
+        });
+        await modal.present();
     }
 }

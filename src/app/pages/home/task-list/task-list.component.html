@@ -5,7 +5,13 @@
                 <ion-back-button></ion-back-button>
             </ion-buttons>
             <ion-buttons slot="end">
-                <ion-button (click)="addTask()">{{ 'buttons.ADD' | transloco }}</ion-button>
+                <ion-button (click)="addTask()">
+                    <ion-icon name="add"></ion-icon>
+                </ion-button>
+                <ion-button *ngIf="category.id === productCategoryId"
+                            (click)="fromCatalog()">
+                    <ion-icon name="list-box"></ion-icon>
+                </ion-button>
             </ion-buttons>
             <ion-title>{{ category?.name }}</ion-title>
         </ion-toolbar>
@@ -43,11 +49,18 @@
                 <ion-item>
                     <ion-chip slot="end"
                               *ngIf="task.alertTime && !task.doneStatus">
-                        {{ task.alertTime | date: 'dd.MM.yy' }}
+                        {{ task.alertTime | date: 'dd.MM.yy HH:mm' }}
                     </ion-chip>
                     <ng-container *appTaskColor="{alertTime: task.alertTime, doneStatus: task.doneStatus} as color">
                         <ion-label [color]="color">
-                            <h2>{{ task.name }}</h2>
+                            <h2>{{ task.name }}
+                                <ng-container *ngIf="task.qty">
+                                    , {{ task.qty }}
+                                    <ng-container *ngIf="task.units">
+                                        ({{ units?.map[task.units].label | transloco }})
+                                    </ng-container>
+                                </ng-container>
+                            </h2>
                             <ion-text color="medium"
                                       *ngIf="task.description">{{ task.description }}</ion-text>
                         </ion-label>

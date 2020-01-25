@@ -20,7 +20,7 @@
     <form [formGroup]="form">
         <ion-item>
             <ion-label>{{ 'task-list.DATE_TIME' | transloco }}:</ion-label>
-            <ion-datetime displayFormat="DD MMMM YYYY"
+            <ion-datetime displayFormat="DD MMMM YYYY HH:mm"
                           formControlName="alertTime"
                           [max]="maxYear"
                           [min]="currentYear"
@@ -51,6 +51,21 @@
                   *ngIf="form?.dirty && form?.controls['description'].errors?.pattern">
             {{ 'validators.PATTERN.SAFE' | transloco }}
         </ion-note>
+
+        <ion-item>
+            <ion-input formControlName="qty"
+                       [placeholder]="'task-list.QTY' | transloco"></ion-input>
+        </ion-item>
+        <ion-note color="danger"
+                  *ngIf="form?.dirty && form?.controls['qty'].errors?.pattern">
+            {{ 'validators.PATTERN.SAFE' | transloco }}
+        </ion-note>
+
+        <ion-select placeholder="Select One"
+                    formControlName="units">
+            <ion-select-option *ngFor="let unit of units.keys"
+                               [value]="units?.map[unit].value">{{ units?.map[unit].label | transloco }}</ion-select-option>
+        </ion-select>
 
         <ion-row class="ion-justify-content-between ion-padding-top">
             <ion-button color="light"
