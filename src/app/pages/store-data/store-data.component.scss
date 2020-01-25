@@ -1,0 +1,17 @@
+:host {
+  ion-row {
+    align-items: center;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+
+    &:first-of-type {
+      margin-top: 50px;
+    }
+
+    ion-col {
+      display: flex;
+      justify-content: center;
+    }
+  }
+}
