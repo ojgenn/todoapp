@@ -16,7 +16,13 @@ const routes: Routes = [
         path: 'list',
         // tslint:disable-next-line:typedef
         loadChildren: () => import('./pages/catalog/catalog.module').then(m => m.CatalogModule)
+    },
+    {
+        path: 'store-data',
+        // tslint:disable-next-line:typedef
+        loadChildren: () => import('./pages/store-data/store-data.module').then(m => m.StoreDataModule)
     }
+
 ];
 
 @NgModule({
