@@ -48,7 +48,7 @@
                 <ion-item>
                     <ion-chip slot="end"
                               *ngIf="task.alertTime && !task.doneStatus">
-                        {{ task.alertTime | date: 'dd.MM.yy' }}
+                        {{ task.alertTime | date: 'dd.MM.yy HH:mm' }}
                     </ion-chip>
                     <ng-container *appTaskColor="{alertTime: task.alertTime, doneStatus: task.doneStatus} as color">
                         <ion-label [color]="color">

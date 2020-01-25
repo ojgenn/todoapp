@@ -20,7 +20,7 @@
     <form [formGroup]="form">
         <ion-item>
             <ion-label>{{ 'task-list.DATE_TIME' | transloco }}:</ion-label>
-            <ion-datetime displayFormat="DD MMMM YYYY"
+            <ion-datetime displayFormat="DD MMMM YYYY HH:mm"
                           formControlName="alertTime"
                           [max]="maxYear"
                           [min]="currentYear"

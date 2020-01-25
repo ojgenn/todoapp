@@ -75,7 +75,7 @@ export class ManageTaskComponent implements OnInit, OnDestroy {
             let alertTime: string = null;
 
             if (this.task.alertTime) {
-                alertTime = this.datePipe.transform(this.task.alertTime, 'yyyy-MM-dd') + 'T00:00:00Z';
+                alertTime = this.datePipe.transform(this.task.alertTime, 'yyyy-MM-dd HH:mm');
             }
 
             this.form.patchValue({
@@ -120,7 +120,10 @@ export class ManageTaskComponent implements OnInit, OnDestroy {
                             const year: string = data.year.value.toString();
                             const month: string = data.month.value < 10 ? '0' + data.month.value.toString() : data.month.value.toString();
                             const day: string = data.day.value.toString();
-                            const date: string = `${year}-${month}-${day}T00:00:00Z`;
+                            const hour: string = data.hour.value.toString();
+                            const minutes: string = data.minute.value.toString();
+                            const date: string = `${year}-${month}-${day}T${hour}:${minutes}`;
+
                             this.form.get('alertTime').setValue(date);
                         },
                     },
