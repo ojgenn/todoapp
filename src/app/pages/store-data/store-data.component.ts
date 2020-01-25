@@ -1,22 +1,22 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { File } from '@ionic-native/file/ngx';
+import { Platform } from '@ionic/angular';
 
-import {combineLatest, EMPTY, Subject} from 'rxjs';
+import { combineLatest, EMPTY, Subject } from 'rxjs';
 import { fromPromise } from 'rxjs/internal-compatibility';
 import { switchMap, takeUntil } from 'rxjs/operators';
 
 import { TranslocoService } from '@ngneat/transloco';
 
+import { compareCatalogsByTime } from '../../shared/helpers/compare-catalog-by-time';
+import { FlatMap } from '../../shared/helpers/flat-map';
+import { sortCatalog } from '../../shared/helpers/sort-catalog';
 import { ICategory } from '../../shared/interfaces/category.interface';
 import { IProductCategory } from '../../shared/interfaces/product--category.interface';
 import { StoreService } from '../../shared/services/store.service';
 import { ToastService } from '../../shared/services/toast.service';
 import { StoreType } from '../../shared/types/store.type';
-import {compareCatalogsByTime} from '../../shared/helpers/compare-catalog-by-time';
-import {sortCatalog} from '../../shared/helpers/sort-catalog';
-import {FlatMap} from '../../shared/helpers/flat-map';
-import {Platform} from '@ionic/angular';
 
 interface IStoreProductsInterface {
     store: ICategory[];
