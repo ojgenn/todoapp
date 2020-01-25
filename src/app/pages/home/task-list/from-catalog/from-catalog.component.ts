@@ -89,7 +89,6 @@ export class FromCatalogComponent implements OnInit, OnDestroy {
 
             if (form.value[product.id]) {
                 product.created = Date.now();
-                product.doneStatus = false;
                 product.parentId = this.category.id;
                 listAsFlatMap[product.id] = product;
             } else {
