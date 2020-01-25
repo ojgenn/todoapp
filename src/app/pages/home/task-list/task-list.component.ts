@@ -9,6 +9,7 @@ import { takeUntil } from 'rxjs/operators';
 import { TranslocoService } from '@ngneat/transloco';
 
 import { EUnits } from '../../../shared/enums/units.enum';
+import { PRODUCT_CATEGORY_ID, PRODUCTS_CATALOG_NAME } from '../../../shared/helpers/config.config';
 import { FlatMap } from '../../../shared/helpers/flat-map';
 import { UNITS } from '../../../shared/helpers/get-units';
 import { ICategory } from '../../../shared/interfaces/category.interface';
@@ -30,6 +31,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
 
     public category$: BehaviorSubject<ICategory> = new BehaviorSubject(null);
     public units: FlatMap<ISelect<EUnits>> = UNITS;
+    public productCategoryId: string = PRODUCT_CATEGORY_ID;
 
     constructor(
         private route: ActivatedRoute,

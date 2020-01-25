@@ -8,7 +8,8 @@
                 <ion-button (click)="addTask()">
                     <ion-icon name="add"></ion-icon>
                 </ion-button>
-                <ion-button (click)="fromCatalog()">
+                <ion-button *ngIf="category.id === productCategoryId"
+                            (click)="fromCatalog()">
                     <ion-icon name="list-box"></ion-icon>
                 </ion-button>
             </ion-buttons>
