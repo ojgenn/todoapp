@@ -1,6 +1,10 @@
 <ion-header>
     <ion-toolbar>
         <ion-buttons slot="end">
+            <ion-button slot="middle"
+                        (click)="collapseAll()">
+                <ion-icon name="remove"></ion-icon>
+            </ion-button>
             <ion-button (click)="save(form)">
                 <ion-icon name="save"></ion-icon>
             </ion-button>
@@ -15,13 +19,16 @@
     <form [formGroup]="form">
         <ion-list *ngFor="let category of catalog$ | async; let index = index; trackBy: trackByFn">
             <ion-item (click)="toggleCategory(category.id, !expandedCategory[category.id])">
+
                 <ion-icon [name]="expandedCategory[category.id] ? 'remove-circle' : 'add-circle'"
                           slot="start"></ion-icon>
 
                 <ion-label>
                     {{ category.name }}
                 </ion-label>
+
             </ion-item>
+
             <ng-container *ngIf="expandedCategory[category.id]">
                 <ion-list>
                     <ion-item *ngFor="let product of category.list; let i = index; trackBy: trackByFn">

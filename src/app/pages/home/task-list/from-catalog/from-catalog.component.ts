@@ -109,4 +109,8 @@ export class FromCatalogComponent implements OnInit, OnDestroy {
             this.close();
         }, () => this.toastService.show(this.translateService.translate('errors.SAVE_ERR')));
     }
+
+    public collapseAll(): void {
+        this.expandedCategory = {};
+    }
 }

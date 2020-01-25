@@ -3,12 +3,16 @@ import { ActivatedRoute } from '@angular/router';
 
 import { AlertController, IonItemSliding, ModalController } from '@ionic/angular';
 
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { takeUntil, tap } from 'rxjs/operators';
+import { BehaviorSubject, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import { TranslocoService } from '@ngneat/transloco';
 
+import { EUnits } from '../../../shared/enums/units.enum';
+import { FlatMap } from '../../../shared/helpers/flat-map';
+import { UNITS } from '../../../shared/helpers/get-units';
 import { ICategory } from '../../../shared/interfaces/category.interface';
+import { ISelect } from '../../../shared/interfaces/select.interface';
 import { ITask } from '../../../shared/interfaces/task.interface';
 import { CategoryService } from '../../../shared/services/category.service';
 import { FromCatalogComponent } from './from-catalog/from-catalog.component';
@@ -25,6 +29,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
     private ngOnDestroy$: Subject<void> = new Subject();
 
     public category$: BehaviorSubject<ICategory> = new BehaviorSubject(null);
+    public units: FlatMap<ISelect<EUnits>> = UNITS;
 
     constructor(
         private route: ActivatedRoute,
