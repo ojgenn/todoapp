@@ -11,6 +11,7 @@ import { TranslocoService } from '@ngneat/transloco';
 import { ICategory } from '../../../shared/interfaces/category.interface';
 import { ITask } from '../../../shared/interfaces/task.interface';
 import { CategoryService } from '../../../shared/services/category.service';
+import { FromCatalogComponent } from './from-catalog/from-catalog.component';
 import { ManageTaskComponent } from './manage-task/manage-task.component';
 
 @Component({
@@ -104,5 +105,15 @@ export class TaskListComponent implements OnInit, OnDestroy {
 
     public trackByFn(_: number, item: ITask): string {
         return item.id;
+    }
+
+    public async fromCatalog(): Promise<void> {
+        const modal: HTMLIonModalElement = await this.modalController.create({
+            component: FromCatalogComponent,
+            componentProps: {
+                categoryId: this.id,
+            }
+        });
+        await modal.present();
     }
 }

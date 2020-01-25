@@ -5,7 +5,12 @@
                 <ion-back-button></ion-back-button>
             </ion-buttons>
             <ion-buttons slot="end">
-                <ion-button (click)="addTask()">{{ 'buttons.ADD' | transloco }}</ion-button>
+                <ion-button (click)="addTask()">
+                    <ion-icon name="add"></ion-icon>
+                </ion-button>
+                <ion-button (click)="fromCatalog()">
+                    <ion-icon name="list-box"></ion-icon>
+                </ion-button>
             </ion-buttons>
             <ion-title>{{ category?.name }}</ion-title>
         </ion-toolbar>
