@@ -22,9 +22,9 @@ export function sortTaskList(list: ITask[]): ITask[] {
         }
     });
 
-    const alertTime: ITask[] = sortTaskByParameter(separatedTasks.alertTime, 'alertTime').reverse();
-    const done: ITask[] = sortTaskByParameter(separatedTasks.done, 'created').reverse();
-    const other: ITask[] = sortTaskByParameter(separatedTasks.other, 'created').reverse();
+    const alertTime: ITask[] = sortTaskByParameter(separatedTasks.alertTime, 'alertTime');
+    const done: ITask[] = sortTaskByParameter(separatedTasks.done, 'created');
+    const other: ITask[] = sortTaskByParameter(separatedTasks.other, 'created');
 
     return [...alertTime, ...other, ...done];
 }
