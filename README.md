@@ -1,1 +1,1 @@
-# todoapp
+# todoapp - pet project
