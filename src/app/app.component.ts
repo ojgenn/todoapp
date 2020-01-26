@@ -21,24 +21,21 @@ import { ToastService } from './shared/services/toast.service';
 export class AppComponent implements OnDestroy {
     private ngOnDestroy$: Subject<void> = new Subject();
 
-    public appPages: { title: string; url: string; icon: string, color: string }[] = [
+    public appPages: { title: string; url: string; icon: string }[] = [
         {
             title: 'side-menu.Home',
             url: '/home',
             icon: 'home',
-            color: 'tertiary',
         },
         {
             title: 'side-menu.LIST',
             url: '/list',
             icon: 'list',
-            color: 'success',
         },
         {
             title: 'side-menu.STORE_DATA',
             url: '/store-data',
             icon: 'save',
-            color: 'danger',
         }
     ];
 
