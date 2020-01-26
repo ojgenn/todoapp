@@ -1,5 +1,5 @@
 <ion-header>
-    <ion-toolbar>
+    <ion-toolbar color="primary">
         <ion-buttons slot="end">
             <ion-button (click)="close()">
                 <ion-icon name="close"></ion-icon>
@@ -68,7 +68,7 @@
         </ion-select>
 
         <ion-row class="ion-justify-content-between ion-padding-top">
-            <ion-button color="light"
+            <ion-button color="success"
                         (click)="manage(form)"
                         [disabled]="form.invalid">
                 {{ 'buttons.SAVE' | transloco }}

@@ -1,12 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
+import { ILocalNotification, LocalNotifications } from '@ionic-native/local-notifications/ngx';
+import { Platform } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 
 import { combineLatest, of, BehaviorSubject, EMPTY, Observable } from 'rxjs';
 import { fromPromise } from 'rxjs/internal-compatibility';
 import { switchMap, tap } from 'rxjs/operators';
 
+import { TranslocoService } from '@ngneat/transloco';
 import * as uuid from 'uuid';
 
 import { compareCatalogsByTime } from '../helpers/compare-catalog-by-time';
@@ -27,9 +30,45 @@ export class StoreService {
     constructor(
         private storage: Storage,
         private http: HttpClient,
+        private localNotification: LocalNotifications,
+        private translateService: TranslocoService,
+        private platform: Platform,
     ) { }
 
+    private async renewNotifications(): Promise<void> {
+        if (this.platform.is('android')) {
+            const store: ICategory[] = [...this.store$.value];
+            const schedules: ILocalNotification[] = [];
+            const now: number = Date.now();
+            let i: number = 0;
+
+            await this.localNotification.cancelAll();
+
+            store.forEach((category: ICategory) => {
+                category.list.forEach((task: ITask) => {
+                    i++;
+                    if (task.alertTime && task.alertTime > now && !task.doneStatus) {
+                        schedules.push({
+                            id: i,
+                            title: this.translateService.translate('app.NOTIFICATION'),
+                            text: task.name,
+                            trigger: { at: new Date(task.alertTime) },
+                        });
+                    }
+                });
+            });
+
+            await this.localNotification.schedule(schedules);
+        }
+    }
+
     public initStore(): Observable<boolean> {
+
+        if (this.platform.is('android')) {
+            this.localNotification.setDefaults({
+                vibrate: true,
+            });
+        }
 
         return fromPromise(this.storage.keys()).pipe(
             switchMap((keyList: string[]) => {
@@ -58,6 +97,7 @@ export class StoreService {
 
                 return of(true);
             }),
+            tap(() => this.renewNotifications()),
         );
     }
 
@@ -129,7 +169,8 @@ export class StoreService {
             catalog.sort(compareCatalogsByTime);
             const modifiedCatalog: ICategory[] = sortCatalog(catalog);
             return fromPromise(this.storage.set(STORE_NAME, modifiedCatalog)).pipe(
-                tap(() => this.store$.next(modifiedCatalog))
+                tap(() => this.store$.next(modifiedCatalog)),
+                tap(() => this.renewNotifications()),
             );
         }
 
@@ -144,6 +185,7 @@ export class StoreService {
         }
 
         return fromPromise(this.storage.set(STORE_NAME, catalog)).pipe(
+            tap(() => this.renewNotifications()),
             switchMap(() => of(EMPTY)),
         );
     }
@@ -176,7 +218,9 @@ export class StoreService {
 
     public updateStore(store: ICategory[]): Observable<void> {
         this.store$.next(sortCatalog(store));
-        return fromPromise(this.storage.set(STORE_NAME, store));
+        return fromPromise(this.storage.set(STORE_NAME, store)).pipe(
+            tap(() => this.renewNotifications()),
+        );
     }
 
     public updateProducts(products: IProductCategory[]): Observable<void> {

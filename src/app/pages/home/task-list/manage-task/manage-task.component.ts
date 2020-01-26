@@ -122,7 +122,7 @@ export class ManageTaskComponent implements OnInit, OnDestroy {
                             const day: string = data.day.value.toString();
                             const hour: string = data.hour.value.toString();
                             const minutes: string = data.minute.value.toString();
-                            const date: string = `${year}-${month}-${day}T${hour}:${minutes}`;
+                            const date: string = `${year}-${month}-${day} ${hour}:${minutes}`;
 
                             this.form.get('alertTime').setValue(date);
                         },

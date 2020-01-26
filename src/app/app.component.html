@@ -3,7 +3,7 @@
         <ion-menu contentId="main-content"
                   type="overlay">
             <ion-header>
-                <ion-toolbar>
+                <ion-toolbar color="primary">
                     <ion-title>{{ 'side-menu.MENU' | transloco }}</ion-title>
                 </ion-toolbar>
             </ion-header>
@@ -14,6 +14,7 @@
                         <ion-item [routerDirection]="'root'"
                                   [routerLink]="[p.url]">
                             <ion-icon slot="start"
+                                      [color]="p.color"
                                       [name]="p.icon"></ion-icon>
                             <ion-label>
                                 {{ p.title | transloco }}
