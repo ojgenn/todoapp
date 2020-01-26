@@ -1,5 +1,5 @@
 <ion-header>
-    <ion-toolbar>
+    <ion-toolbar color="primary">
 
         <ion-buttons slot="start">
             <ion-menu-button></ion-menu-button>
@@ -20,7 +20,7 @@
             <ion-item-options side="end"
                               *ngIf="!categoryList?.map[categoryId].readonly">
                 <ion-item-option expandable
-                                 color="light">
+                                 color="primary">
 
                     <ion-button fill="clear"
                                 (click)="deleteCategory(categoryId)">
@@ -31,13 +31,13 @@
                     <ion-button fill="clear"
                                 (click)="edit(categoryList?.map[categoryId], slidingItem)">
                         <ion-icon name="create"
-                                  color="medium"></ion-icon>
+                                  color="success"></ion-icon>
                     </ion-button>
 
                     <ion-button fill="clear"
                                 (click)="markAsDone(categoryId, slidingItem)">
                         <ion-icon name="checkmark"
-                                  color="dark"></ion-icon>
+                                  color="warning"></ion-icon>
                     </ion-button>
 
                 </ion-item-option>
@@ -47,7 +47,10 @@
                       detail
                       [routerLink]="categoryId">
                 <ion-label [color]="config.color">{{ categoryList?.map[categoryId].name }}</ion-label>
-                <ion-chip slot="start">{{ config.actualTasks }}</ion-chip>
+                <ion-chip [color]="config.actualTasks > 0 ? 'danger' : 'medium'"
+                          slot="start">
+                    {{ config.actualTasks }}
+                </ion-chip>
             </ion-item>
         </ion-item-sliding>
     </ion-list>

@@ -1,6 +1,6 @@
 <ng-container *appLet="category$ | async as category">
     <ion-header>
-        <ion-toolbar>
+        <ion-toolbar color="primary">
             <ion-buttons slot="start">
                 <ion-back-button></ion-back-button>
             </ion-buttons>
@@ -24,7 +24,7 @@
                               #slidingItem>
                 <ion-item-options side="end">
                     <ion-item-option expandable
-                                     color="light">
+                                     color="primary">
 
                         <ion-button fill="clear"
                                     (click)="deleteTask(index)">
@@ -35,13 +35,13 @@
                         <ion-button fill="clear"
                                     (click)="editTask(task, index, slidingItem)">
                             <ion-icon name="create"
-                                      color="medium"></ion-icon>
+                                      color="tertiary"></ion-icon>
                         </ion-button>
 
                         <ion-button fill="clear"
                                     (click)="toggleDone(index, slidingItem)">
                             <ion-icon name="checkmark"
-                                      color="dark"></ion-icon>
+                                      color="warning"></ion-icon>
                         </ion-button>
 
                     </ion-item-option>
@@ -61,7 +61,7 @@
                                     </ng-container>
                                 </ng-container>
                             </h2>
-                            <ion-text color="medium"
+                            <ion-text color="tertiary"
                                       *ngIf="task.description">{{ task.description }}</ion-text>
                         </ion-label>
                     </ng-container>

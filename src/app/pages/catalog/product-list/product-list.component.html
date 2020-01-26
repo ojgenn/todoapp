@@ -1,6 +1,6 @@
 <ng-container *appLet="category$ | async as category">
     <ion-header>
-        <ion-toolbar>
+        <ion-toolbar color="primary">
             <ion-buttons slot="start">
                 <ion-back-button></ion-back-button>
             </ion-buttons>
@@ -25,7 +25,7 @@
                               #slidingItem>
                 <ion-item-options side="end">
                     <ion-item-option expandable
-                                     color="light">
+                                     color="primary">
 
                         <ion-button fill="clear"
                                     (click)="deleteProduct(index)">
@@ -36,7 +36,7 @@
                         <ion-button fill="clear"
                                     (click)="editProduct(product, index, slidingItem)">
                             <ion-icon name="create"
-                                      color="medium"></ion-icon>
+                                      color="warning"></ion-icon>
                         </ion-button>
                     </ion-item-option>
                 </ion-item-options>
