@@ -4,7 +4,9 @@
         <ion-buttons slot="start">
             <ion-menu-button></ion-menu-button>
         </ion-buttons>
-
+        <ion-title>
+            {{ 'catalogs.T' | transloco }}
+        </ion-title>
         <ion-buttons slot="end">
             <ion-button (click)="addCatalog()">{{ 'buttons.ADD' | transloco }}</ion-button>
         </ion-buttons>
@@ -46,7 +48,10 @@
             <ion-item *appCategoryColor="{readonly: categoryList?.map[categoryId].readonly, list: categoryList?.map[categoryId].list} as config"
                       detail
                       [routerLink]="categoryId">
-                <ion-label [color]="config.color">{{ categoryList?.map[categoryId].name }}</ion-label>
+                <ion-label [color]="config.color"
+                           [class.readonly]="categoryList?.map[categoryId].readonly">
+                    {{ categoryList?.map[categoryId].name }}
+                </ion-label>
                 <ion-chip [color]="config.actualTasks > 0 ? 'dark' : 'medium'"
                           slot="start">
                     {{ config.actualTasks }}

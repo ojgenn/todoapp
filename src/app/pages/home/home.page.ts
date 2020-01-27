@@ -61,7 +61,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
     }
 
     private setCatalog(): void {
-        this.storeService.getCategoryList().pipe(
+        this.storeService.getStore().pipe(
             takeUntil(this.ngOnDestroy$),
         ).subscribe((categoryList: ICategory[]) => {
             this.categoryList$.next(new FlatMap<ICategory>(categoryList, 'id'));

@@ -9,6 +9,13 @@ import { FromCatalogComponent } from './task-list/from-catalog/from-catalog.comp
 import { ManageTaskComponent } from './task-list/manage-task/manage-task.component';
 import { TaskListComponent } from './task-list/task-list.component';
 
+// tslint:disable-next-line:no-any
+const entryComponents: any[] = [
+    ManageCatalogComponent,
+    ManageTaskComponent,
+    FromCatalogComponent,
+];
+
 @NgModule({
     imports: [
         RouterModule.forChild([
@@ -30,16 +37,10 @@ import { TaskListComponent } from './task-list/task-list.component';
     ],
     declarations: [
         HomePageComponent,
-        ManageCatalogComponent,
         TaskListComponent,
-        ManageTaskComponent,
-        FromCatalogComponent,
+        ...entryComponents,
     ],
-    entryComponents: [
-        ManageCatalogComponent,
-        ManageTaskComponent,
-        FromCatalogComponent,
-    ],
+    entryComponents: entryComponents,
     providers: [
         DatePipe,
     ]
