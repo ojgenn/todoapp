@@ -20,7 +20,9 @@ import { TranslocoRootModule } from './transloco-root.module';
     entryComponents: [],
     imports: [
         BrowserModule,
-        IonicModule.forRoot(),
+        IonicModule.forRoot({
+            mode: 'ios',
+        }),
         AppRoutingModule,
         HttpClientModule,
         TranslocoRootModule,
