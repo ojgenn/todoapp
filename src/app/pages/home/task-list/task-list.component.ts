@@ -18,6 +18,7 @@ import { ITask } from '../../../shared/interfaces/task.interface';
 import { CategoryService } from '../../../shared/services/category.service';
 import { FromCatalogComponent } from './from-catalog/from-catalog.component';
 import { ManageTaskComponent } from './manage-task/manage-task.component';
+import { ShowTaskComponent } from './show-task/show-task.component';
 
 @Component({
     selector: 'app-task-list',
@@ -102,6 +103,16 @@ export class TaskListComponent implements OnInit, OnDestroy {
         modal.onDidDismiss().then(() => {
             slidingItem.close();
         });
+    }
+
+    public async showTask(task: ITask): Promise<void> {
+        const modal: HTMLIonModalElement = await this.modalController.create({
+            component: ShowTaskComponent,
+            componentProps: {
+                task,
+            }
+        });
+        await modal.present();
     }
 
     public toggleDone(index: number, slidingItem: IonItemSliding): void {
