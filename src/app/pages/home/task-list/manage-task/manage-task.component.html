@@ -61,7 +61,9 @@
             {{ 'validators.PATTERN.SAFE' | transloco }}
         </ion-note>
 
-        <ion-select placeholder="Select One"
+        <ion-select [placeholder]="'task-list.UNITS' | transloco"
+                    [cancelText]="'buttons.CANCEL' | transloco"
+                    [okText]="'buttons.OK' | transloco"
                     formControlName="units">
             <ion-select-option *ngFor="let unit of units.keys"
                                [value]="units?.map[unit].value">{{ units?.map[unit].label | transloco }}</ion-select-option>
