@@ -29,7 +29,7 @@ interface IStoreProductsInterface {
     styleUrls: ['./store-data.component.scss'],
 })
 export class StoreDataComponent implements OnInit, OnDestroy {
-    private fileDir: string = this.file.dataDirectory;
+    private fileDir: string = this.file.externalDataDirectory;
     private fileName: string = 'catalog.json';
     private ngOnDestroy$: Subject<void> = new Subject();
     private willLeave$: Subject<void> = new Subject();
