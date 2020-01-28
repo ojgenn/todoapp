@@ -12,12 +12,18 @@ import { IonicStorageModule } from '@ionic/storage';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ShowTaskComponent } from './pages/home/task-list/show-task/show-task.component';
 import { SharedModule } from './shared/shared.module';
 import { TranslocoRootModule } from './transloco-root.module';
 
 @NgModule({
-    declarations: [AppComponent],
-    entryComponents: [],
+    declarations: [
+        AppComponent,
+        ShowTaskComponent,
+    ],
+    entryComponents: [
+        ShowTaskComponent,
+    ],
     imports: [
         BrowserModule,
         IonicModule.forRoot({

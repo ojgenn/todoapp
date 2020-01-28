@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 
 import { AlertController, IonItemSliding, ModalController } from '@ionic/angular';
 
 import { BehaviorSubject, Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { map, switchMap, take, takeUntil } from 'rxjs/operators';
 
 import { TranslocoService } from '@ngneat/transloco';
 
@@ -49,6 +49,17 @@ export class TaskListComponent implements OnInit, OnDestroy {
         this.categoryService.getCategory().pipe(
             takeUntil(this.ngOnDestroy$)
         ).subscribe((category: ICategory) => this.category$.next(category));
+
+        this.category$.asObservable().pipe(
+            map((category: ICategory) => category.list),
+            take(1),
+            takeUntil(this.ngOnDestroy$),
+        ).subscribe(() => {
+            const givenTaskData: Params = this.route.snapshot.queryParams;
+            if (givenTaskData.hasOwnProperty('task')) {
+                this.showTask(JSON.parse(givenTaskData['task']));
+            }
+        });
     }
 
     ngOnDestroy(): void {

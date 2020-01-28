@@ -21,7 +21,12 @@ const routes: Routes = [
         path: 'store-data',
         // tslint:disable-next-line:typedef
         loadChildren: () => import('./pages/store-data/store-data.module').then(m => m.StoreDataModule)
+    },
+    {
+        path: 'today-tasks',
+        loadChildren: () => import('./pages/today-tasks/today-tasks.module').then(m => m.TodayTasksPageModule)
     }
+
 
 ];
 
@@ -31,4 +36,5 @@ const routes: Routes = [
     ],
     exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}
