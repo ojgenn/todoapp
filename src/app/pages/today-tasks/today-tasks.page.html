@@ -1,0 +1,40 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>
+            {{ 'today.T' | transloco }}
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content *appLet="list$ | async as list">
+    <ion-list *ngIf="list?.length > 0; else emptyList">
+        <ion-item *ngFor="let task of list; let index = index; trackBy: trackByFn"
+                  (click)="showTask(task)">
+            <ion-chip slot="end"
+                      *ngIf="task.alertTime && !task.doneStatus">
+                {{ task.alertTime | date: 'dd.MM.yy HH:mm' }}
+            </ion-chip>
+            <ng-container>
+                <ion-label>
+                    <h2>{{ task.name }}
+                        <ng-container *ngIf="task.qty">
+                            , {{ task.qty }}
+                            <ng-container *ngIf="task.units">
+                                ({{ units?.map[task.units].label | transloco }})
+                            </ng-container>
+                        </ng-container>
+                    </h2>
+                    <ion-text color="tertiary"
+                              *ngIf="task.description">{{ task.description }}</ion-text>
+                </ion-label>
+            </ng-container>
+        </ion-item>
+    </ion-list>
+
+    <ng-template #emptyList>
+        <ion-item>{{ 'task-list.EMPTY_LIST' | transloco }}</ion-item>
+    </ng-template>
+</ion-content>

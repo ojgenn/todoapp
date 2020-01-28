@@ -23,11 +23,8 @@ export class CategoryColorDirective<T> implements OnChanges {
 
     ngOnChanges(): void {
         let color: string = '';
-        if (this.appCategoryColor.readonly) {
-            color = 'warning';
-        }
 
-        if (this.appCategoryColor.list.length > 0 && this.appCategoryColor.list.every((task: ITask) => task.doneStatus === true)) {
+        if (!this.appCategoryColor.readonly && this.appCategoryColor.list.length > 0 && this.appCategoryColor.list.every((task: ITask) => task.doneStatus === true)) {
             color = 'medium';
         }
 

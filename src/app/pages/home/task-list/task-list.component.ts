@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 
 import { AlertController, IonItemSliding, ModalController } from '@ionic/angular';
 
 import { BehaviorSubject, Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { map, switchMap, take, takeUntil } from 'rxjs/operators';
 
 import { TranslocoService } from '@ngneat/transloco';
 
@@ -18,6 +18,7 @@ import { ITask } from '../../../shared/interfaces/task.interface';
 import { CategoryService } from '../../../shared/services/category.service';
 import { FromCatalogComponent } from './from-catalog/from-catalog.component';
 import { ManageTaskComponent } from './manage-task/manage-task.component';
+import { ShowTaskComponent } from './show-task/show-task.component';
 
 @Component({
     selector: 'app-task-list',
@@ -48,6 +49,17 @@ export class TaskListComponent implements OnInit, OnDestroy {
         this.categoryService.getCategory().pipe(
             takeUntil(this.ngOnDestroy$)
         ).subscribe((category: ICategory) => this.category$.next(category));
+
+        this.category$.asObservable().pipe(
+            map((category: ICategory) => category.list),
+            take(1),
+            takeUntil(this.ngOnDestroy$),
+        ).subscribe(() => {
+            const givenTaskData: Params = this.route.snapshot.queryParams;
+            if (givenTaskData.hasOwnProperty('task')) {
+                this.showTask(JSON.parse(givenTaskData['task']));
+            }
+        });
     }
 
     ngOnDestroy(): void {
@@ -102,6 +114,16 @@ export class TaskListComponent implements OnInit, OnDestroy {
         modal.onDidDismiss().then(() => {
             slidingItem.close();
         });
+    }
+
+    public async showTask(task: ITask): Promise<void> {
+        const modal: HTMLIonModalElement = await this.modalController.create({
+            component: ShowTaskComponent,
+            componentProps: {
+                task,
+            }
+        });
+        await modal.present();
     }
 
     public toggleDone(index: number, slidingItem: IonItemSliding): void {

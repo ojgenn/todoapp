@@ -1,0 +1,24 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="end">
+            <ion-button (click)="close()">
+                <ion-icon name="close"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+    <ion-text>
+        <h2>
+            {{ task.name }}
+            <ion-text *ngIf="task.qty">
+                , {{ task.qty }}
+                <ion-text *ngIf="task.units">
+                    ({{ units?.map[task.units].label | transloco }})
+                </ion-text>
+            </ion-text>
+        </h2>
+    </ion-text>
+    <ion-text>{{ task.description }}</ion-text>
+</ion-content>

@@ -46,7 +46,7 @@
 
                     </ion-item-option>
                 </ion-item-options>
-                <ion-item>
+                <ion-item (click)="showTask(task)">
                     <ion-chip slot="end"
                               *ngIf="task.alertTime && !task.doneStatus">
                         {{ task.alertTime | date: 'dd.MM.yy HH:mm' }}
