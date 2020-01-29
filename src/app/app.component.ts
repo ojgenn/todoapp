@@ -19,6 +19,12 @@ import { ToastService } from './shared/services/toast.service';
 // tslint:disable-next-line:typedef
 declare var cordova;
 
+interface IAppPages {
+    title: string;
+    url: string;
+    icon: string;
+}
+
 @Component({
     selector: 'app-root',
     templateUrl: 'app.component.html',
@@ -30,28 +36,7 @@ export class AppComponent implements OnInit, OnDestroy {
     private localNotification$: Subject<void> = new Subject();
     private initialOver$: Subject<void> = new Subject();
 
-    public appPages: { title: string; url: string; icon: string }[] = [
-        {
-            title: 'side-menu.Home',
-            url: '/home',
-            icon: 'home',
-        },
-        {
-            title: 'side-menu.TODAY',
-            url: '/today-tasks',
-            icon: 'today',
-        },
-        {
-            title: 'side-menu.LIST',
-            url: '/list',
-            icon: 'list',
-        },
-        {
-            title: 'side-menu.STORE_DATA',
-            url: '/store-data',
-            icon: 'save',
-        }
-    ];
+    public appPages: IAppPages[];
 
     constructor(
         private platform: Platform,
@@ -62,15 +47,20 @@ export class AppComponent implements OnInit, OnDestroy {
         private translateService: TranslocoService,
         private toastService: ToastService,
         private router: Router,
-    ) {
-        this.initializeApp();
-    }
+    ) { }
 
     ngOnInit(): void {
+
+        this.appPages = AppComponent.initAppPages();
+
+        this.initializeApp();
+
         combineLatest([
             this.initialOver$.asObservable(),
             this.localNotification$.asObservable(),
-        ]).subscribe(() => {
+        ]).pipe(
+            takeUntil(this.ngOnDestroy$)
+        ).subscribe(() => {
             if (this.data) {
                 this.router.navigate(['home', this.data.parentId], { queryParams: { task: JSON.stringify(this.data) } });
             }
@@ -81,10 +71,35 @@ export class AppComponent implements OnInit, OnDestroy {
         this.ngOnDestroy$.next();
     }
 
+    private static initAppPages(): IAppPages[] {
+        return [
+            {
+                title: 'side-menu.Home',
+                url: '/home',
+                icon: 'home',
+            },
+            {
+                title: 'side-menu.TODAY',
+                url: '/today-tasks',
+                icon: 'today',
+            },
+            {
+                title: 'side-menu.LIST',
+                url: '/list',
+                icon: 'list',
+            },
+            {
+                title: 'side-menu.STORE_DATA',
+                url: '/store-data',
+                icon: 'save',
+            }
+        ];
+    }
+
     private initStore(): void {
         this.translateService.selectTranslate('app.APP_INIT').pipe(
             switchMap((appMsg: string) => fromPromise(this.loadingController.create({
-                message: this.translateService.translate(appMsg),
+                message: appMsg,
             }))),
             switchMap((loading: HTMLIonLoadingElement) => {
                 loading.present();
@@ -114,19 +129,4 @@ export class AppComponent implements OnInit, OnDestroy {
             this.initStore();
         });
     }
-
-    // private mockLoadingData(): void {
-    //     this.data = {
-    //         alertTime: 1579987320000,
-    //         created: 1579987342146,
-    //         description: '',
-    //         doneStatus: true,
-    //         id: '4d65e94c-777a-4cbf-827d-22f9c03751ed',
-    //         name: 'sdfdsf',
-    //         parentId: 'bcf65074-d50f-4575-8760-196ff1c87015',
-    //         qty: null,
-    //         units: null,
-    //     };
-    //     this.localNotification$.next();
-    // }
 }

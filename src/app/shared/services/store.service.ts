@@ -1,24 +1,24 @@
-import {HttpClient} from '@angular/common/http';
-import {Injectable} from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 
-import {ILocalNotification, LocalNotifications} from '@ionic-native/local-notifications/ngx';
-import {Platform} from '@ionic/angular';
-import {Storage} from '@ionic/storage';
+import { ILocalNotification, LocalNotifications } from '@ionic-native/local-notifications/ngx';
+import { Platform } from '@ionic/angular';
+import { Storage } from '@ionic/storage';
 
-import {combineLatest, merge, of, BehaviorSubject, EMPTY, Observable} from 'rxjs';
-import {fromPromise} from 'rxjs/internal-compatibility';
-import {switchMap, tap} from 'rxjs/operators';
+import { combineLatest, merge, of, BehaviorSubject, EMPTY, Observable } from 'rxjs';
+import { fromPromise } from 'rxjs/internal-compatibility';
+import { switchMap, tap } from 'rxjs/operators';
 
-import {TranslocoService} from '@ngneat/transloco';
+import { TranslocoService } from '@ngneat/transloco';
 import * as uuid from 'uuid';
 
-import {compareCatalogsByTime} from '../helpers/compare-catalog-by-time';
-import {PRODUCTS_CATALOG_NAME, STORE_NAME} from '../helpers/config.config';
-import {sortCatalog} from '../helpers/sort-catalog';
-import {ICategory} from '../interfaces/category.interface';
-import {IProductCategory} from '../interfaces/product--category.interface';
-import {ITask} from '../interfaces/task.interface';
-import {StoreType} from '../types/store.type';
+import { compareCatalogsByTime } from '../helpers/compare-catalog-by-time';
+import { PRODUCTS_CATALOG_NAME, STORE_NAME } from '../helpers/config.config';
+import { sortCatalog } from '../helpers/sort-catalog';
+import { ICategory } from '../interfaces/category.interface';
+import { IProductCategory } from '../interfaces/product--category.interface';
+import { ITask } from '../interfaces/task.interface';
+import { StoreType } from '../types/store.type';
 
 @Injectable({
     providedIn: 'root'
@@ -56,10 +56,10 @@ export class StoreService {
                             text: task.name,
                             launch: true,
                             data: task,
-                            trigger: {at: new Date(task.alertTime)},
+                            trigger: { at: new Date(task.alertTime) },
                             actions: [
-                                {id: 'click', title: this.translateService.translate('buttons.OPEN'), launch: true},
-                                {id: 'close', title: this.translateService.translate('buttons.CLEAR')}
+                                { id: 'click', title: this.translateService.translate('buttons.OPEN'), launch: true },
+                                { id: 'close', title: this.translateService.translate('buttons.CLEAR') }
                             ]
                         });
                     }

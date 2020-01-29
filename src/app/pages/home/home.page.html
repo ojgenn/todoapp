@@ -15,7 +15,7 @@
 </ion-header>
 
 <ion-content>
-    <ion-list *ngIf="categoryList$ | async as categoryList">
+    <ion-list *ngIf="categoryList$ | async as categoryList; else skeleton">
 
         <ion-item-sliding *ngFor="let categoryId of categoryList?.keys; trackBy: trackByFn"
                           #slidingItem>
@@ -59,4 +59,19 @@
             </ion-item>
         </ion-item-sliding>
     </ion-list>
+
+    <ng-template #skeleton>
+        <ion-list>
+            <ion-item *ngFor="let item of mockArray"
+                      detail>
+                <ion-label>
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                </ion-label>
+                <ion-chip slot="start"
+                          color="medium">
+                    0
+                </ion-chip>
+            </ion-item>
+        </ion-list>
+    </ng-template>
 </ion-content>
