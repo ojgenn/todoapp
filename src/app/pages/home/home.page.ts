@@ -25,6 +25,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
     private willLeave$: Subject<void> = new Subject();
 
     public categoryList$: BehaviorSubject<FlatMap<ICategory>> = new BehaviorSubject(null);
+    public mockArray: number[] = [];
 
     constructor(
         private alertController: AlertController,
@@ -36,6 +37,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
+        this.mockArray = Array.from(Array(4).keys());
         this.setCatalog();
     }
 

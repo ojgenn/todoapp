@@ -18,6 +18,9 @@
                     ({{ units?.map[task.units].label | transloco }})
                 </ion-text>
             </ion-text>
+            <ion-text *ngIf="task.alertTime && !task.doneStatus">
+                <p>{{ task.alertTime | date: 'dd.MM.yy HH:mm' }}</p>
+            </ion-text>
         </h2>
     </ion-text>
     <ion-text>{{ task.description }}</ion-text>
