@@ -16,7 +16,7 @@
             <ion-title>{{ category?.name }}</ion-title>
         </ion-toolbar>
 
-        <ion-item>
+        <ion-item *ngIf="category.list.length > 0">
             <ion-text>{{ 'task-list.MANAGE' | transloco }}</ion-text>
             <ion-icon name="create"
                       *ngIf="!isListEditable"
