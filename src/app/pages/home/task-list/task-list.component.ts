@@ -4,12 +4,12 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { AlertController, IonItemSliding, ModalController } from '@ionic/angular';
 
 import { BehaviorSubject, Subject } from 'rxjs';
-import { map, switchMap, take, takeUntil } from 'rxjs/operators';
+import { map, take, takeUntil } from 'rxjs/operators';
 
 import { TranslocoService } from '@ngneat/transloco';
 
 import { EUnits } from '../../../shared/enums/units.enum';
-import { PRODUCT_CATEGORY_ID, PRODUCTS_CATALOG_NAME } from '../../../shared/helpers/config.config';
+import { PRODUCT_CATEGORY_ID } from '../../../shared/helpers/config.config';
 import { FlatMap } from '../../../shared/helpers/flat-map';
 import { UNITS } from '../../../shared/helpers/get-units';
 import { ICategory } from '../../../shared/interfaces/category.interface';
@@ -33,6 +33,8 @@ export class TaskListComponent implements OnInit, OnDestroy {
     public category$: BehaviorSubject<ICategory> = new BehaviorSubject(null);
     public units: FlatMap<ISelect<EUnits>> = UNITS;
     public productCategoryId: string = PRODUCT_CATEGORY_ID;
+    public isListEditable: boolean = false;
+    public checkedTaskList$: BehaviorSubject<{ [key: string]: boolean }> = new BehaviorSubject({});
 
     constructor(
         private route: ActivatedRoute,
@@ -67,6 +69,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
     }
 
     public async addTask(): Promise<void> {
+        this.closeEditList();
         const modal: HTMLIonModalElement = await this.modalController.create({
             component: ManageTaskComponent,
             componentProps: {
@@ -77,6 +80,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
     }
 
     public async deleteTask(index: number): Promise<void> {
+        this.closeEditList();
         const alert: HTMLIonAlertElement = await this.alertController.create({
             header: `${this.translateService.translate('buttons.DELETE')}?`,
             buttons: [
@@ -101,6 +105,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
     }
 
     public async editTask(task: ITask, index: number, slidingItem: IonItemSliding): Promise<void> {
+        this.closeEditList();
         const modal: HTMLIonModalElement = await this.modalController.create({
             component: ManageTaskComponent,
             componentProps: {
@@ -117,6 +122,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
     }
 
     public async showTask(task: ITask): Promise<void> {
+        this.closeEditList();
         const modal: HTMLIonModalElement = await this.modalController.create({
             component: ShowTaskComponent,
             componentProps: {
@@ -127,6 +133,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
     }
 
     public toggleDone(index: number, slidingItem: IonItemSliding): void {
+        this.closeEditList();
         this.categoryService.toggleDone(index).pipe(
             takeUntil(this.ngOnDestroy$),
         ).subscribe(() => slidingItem.close());
@@ -137,6 +144,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
     }
 
     public async fromCatalog(): Promise<void> {
+        this.closeEditList();
         const modal: HTMLIonModalElement = await this.modalController.create({
             component: FromCatalogComponent,
             componentProps: {
@@ -144,5 +152,59 @@ export class TaskListComponent implements OnInit, OnDestroy {
             }
         });
         await modal.present();
+    }
+
+    public editList(): void {
+        this.isListEditable = true;
+    }
+
+    public closeEditList(): void {
+        this.isListEditable = false;
+        this.checkedTaskList$.next({});
+    }
+
+    public manageTaskChecked(e: CustomEvent, task: ITask): void {
+        const checked: boolean = e.detail.checked;
+        const checkedTaskList: { [key: string]: boolean } = this.checkedTaskList$.value;
+        if (checked) {
+            checkedTaskList[task.id] = true;
+        } else {
+            delete checkedTaskList[task.id];
+        }
+
+        this.checkedTaskList$.next(checkedTaskList);
+    }
+
+    public manageAllList(): void {
+        const checkedList: string[] = Object.keys(this.checkedTaskList$.value);
+        if (checkedList.length === this.category$.value.list.length) {
+            this.checkedTaskList$.next({});
+        } else {
+            const checkedTaskList: { [key: string]: boolean } = {};
+            this.category$.value.list.forEach((item: ITask) => {
+                checkedTaskList[item.id] = true;
+            });
+
+            this.checkedTaskList$.next(checkedTaskList);
+        }
+    }
+
+    public getIconName(): string {
+        const checkedList: string[] = Object.keys(this.checkedTaskList$.value);
+        return checkedList.length === 0
+            ? 'radio-button-off'
+            : checkedList.length === this.category$.value.list.length ? 'radio-button-on' : 'remove-circle-outline';
+    }
+
+    public deleteFromList(): void {
+        this.categoryService.deleteFromList(Object.keys(this.checkedTaskList$.value)).pipe(
+            take(1),
+        ).subscribe(() => this.closeEditList());
+    }
+
+    public markListDone(): void {
+        this.categoryService.markAsDoneFromList(Object.keys(this.checkedTaskList$.value)).pipe(
+            take(1),
+        ).subscribe(() => this.closeEditList());
     }
 }
