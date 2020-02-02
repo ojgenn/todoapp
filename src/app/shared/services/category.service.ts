@@ -69,6 +69,36 @@ export class CategoryService {
         );
     }
 
+    public deleteFromList(checkedList: string[]): Observable<unknown> {
+        const category: ICategory = this.category$.value;
+        const list: ITask[] = [...category.list];
+        checkedList.forEach((id: string) => {
+            const index: number = list.findIndex((task: ITask) => task.id === id);
+            list.splice(index, 1);
+        });
+
+        category.list = sortTaskList(list);
+
+        return this.storeService.renewCategory(category).pipe(
+            tap(() => this.category$.next(category)),
+        );
+    }
+
+    public markAsDoneFromList(checkedList: string[]): Observable<unknown> {
+        const category: ICategory = this.category$.value;
+        const list: ITask[] = [...category.list];
+        checkedList.forEach((id: string) => {
+            const index: number = list.findIndex((task: ITask) => task.id === id);
+            list[index].doneStatus = true;
+        });
+
+        category.list = sortTaskList(list);
+
+        return this.storeService.renewCategory(category).pipe(
+            tap(() => this.category$.next(category)),
+        );
+    }
+
     public updateCategory(category: ICategory): void {
         this.category$.next(category);
     }
