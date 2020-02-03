@@ -25,13 +25,10 @@
         <ion-item *ngIf="category.list.length > 0">
             <ion-text>{{ 'task-list.MANAGE' | transloco }}</ion-text>
 
-            <ion-buttons slot="start"
-                         *ngIf="isListEditable">
-                <ion-button fill="clear"
-                            (click)="manageAllList()">
-                    <ion-icon [name]="getIconName()"></ion-icon>
-                </ion-button>
-            </ion-buttons>
+            <ion-icon slot="start"
+                      (click)="manageAllList()"
+                      *ngIf="isListEditable"
+                      [name]="getIconName()"></ion-icon>
 
             <ion-buttons slot="end">
                 <ion-button *ngIf="!isListEditable"
