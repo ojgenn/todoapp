@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { SharedModule } from '../../shared/shared.module';
+import { AddMultiTaskComponent } from './add-multi-task/add-multi-task.component';
 import { HomePageComponent } from './home.page';
 import { ManageCatalogComponent } from './manage-catalog/manage-catalog.component';
 import { FromCatalogComponent } from './task-list/from-catalog/from-catalog.component';
@@ -14,6 +15,7 @@ const entryComponents: any[] = [
     ManageCatalogComponent,
     ManageTaskComponent,
     FromCatalogComponent,
+    AddMultiTaskComponent,
 ];
 
 @NgModule({

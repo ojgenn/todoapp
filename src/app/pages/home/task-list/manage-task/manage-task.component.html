@@ -35,7 +35,7 @@
                        [placeholder]="'catalogs.INPUT_NAME' | transloco"></ion-input>
         </ion-item>
         <ion-note color="danger"
-                  *ngIf="form.dirty && form.errors?.required">
+                  *ngIf="form?.dirty && form.errors?.required">
             {{ 'validators.REQUIRED' | transloco }}
         </ion-note>
         <ion-note color="danger"
@@ -44,6 +44,7 @@
         </ion-note>
         <ion-item>
             <ion-textarea formControlName="description"
+                          rows="6"
                           [placeholder]="'task-list.DESCRIPTION' | transloco"></ion-textarea>
         </ion-item>
 
