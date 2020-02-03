@@ -36,6 +36,16 @@ export class CategoryService {
         );
     }
 
+    public addMultiTasksTask(taskList: ITask[]): Observable<unknown> {
+        const category: ICategory = this.category$.value;
+        const list: ITask[] = [...category.list, ...taskList];
+        category.list = sortTaskList(list);
+
+        return this.storeService.renewCategory(category).pipe(
+            tap(() => this.category$.next(category)),
+        );
+    }
+
     public deleteTask(index: number): Observable<unknown> {
         const category: ICategory = this.category$.value;
         const list: ITask[] = [...category.list];

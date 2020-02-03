@@ -33,6 +33,7 @@ export class ManageTaskComponent implements OnInit, OnDestroy {
     private task: ITask;
     private index: number;
 
+    // TODO: unusable. fix it
     public errorMessage$: BehaviorSubject<string> = new BehaviorSubject(null);
     public form: FormGroup;
     public monthNames: string = getMonthNames();
@@ -97,6 +98,7 @@ export class ManageTaskComponent implements OnInit, OnDestroy {
     }
 
     private setCustomOptions(): void {
+        // TODO: where is error handler
         combineLatest([
             this.translateService.selectTranslate('buttons.CLEAR'),
             this.translateService.selectTranslate('buttons.OK'),
@@ -145,6 +147,8 @@ export class ManageTaskComponent implements OnInit, OnDestroy {
             qty: form.get('qty').value,
             units: form.get('units').value,
         };
+
+        // TODO: where is error handler
         this.categoryService.addTask(task).pipe(
             takeUntil(this.ngOnDestroy$)
         ).subscribe(() => {
@@ -163,6 +167,7 @@ export class ManageTaskComponent implements OnInit, OnDestroy {
             units: form.get('units').value,
         };
 
+        // TODO: where is error handler
         this.categoryService.editTask(this.task, this.index).pipe(
             takeUntil(this.ngOnDestroy$)
         ).subscribe(() => {

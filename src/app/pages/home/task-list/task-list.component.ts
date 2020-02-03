@@ -16,6 +16,7 @@ import { ICategory } from '../../../shared/interfaces/category.interface';
 import { ISelect } from '../../../shared/interfaces/select.interface';
 import { ITask } from '../../../shared/interfaces/task.interface';
 import { CategoryService } from '../../../shared/services/category.service';
+import { AddMultiTaskComponent } from '../add-multi-task/add-multi-task.component';
 import { FromCatalogComponent } from './from-catalog/from-catalog.component';
 import { ManageTaskComponent } from './manage-task/manage-task.component';
 import { ShowTaskComponent } from './show-task/show-task.component';
@@ -72,6 +73,17 @@ export class TaskListComponent implements OnInit, OnDestroy {
         this.closeEditList();
         const modal: HTMLIonModalElement = await this.modalController.create({
             component: ManageTaskComponent,
+            componentProps: {
+                categoryId: this.id,
+            }
+        });
+        await modal.present();
+    }
+
+    public async addMultiTasks(): Promise<void> {
+        this.closeEditList();
+        const modal: HTMLIonModalElement = await this.modalController.create({
+            component: AddMultiTaskComponent,
             componentProps: {
                 categoryId: this.id,
             }

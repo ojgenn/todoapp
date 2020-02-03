@@ -5,10 +5,16 @@
                 <ion-back-button></ion-back-button>
             </ion-buttons>
             <ion-buttons slot="end">
-                <ion-button (click)="addTask()">
+                <ion-button (click)="addMultiTasks()"
+                            fill="clear">
+                    <ion-icon name="logo-buffer"></ion-icon>
+                </ion-button>
+                <ion-button (click)="addTask()"
+                            fill="clear">
                     <ion-icon name="add"></ion-icon>
                 </ion-button>
                 <ion-button *ngIf="category.id === productCategoryId"
+                            fill="clear"
                             (click)="fromCatalog()">
                     <ion-icon name="list-box"></ion-icon>
                 </ion-button>
@@ -18,25 +24,37 @@
 
         <ion-item *ngIf="category.list.length > 0">
             <ion-text>{{ 'task-list.MANAGE' | transloco }}</ion-text>
-            <ion-icon name="create"
-                      *ngIf="!isListEditable"
-                      (click)="editList()"
-                      slot="end"></ion-icon>
 
-            <ng-container *ngIf="isListEditable">
-                <ion-icon slot="start"
-                          (click)="manageAllList()"
-                          [name]="getIconName()"></ion-icon>
-                <ion-icon slot="end"
-                          (click)="deleteFromList()"
-                          name="trash"></ion-icon>
-                <ion-icon slot="end"
-                          (click)="markListDone()"
-                          name="checkmark"></ion-icon>
-                <ion-icon slot="end"
-                          name="close"
-                          (click)="closeEditList()"></ion-icon>
-            </ng-container>
+            <ion-buttons slot="start"
+                         *ngIf="isListEditable">
+                <ion-button fill="clear"
+                            (click)="manageAllList()">
+                    <ion-icon [name]="getIconName()"></ion-icon>
+                </ion-button>
+            </ion-buttons>
+
+            <ion-buttons slot="end">
+                <ion-button *ngIf="!isListEditable"
+                            fill="clear"
+                            (click)="editList()">
+                    <ion-icon name="create"></ion-icon>
+                </ion-button>
+
+                <ng-container *ngIf="isListEditable">
+                    <ion-button fill="clear"
+                                (click)="deleteFromList()">
+                        <ion-icon name="trash"></ion-icon>
+                    </ion-button>
+                    <ion-button fill="clear"
+                                (click)="markListDone()">
+                        <ion-icon name="checkmark"></ion-icon>
+                    </ion-button>
+                    <ion-button fill="clear"
+                                (click)="closeEditList()">
+                        <ion-icon name="close"></ion-icon>
+                    </ion-button>
+                </ng-container>
+            </ion-buttons>
         </ion-item>
 
     </ion-header>

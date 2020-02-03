@@ -1,0 +1,45 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="end">
+            <ion-button (click)="close()">
+                <ion-icon name="close"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+    <ion-row *ngIf="errorMessage$ | async as errorMessage"
+             class="ion-justify-content-center ion-padding-top">
+        <ion-note color="danger">
+            {{ errorMessage | transloco }}
+        </ion-note>
+    </ion-row>
+
+    <form [formGroup]="form">
+
+        <ion-item>
+            <ion-textarea formControlName="tasks"
+                          rows="6"
+                          #input
+                          [placeholder]="'task-list.MULTI_TASK_INPUT' | transloco"></ion-textarea>
+        </ion-item>
+        <ion-note color="danger"
+                  *ngIf="form?.dirty && form.errors?.required">
+            {{ 'validators.REQUIRED' | transloco }}
+        </ion-note>
+        <ion-note color="danger"
+                  *ngIf="form?.dirty && form?.controls['tasks'].errors?.pattern">
+            {{ 'validators.PATTERN.SAFE' | transloco }}
+        </ion-note>
+
+        <ion-row class="ion-justify-content-between ion-padding-top">
+            <ion-button color="primary"
+                        (click)="add(form)"
+                        [disabled]="form.invalid">
+                {{ 'buttons.SAVE' | transloco }}
+            </ion-button>
+        </ion-row>
+    </form>
+</ion-content>
