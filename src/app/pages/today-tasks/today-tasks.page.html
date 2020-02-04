@@ -3,22 +3,48 @@
         <ion-buttons slot="start">
             <ion-menu-button></ion-menu-button>
         </ion-buttons>
+        <ion-buttons slot="end">
+            <ng-container *ngIf="isListEditable; else startEditList">
+                <ion-button (click)="copy()">
+                    <ion-icon name="copy"></ion-icon>
+                </ion-button>
+                <ion-button (click)="stopEditList()">
+                    <ion-icon name="close"></ion-icon>
+                </ion-button>
+            </ng-container>
+
+            <ng-template #startEditList>
+                <ion-button (click)="startEdit()">
+                    <ion-icon name="checkbox"></ion-icon>
+                </ion-button>
+            </ng-template>
+        </ion-buttons>
         <ion-title>
             {{ 'today.T' | transloco }}
         </ion-title>
     </ion-toolbar>
+    <ion-item *ngIf="isListEditable">
+        <ion-text>{{ 'task-list.MANAGE' | transloco }}</ion-text>
+
+        <ion-icon slot="start"
+                  (click)="manageAllList()"
+                  [name]="getIconName()"></ion-icon>
+    </ion-item>
 </ion-header>
 
 <ion-content *appLet="list$ | async as list">
     <ion-list *ngIf="list?.length > 0; else emptyList">
-        <ion-item *ngFor="let task of list; let index = index; trackBy: trackByFn"
-                  (click)="showTask(task)">
+        <ion-item *ngFor="let task of list; let index = index; trackBy: trackByFn">
             <ion-chip slot="end"
                       *ngIf="task.alertTime && !task.doneStatus">
                 {{ task.alertTime | date: 'dd.MM.yy HH:mm' }}
             </ion-chip>
+            <ion-checkbox slot="start"
+                          *ngIf="isListEditable"
+                          [checked]="(checkedTaskList$ | async)[task.id]"
+                          (ionChange)="manageTaskChecked($event, task)"></ion-checkbox>
             <ng-container>
-                <ion-label>
+                <ion-label (click)="showTask(task)">
                     <h2>{{ task.name }}
                         <ng-container *ngIf="task.qty">
                             , {{ task.qty }}
