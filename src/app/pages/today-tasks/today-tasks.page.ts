@@ -107,7 +107,7 @@ export class TodayTasksComponent implements OnInit, OnDestroy {
             let text: string = this.translateService.translate('today.T') + '\n';
             modifiedList.forEach((item: ITask, index: number) => {
                 const description: string = item.description ? `(${item.description})` : '';
-                const qty: string = item.description ? `, ${item.qty}` : '';
+                const qty: string = item.qty ? `, ${item.qty}` : '';
                 const units: string = item.qty && item.units ? this.translateService.translate(`units.${EUnits[item.units]}`) : '';
                 text += `${index + 1}) ${item.name} ${description} ${qty} ${units}\n`;
             });
