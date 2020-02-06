@@ -49,14 +49,19 @@ export class StoreService {
             store.forEach((category: ICategory) => {
                 category.list.forEach((task: ITask) => {
                     i++;
+                    let text: string = task.name;
+                    if (task.description) {
+                        text += `\n${task.description}`;
+                    }
                     if (task.alertTime && task.alertTime > now && !task.doneStatus) {
                         schedules.push({
                             id: i,
                             title: this.translateService.translate('app.NOTIFICATION'),
-                            text: task.name,
+                            text,
                             launch: true,
                             data: task,
                             trigger: { at: new Date(task.alertTime) },
+                            icon: 'https://ojgenn.github.io/img/todo.png',
                             actions: [
                                 { id: 'click', title: this.translateService.translate('buttons.OPEN'), launch: true },
                                 { id: 'close', title: this.translateService.translate('buttons.CLEAR') }
