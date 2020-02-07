@@ -62,7 +62,7 @@
 
     <ng-template #skeleton>
         <ion-list>
-            <ion-item *ngFor="let item of mockArray"
+            <ion-item *ngFor="let item of mockArray; trackBy: trackByFn"
                       detail>
                 <ion-label>
                     <ion-skeleton-text animated></ion-skeleton-text>

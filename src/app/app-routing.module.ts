@@ -24,6 +24,7 @@ const routes: Routes = [
     },
     {
         path: 'today-tasks',
+        // tslint:disable-next-line:typedef
         loadChildren: () => import('./pages/today-tasks/today-tasks.module').then(m => m.TodayTasksPageModule)
     }
 
