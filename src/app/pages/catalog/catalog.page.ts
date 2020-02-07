@@ -40,4 +40,8 @@ export class CatalogPageComponent implements OnInit {
     ionViewWillLeave(): void {
         this.willLeave$.next();
     }
+
+    public trackByFn(_: number, item: IProductCategory): string {
+        return item.id;
+    }
 }

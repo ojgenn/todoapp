@@ -6,12 +6,12 @@ import { BehaviorSubject, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { TranslocoService } from '@ngneat/transloco';
+import * as uuid from 'uuid';
 
 import { compareCatalogsByTime } from '../../shared/helpers/compare-catalog-by-time';
 import { FlatMap } from '../../shared/helpers/flat-map';
 import { sortCatalog } from '../../shared/helpers/sort-catalog';
 import { ICategory } from '../../shared/interfaces/category.interface';
-import { ITask } from '../../shared/interfaces/task.interface';
 import { StoreService } from '../../shared/services/store.service';
 import { ManageCatalogComponent } from './manage-catalog/manage-catalog.component';
 
@@ -25,7 +25,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
     private willLeave$: Subject<void> = new Subject();
 
     public categoryList$: BehaviorSubject<FlatMap<ICategory>> = new BehaviorSubject(null);
-    public mockArray: number[] = [];
+    public mockArray: { num: number; id: string }[] = [];
 
     constructor(
         private alertController: AlertController,
@@ -37,7 +37,12 @@ export class HomePageComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
-        this.mockArray = Array.from(Array(4).keys());
+        Array.from(Array(4).keys()).forEach((item: number) => {
+            this.mockArray.push({
+                num: item,
+                id: uuid.v4(),
+            });
+        });
         this.setCatalog();
     }
 
@@ -141,9 +146,5 @@ export class HomePageComponent implements OnInit, OnDestroy {
         modal.onDidDismiss().then(() => {
             slidingItem.close();
         });
-    }
-
-    public hasDone(category: ICategory): boolean {
-        return category.list.length > 0 && category.list.every((task: ITask) => task.doneStatus === true);
     }
 }

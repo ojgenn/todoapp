@@ -12,7 +12,7 @@
 <ion-content>
     <ion-list>
         <ion-item detail
-                  *ngFor="let category of productsCatalog$ | async"
+                  *ngFor="let category of productsCatalog$ | async; trackBy: trackByFn"
                   [routerLink]="category.id">
             <ion-label>{{ category?.name }}</ion-label>
         </ion-item>

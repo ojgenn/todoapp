@@ -129,4 +129,8 @@ export class AppComponent implements OnInit, OnDestroy {
             this.initStore();
         });
     }
+
+    public trackByFn(_: number, item: IAppPages): string {
+        return item.url;
+    }
 }

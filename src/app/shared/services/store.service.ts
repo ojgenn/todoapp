@@ -61,7 +61,7 @@ export class StoreService {
                             launch: true,
                             data: task,
                             trigger: { at: new Date(task.alertTime) },
-                            icon: 'https://ojgenn.github.io/img/watermelon.png',
+                            icon: 'https://ojgenn.github.io/img/todo.png',
                             actions: [
                                 { id: 'click', title: this.translateService.translate('buttons.OPEN'), launch: true },
                                 { id: 'close', title: this.translateService.translate('buttons.CLEAR') }
