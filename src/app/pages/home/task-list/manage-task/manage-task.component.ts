@@ -168,7 +168,7 @@ export class ManageTaskComponent implements OnInit, OnDestroy {
         };
 
         // TODO: where is error handler
-        this.categoryService.editTask(this.task, this.index).pipe(
+        this.categoryService.editTask(this.task).pipe(
             takeUntil(this.ngOnDestroy$)
         ).subscribe(() => {
             this.modalController.dismiss();

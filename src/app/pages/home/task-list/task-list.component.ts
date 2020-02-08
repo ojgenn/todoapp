@@ -60,7 +60,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
         ).subscribe(() => {
             const givenTaskData: Params = this.route.snapshot.queryParams;
             if (givenTaskData.hasOwnProperty('task')) {
-                this.showTask(JSON.parse(givenTaskData['task']));
+                this.showTask(JSON.parse(givenTaskData['task']), true);
             }
         });
     }
@@ -133,12 +133,13 @@ export class TaskListComponent implements OnInit, OnDestroy {
         });
     }
 
-    public async showTask(task: ITask): Promise<void> {
+    public async showTask(task: ITask, fromLocalNotifications: boolean = false): Promise<void> {
         this.closeEditList();
         const modal: HTMLIonModalElement = await this.modalController.create({
             component: ShowTaskComponent,
             componentProps: {
                 task,
+                fromLocalNotifications,
             }
         });
         await modal.present();

@@ -24,4 +24,7 @@
         </h2>
     </ion-text>
     <ion-text>{{ task.description }}</ion-text>
+    <ion-row *ngIf="fromLocalNotifications && task.alertTime">
+        <ion-button (click)="openPicker()">{{ 'task-list.PUT_OFF' | transloco }}</ion-button>
+    </ion-row>
 </ion-content>

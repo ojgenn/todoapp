@@ -68,9 +68,10 @@ export class CategoryService {
         );
     }
 
-    public editTask(task: ITask, index: number): Observable<unknown> {
+    public editTask(task: ITask): Observable<unknown> {
         const category: ICategory = this.category$.value;
         const list: ITask[] = [...category.list];
+        const index: number = list.findIndex((item: ITask) => item.id === task.id);
         list[index] = task;
         category.list = sortTaskList(list);
 
