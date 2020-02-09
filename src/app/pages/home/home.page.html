@@ -52,10 +52,10 @@
                            [class.readonly]="categoryList?.map[categoryId].readonly">
                     {{ categoryList?.map[categoryId].name }}
                 </ion-label>
-                <ion-chip [color]="config.actualTasks > 0 ? 'dark' : 'medium'"
+                <ion-badge [color]="config.actualTasks > 0 ? 'dark' : 'medium'"
                           slot="start">
                     {{ config.actualTasks }}
-                </ion-chip>
+                </ion-badge>
             </ion-item>
         </ion-item-sliding>
     </ion-list>
@@ -67,10 +67,10 @@
                 <ion-label>
                     <ion-skeleton-text animated></ion-skeleton-text>
                 </ion-label>
-                <ion-chip slot="start"
+                <ion-badge slot="start"
                           color="medium">
                     0
-                </ion-chip>
+                </ion-badge>
             </ion-item>
         </ion-list>
     </ng-template>

@@ -86,10 +86,10 @@
                     </ion-item-option>
                 </ion-item-options>
                 <ion-item>
-                    <ion-chip slot="end"
+                    <ion-badge slot="end"
                               *ngIf="task.alertTime && !task.doneStatus">
                         {{ task.alertTime | date: 'dd.MM.yy HH:mm' }}
-                    </ion-chip>
+                    </ion-badge>
                     <ion-checkbox *ngIf="isListEditable"
                                   slot="start"
                                   [checked]="(checkedTaskList$ | async)[task.id]"

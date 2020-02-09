@@ -35,10 +35,10 @@
 <ion-content *appLet="list$ | async as list">
     <ion-list *ngIf="list?.length > 0; else emptyList">
         <ion-item *ngFor="let task of list; let index = index; trackBy: trackByFn">
-            <ion-chip slot="end"
+            <ion-badge slot="end"
                       *ngIf="task.alertTime && !task.doneStatus">
                 {{ task.alertTime | date: 'dd.MM.yy HH:mm' }}
-            </ion-chip>
+            </ion-badge>
             <ion-checkbox slot="start"
                           *ngIf="isListEditable"
                           [checked]="(checkedTaskList$ | async)[task.id]"
