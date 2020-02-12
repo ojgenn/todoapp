@@ -6,16 +6,16 @@
         <ion-buttons slot="end">
             <ng-container *ngIf="isListEditable; else startEditList">
                 <ion-button (click)="copy()">
-                    <ion-icon name="copy"></ion-icon>
+                    <ion-icon name="copy-outline"></ion-icon>
                 </ion-button>
                 <ion-button (click)="stopEditList()">
-                    <ion-icon name="close"></ion-icon>
+                    <ion-icon name="close-circle-outline"></ion-icon>
                 </ion-button>
             </ng-container>
 
             <ng-template #startEditList>
                 <ion-button (click)="startEdit()">
-                    <ion-icon name="checkbox"></ion-icon>
+                    <ion-icon name="checkbox-outline"></ion-icon>
                 </ion-button>
             </ng-template>
         </ion-buttons>
@@ -36,7 +36,7 @@
     <ion-list *ngIf="list?.length > 0; else emptyList">
         <ion-item *ngFor="let task of list; let index = index; trackBy: trackByFn">
             <ion-badge slot="end"
-                      *ngIf="task.alertTime && !task.doneStatus">
+                       *ngIf="task.alertTime && !task.doneStatus">
                 {{ task.alertTime | date: 'dd.MM.yy HH:mm' }}
             </ion-badge>
             <ion-checkbox slot="start"

@@ -26,19 +26,19 @@
 
                     <ion-button fill="clear"
                                 (click)="deleteCategory(categoryId)">
-                        <ion-icon name="trash"
+                        <ion-icon name="trash-outline"
                                   color="danger"></ion-icon>
                     </ion-button>
 
                     <ion-button fill="clear"
                                 (click)="edit(categoryList?.map[categoryId], slidingItem)">
-                        <ion-icon name="create"
+                        <ion-icon name="create-outline"
                                   color="success"></ion-icon>
                     </ion-button>
 
                     <ion-button fill="clear"
                                 (click)="markAsDone(categoryId, slidingItem)">
-                        <ion-icon name="checkmark"
+                        <ion-icon name="checkmark-circle-outline"
                                   color="yellow"></ion-icon>
                     </ion-button>
 
@@ -53,7 +53,7 @@
                     {{ categoryList?.map[categoryId].name }}
                 </ion-label>
                 <ion-badge [color]="config.actualTasks > 0 ? 'dark' : 'medium'"
-                          slot="start">
+                           slot="start">
                     {{ config.actualTasks }}
                 </ion-badge>
             </ion-item>
@@ -68,7 +68,7 @@
                     <ion-skeleton-text animated></ion-skeleton-text>
                 </ion-label>
                 <ion-badge slot="start"
-                          color="medium">
+                           color="medium">
                     0
                 </ion-badge>
             </ion-item>

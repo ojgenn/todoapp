@@ -47,7 +47,8 @@ export class AppComponent implements OnInit, OnDestroy {
         private translateService: TranslocoService,
         private toastService: ToastService,
         private router: Router,
-    ) { }
+    ) {
+    }
 
     ngOnInit(): void {
 
@@ -76,22 +77,22 @@ export class AppComponent implements OnInit, OnDestroy {
             {
                 title: 'side-menu.Home',
                 url: '/home',
-                icon: 'home',
+                icon: 'home-outline',
             },
             {
                 title: 'side-menu.TODAY',
                 url: '/today-tasks',
-                icon: 'today',
+                icon: 'today-outline',
             },
             {
                 title: 'side-menu.LIST',
                 url: '/list',
-                icon: 'list',
+                icon: 'list-outline',
             },
             {
                 title: 'side-menu.STORE_DATA',
                 url: '/store-data',
-                icon: 'save',
+                icon: 'save-outline',
             }
         ];
     }
@@ -112,7 +113,6 @@ export class AppComponent implements OnInit, OnDestroy {
             takeUntil(this.ngOnDestroy$)
         ).subscribe(() => {
             this.initialOver$.next();
-            // this.mockLoadingData();
         }, () => this.toastService.show(this.translateService.translate('app.APP_INIT_ERR')));
     }
 

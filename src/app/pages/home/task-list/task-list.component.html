@@ -7,16 +7,16 @@
             <ion-buttons slot="end">
                 <ion-button (click)="addMultiTasks()"
                             fill="clear">
-                    <ion-icon name="logo-buffer"></ion-icon>
+                    <ion-icon name="layers-sharp"></ion-icon>
                 </ion-button>
                 <ion-button (click)="addTask()"
                             fill="clear">
-                    <ion-icon name="add"></ion-icon>
+                    <ion-icon name="add-circle-sharp"></ion-icon>
                 </ion-button>
                 <ion-button *ngIf="category.id === productCategoryId"
                             fill="clear"
                             (click)="fromCatalog()">
-                    <ion-icon name="list-box"></ion-icon>
+                    <ion-icon name="list-circle-sharp"></ion-icon>
                 </ion-button>
             </ion-buttons>
             <ion-title>{{ category?.name }}</ion-title>
@@ -34,21 +34,21 @@
                 <ion-button *ngIf="!isListEditable"
                             fill="clear"
                             (click)="editList()">
-                    <ion-icon name="create"></ion-icon>
+                    <ion-icon name="create-outline"></ion-icon>
                 </ion-button>
 
                 <ng-container *ngIf="isListEditable">
                     <ion-button fill="clear"
                                 (click)="deleteFromList()">
-                        <ion-icon name="trash"></ion-icon>
+                        <ion-icon name="trash-outline"></ion-icon>
                     </ion-button>
                     <ion-button fill="clear"
                                 (click)="markListDone()">
-                        <ion-icon name="checkmark"></ion-icon>
+                        <ion-icon name="checkmark-circle-outline"></ion-icon>
                     </ion-button>
                     <ion-button fill="clear"
                                 (click)="closeEditList()">
-                        <ion-icon name="close"></ion-icon>
+                        <ion-icon name="close-circle-outline"></ion-icon>
                     </ion-button>
                 </ng-container>
             </ion-buttons>
@@ -67,19 +67,19 @@
 
                         <ion-button fill="clear"
                                     (click)="deleteTask(index)">
-                            <ion-icon name="trash"
+                            <ion-icon name="trash-outline"
                                       color="danger"></ion-icon>
                         </ion-button>
 
                         <ion-button fill="clear"
                                     (click)="editTask(task, index, slidingItem)">
-                            <ion-icon name="create"
+                            <ion-icon name="create-outline"
                                       color="success"></ion-icon>
                         </ion-button>
 
                         <ion-button fill="clear"
                                     (click)="toggleDone(index, slidingItem)">
-                            <ion-icon name="checkmark"
+                            <ion-icon name="checkmark-circle-outline"
                                       color="yellow"></ion-icon>
                         </ion-button>
 
@@ -87,7 +87,7 @@
                 </ion-item-options>
                 <ion-item>
                     <ion-badge slot="end"
-                              *ngIf="task.alertTime && !task.doneStatus">
+                               *ngIf="task.alertTime && !task.doneStatus">
                         {{ task.alertTime | date: 'dd.MM.yy HH:mm' }}
                     </ion-badge>
                     <ion-checkbox *ngIf="isListEditable"
