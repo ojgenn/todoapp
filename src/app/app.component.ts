@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { AppUpdate } from '@ionic-native/app-update/ngx';
 import { ILocalNotification } from '@ionic-native/local-notifications';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
@@ -18,6 +19,8 @@ import { ToastService } from './shared/services/toast.service';
 
 // tslint:disable-next-line:typedef
 declare var cordova;
+
+const UPDATE_URL: string = 'https://ojgenn.github.io/update/update.xml';
 
 interface IAppPages {
     title: string;
@@ -47,6 +50,7 @@ export class AppComponent implements OnInit, OnDestroy {
         private translateService: TranslocoService,
         private toastService: ToastService,
         private router: Router,
+        private appUpdate: AppUpdate,
     ) {
     }
 
@@ -126,6 +130,9 @@ export class AppComponent implements OnInit, OnDestroy {
                     this.localNotification$.next();
                 });
             }
+
+            this.appUpdate.checkAppUpdate(UPDATE_URL);
+
             this.initStore();
         });
     }

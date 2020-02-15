@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
+import { AppUpdate } from '@ionic-native/app-update/ngx';
 import { File } from '@ionic-native/file/ngx';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -39,6 +40,7 @@ import { TranslocoRootModule } from './transloco-root.module';
         StatusBar,
         SplashScreen,
         File,
+        AppUpdate,
         LocalNotifications,
         { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
     ],
