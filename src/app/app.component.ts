@@ -40,6 +40,7 @@ export class AppComponent implements OnInit, OnDestroy {
     private initialOver$: Subject<void> = new Subject();
 
     public appPages: IAppPages[];
+    public version: string = '';
 
     constructor(
         private platform: Platform,
@@ -55,11 +56,16 @@ export class AppComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
-
         this.appPages = AppComponent.initAppPages();
-
         this.initializeApp();
+        this.watchLocalNotifications();
+    }
 
+    ngOnDestroy(): void {
+        this.ngOnDestroy$.next();
+    }
+
+    private watchLocalNotifications(): void {
         combineLatest([
             this.initialOver$.asObservable(),
             this.localNotification$.asObservable(),
@@ -70,10 +76,6 @@ export class AppComponent implements OnInit, OnDestroy {
                 this.router.navigate(['home', this.data.parentId], { queryParams: { task: JSON.stringify(this.data) } });
             }
         });
-    }
-
-    ngOnDestroy(): void {
-        this.ngOnDestroy$.next();
     }
 
     private static initAppPages(): IAppPages[] {
@@ -124,14 +126,18 @@ export class AppComponent implements OnInit, OnDestroy {
         this.platform.ready().then(() => {
             this.statusBar.styleLightContent();
             this.splashScreen.hide();
+
             if (this.platform.is('android')) {
                 cordova.plugins.notification.local.on('click', (notification: ILocalNotification) => {
                     this.data = notification.data;
                     this.localNotification$.next();
                 });
-            }
 
-            this.appUpdate.checkAppUpdate(UPDATE_URL);
+                this.appUpdate.checkAppUpdate(UPDATE_URL)
+                    .finally(() => {
+                        cordova.getAppVersion.getVersionNumber((version: string) => this.version = version);
+                    });
+            }
 
             this.initStore();
         });

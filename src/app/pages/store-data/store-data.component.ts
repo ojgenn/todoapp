@@ -9,9 +9,6 @@ import { switchMap, takeUntil } from 'rxjs/operators';
 
 import { TranslocoService } from '@ngneat/transloco';
 
-import { compareCatalogsByTime } from '../../shared/helpers/compare-catalog-by-time';
-import { FlatMap } from '../../shared/helpers/flat-map';
-import { sortCatalog } from '../../shared/helpers/sort-catalog';
 import { ICategory } from '../../shared/interfaces/category.interface';
 import { IProductCategory } from '../../shared/interfaces/product--category.interface';
 import { StoreService } from '../../shared/services/store.service';

@@ -1,9 +1,5 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-
-import { IonicModule } from '@ionic/angular';
 
 import { SharedModule } from '../../shared/shared.module';
 import { CatalogPageComponent } from './catalog.page';
@@ -12,9 +8,6 @@ import { ProductListComponent } from './product-list/product-list.component';
 
 @NgModule({
     imports: [
-        CommonModule,
-        FormsModule,
-        IonicModule,
         RouterModule.forChild([
             {
                 path: '',
@@ -30,7 +23,7 @@ import { ProductListComponent } from './product-list/product-list.component';
                 ]
             }
         ]),
-        SharedModule
+        SharedModule,
     ],
     declarations: [
         CatalogPageComponent,

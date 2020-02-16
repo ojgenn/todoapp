@@ -7,21 +7,26 @@
                     <ion-title>{{ 'side-menu.MENU' | transloco }}</ion-title>
                 </ion-toolbar>
             </ion-header>
-            <ion-content>
-                <ion-list>
-                    <ion-menu-toggle auto-hide="false"
-                                     *ngFor="let p of appPages; trackBy: trackByFn">
-                        <ion-item [routerDirection]="'root'"
-                                  [routerLink]="[p.url]">
-                            <ion-icon slot="start"
-                                      color="primary"
-                                      [name]="p.icon"></ion-icon>
-                            <ion-label>
-                                {{ p.title | transloco }}
-                            </ion-label>
-                        </ion-item>
-                    </ion-menu-toggle>
-                </ion-list>
+            <ion-content color="primary">
+                <div>
+                    <ion-list>
+                        <ion-menu-toggle auto-hide="false"
+                                         *ngFor="let p of appPages; trackBy: trackByFn">
+                            <ion-item [routerDirection]="'root'" color="primary"
+                                      [routerLink]="[p.url]">
+                                <ion-icon slot="start"
+                                          [name]="p.icon"></ion-icon>
+                                <ion-label>
+                                    {{ p.title | transloco }}
+                                </ion-label>
+                            </ion-item>
+                        </ion-menu-toggle>
+                    </ion-list>
+                    <ion-text class="ion-padding"
+                              *ngIf="version">
+                        {{ 'app.VERSION' | transloco }}: {{ version }}
+                    </ion-text>
+                </div>
             </ion-content>
         </ion-menu>
         <ion-router-outlet id="main-content"></ion-router-outlet>
