@@ -12,7 +12,8 @@
                     <ion-list>
                         <ion-menu-toggle auto-hide="false"
                                          *ngFor="let p of appPages; trackBy: trackByFn">
-                            <ion-item [routerDirection]="'root'" color="primary"
+                            <ion-item [routerDirection]="'root'"
+                                      color="primary"
                                       [routerLink]="[p.url]">
                                 <ion-icon slot="start"
                                           [name]="p.icon"></ion-icon>

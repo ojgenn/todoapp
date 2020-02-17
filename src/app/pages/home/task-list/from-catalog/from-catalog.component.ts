@@ -56,7 +56,7 @@ export class FromCatalogComponent implements OnInit, OnDestroy {
 
             catalog.forEach((category: IProductCategory) => {
                 category.list.forEach((product: IProduct) => {
-                    const productIndexInCategory: number = this.category.list.findIndex((prod: ITask) => prod.id === product.id);
+                    const productIndexInCategory: number = this.category.list.findIndex((prod: ITask) => prod.id === product.id && !prod.doneStatus);
                     this.productsAsList.push(product);
                     this.form.addControl(product.id, new FormControl(productIndexInCategory >= 0));
                 });
