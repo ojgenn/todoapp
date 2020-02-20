@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { File } from '@ionic-native/file/ngx';
-import { Platform } from '@ionic/angular';
+import {AlertController, Platform} from '@ionic/angular';
 
 import { combineLatest, EMPTY, Subject } from 'rxjs';
 import { fromPromise } from 'rxjs/internal-compatibility';
@@ -37,6 +37,7 @@ export class StoreDataComponent implements OnInit, OnDestroy {
         private toastService: ToastService,
         private translateService: TranslocoService,
         private platform: Platform,
+        private alertController: AlertController,
     ) { }
 
     ngOnInit(): void {
@@ -58,6 +59,23 @@ export class StoreDataComponent implements OnInit, OnDestroy {
         this.willLeave$.next();
     }
 
+    private loadFromFile(): void {
+        fromPromise(this.file.readAsText(this.fileDir, this.fileName)).pipe(
+            switchMap((data: string) => {
+                if (data) {
+                    const parsedData: IStoreProductsInterface = JSON.parse(data);
+                    return combineLatest([
+                        this.storeService.updateStore(parsedData.store),
+                        this.storeService.updateProducts(parsedData.products),
+                    ]);
+                }
+                return EMPTY;
+            }),
+            takeUntil(this.ngOnDestroy$),
+        ).subscribe(() => this.toastService.show(this.translateService.translate('store-data.TOASTS.LOADED')),
+            () => this.toastService.show(this.translateService.translate('errors.LOAD_ERR')));
+    }
+
     public save(): void {
         combineLatest([
             this.storeService.getStore(),
@@ -75,21 +93,28 @@ export class StoreDataComponent implements OnInit, OnDestroy {
             () => this.toastService.show(this.translateService.translate('errors.SAVE_ERR')));
     }
 
-    public load(): void {
-        fromPromise(this.file.readAsText(this.fileDir, this.fileName)).pipe(
-            switchMap((data: string) => {
-                if (data) {
-                    const parsedData: IStoreProductsInterface = JSON.parse(data);
-                    return combineLatest([
-                        this.storeService.updateStore(parsedData.store),
-                        this.storeService.updateProducts(parsedData.products),
-                    ]);
+    public async load(): Promise<void> {
+
+        const alert: HTMLIonAlertElement = await this.alertController.create({
+            header: `${this.translateService.translate('store-data.ALERT_TITLE')}?`,
+            buttons: [
+                {
+                    text: this.translateService.translate('buttons.CANCEL'),
+                    role: 'cancel',
+                    cssClass: 'secondary',
+                    handler: () => {
+                    },
+                }, {
+                    text: this.translateService.translate('buttons.OK'),
+                    handler: () => {
+                        this.loadFromFile();
+                    }
                 }
-                return EMPTY;
-            }),
-            takeUntil(this.ngOnDestroy$),
-        ).subscribe(() => this.toastService.show(this.translateService.translate('store-data.TOASTS.LOADED')),
-            () => this.toastService.show(this.translateService.translate('errors.LOAD_ERR')));
+            ]
+        });
+
+        await alert.present();
+
     }
 
 }
