@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { File } from '@ionic-native/file/ngx';
-import {AlertController, Platform} from '@ionic/angular';
+import { AlertController, Platform } from '@ionic/angular';
 
 import { combineLatest, EMPTY, Subject } from 'rxjs';
 import { fromPromise } from 'rxjs/internal-compatibility';

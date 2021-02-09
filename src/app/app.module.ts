@@ -13,6 +13,7 @@ import { IonicStorageModule } from '@ionic/storage';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HomePageModule } from './pages/home/home.module';
 import { ShowTaskComponent } from './pages/home/task-list/show-task/show-task.component';
 import { SharedModule } from './shared/shared.module';
 import { TranslocoRootModule } from './transloco-root.module';
@@ -35,6 +36,7 @@ import { TranslocoRootModule } from './transloco-root.module';
         TranslocoRootModule,
         SharedModule,
         IonicStorageModule.forRoot(),
+        HomePageModule,
     ],
     providers: [
         StatusBar,

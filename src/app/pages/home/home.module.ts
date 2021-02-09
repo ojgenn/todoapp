@@ -8,6 +8,8 @@ import { HomePageComponent } from './home.page';
 import { ManageCatalogComponent } from './manage-catalog/manage-catalog.component';
 import { FromCatalogComponent } from './task-list/from-catalog/from-catalog.component';
 import { ManageTaskComponent } from './task-list/manage-task/manage-task.component';
+import { CallablePipe } from './task-list/show-task/pipes/callable.pipe';
+import { HtmlPipe } from './task-list/show-task/pipes/html.pipe';
 import { TaskListComponent } from './task-list/task-list.component';
 
 // tslint:disable-next-line:no-any
@@ -41,8 +43,14 @@ const entryComponents: any[] = [
         HomePageComponent,
         TaskListComponent,
         ...entryComponents,
+        HtmlPipe,
+        CallablePipe,
     ],
     entryComponents: entryComponents,
+    exports: [
+        HtmlPipe,
+        CallablePipe
+    ],
     providers: [
         DatePipe,
     ]
