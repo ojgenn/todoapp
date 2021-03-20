@@ -21,19 +21,19 @@ import { ProductService } from '../../../../shared/services/product.service';
 export class ManageProductComponent implements OnInit, OnDestroy {
     @ViewChild('input', { static: true }) private input: IonInput;
 
+    private readonly ngOnDestroy$: Subject<void> = new Subject();
     private product: IProduct;
     private categoryId: string;
     private index: number;
-    private ngOnDestroy$: Subject<void> = new Subject();
 
-    public errorMessage$: BehaviorSubject<string> = new BehaviorSubject(null);
+    public readonly errorMessage$: BehaviorSubject<string> = new BehaviorSubject(null);
     public form: FormGroup;
 
     constructor(
-        private modalController: ModalController,
-        private fb: FormBuilder,
-        private navParams: NavParams,
-        private productsService: ProductService,
+        private readonly modalController: ModalController,
+        private readonly fb: FormBuilder,
+        private readonly navParams: NavParams,
+        private readonly productsService: ProductService,
     ) { }
 
     ngOnInit(): void {

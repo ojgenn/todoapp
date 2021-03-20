@@ -17,9 +17,9 @@ export class TaskColorDirective<T> implements OnChanges {
     private context: ITaskContext<string> = { appTaskColor: null };
 
     constructor(
-        private vcr: ViewContainerRef,
-        private templateRef: TemplateRef<ITaskContext<string>>,
-        private datePipe: DatePipe,
+        private readonly vcr: ViewContainerRef,
+        private readonly templateRef: TemplateRef<ITaskContext<string>>,
+        private readonly datePipe: DatePipe,
     ) {
         this.vcr.createEmbeddedView(this.templateRef, this.context);
     }

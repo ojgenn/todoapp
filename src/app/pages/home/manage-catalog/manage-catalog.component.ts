@@ -22,16 +22,17 @@ export class ManageCatalogComponent implements OnInit, OnDestroy {
     @ViewChild('input', { static: true }) private input: IonInput;
 
     @Input() public category: ICategory;
-    private ngOnDestroy$: Subject<void> = new Subject();
 
-    public errorMessage$: BehaviorSubject<string> = new BehaviorSubject(null);
+    private readonly ngOnDestroy$: Subject<void> = new Subject();
+
+    public readonly errorMessage$: BehaviorSubject<string> = new BehaviorSubject(null);
     public form: FormControl;
 
     constructor(
-        private modalController: ModalController,
-        private storeService: StoreService,
-        private translateService: TranslocoService,
-        private navParams: NavParams,
+        private readonly modalController: ModalController,
+        private readonly storeService: StoreService,
+        private readonly translateService: TranslocoService,
+        private readonly navParams: NavParams,
     ) { }
 
     ngOnInit(): void {

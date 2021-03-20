@@ -12,9 +12,9 @@ import { StoreService } from './store.service';
     providedIn: 'root'
 })
 export class CategoryService {
-    private category$: BehaviorSubject<ICategory> = new BehaviorSubject(null);
+    private readonly category$: BehaviorSubject<ICategory> = new BehaviorSubject(null);
 
-    constructor(private storeService: StoreService) {
+    constructor(private readonly storeService: StoreService) {
     }
 
     public initCategory(id: string): void {

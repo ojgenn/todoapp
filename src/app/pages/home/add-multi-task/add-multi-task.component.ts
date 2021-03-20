@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { IonInput, ModalController, NavParams } from '@ionic/angular';
@@ -16,22 +16,23 @@ import { CategoryService } from '../../../shared/services/category.service';
     selector: 'app-add-multi-task',
     templateUrl: './add-multi-task.component.html',
     styleUrls: ['./add-multi-task.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddMultiTaskComponent implements OnInit, OnDestroy {
     @ViewChild('input', { static: true }) private input: IonInput;
 
-    private ngOnDestroy$: Subject<void> = new Subject();
+    private readonly ngOnDestroy$: Subject<void> = new Subject();
     private categoryId: string;
 
     // TODO: unusable. fix it
-    public errorMessage$: BehaviorSubject<string> = new BehaviorSubject(null);
+    public readonly errorMessage$: BehaviorSubject<string> = new BehaviorSubject(null);
     public form: FormGroup;
 
     constructor(
-        private modalController: ModalController,
-        private fb: FormBuilder,
-        private navParams: NavParams,
-        private categoryService: CategoryService,
+        private readonly modalController: ModalController,
+        private readonly fb: FormBuilder,
+        private readonly navParams: NavParams,
+        private readonly categoryService: CategoryService,
     ) { }
 
     ngOnInit(): void {

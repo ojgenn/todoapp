@@ -25,22 +25,22 @@ import { ToastService } from '../../../../shared/services/toast.service';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FromCatalogComponent implements OnInit, OnDestroy {
-    private ngOnDestroy$: Subject<void> = new Subject();
+    private readonly ngOnDestroy$: Subject<void> = new Subject();
     private productsAsList: IProduct[] = [];
     private category: ICategory;
 
-    public catalog$: BehaviorSubject<IProductCategory[]> = new BehaviorSubject([]);
+    public readonly catalog$: BehaviorSubject<IProductCategory[]> = new BehaviorSubject([]);
     public expandedCategory: { [key: string]: boolean } = {};
     public form: FormGroup;
 
     constructor(
-        private fb: FormBuilder,
-        private modalController: ModalController,
-        private navParams: NavParams,
-        private storeService: StoreService,
-        private categoryService: CategoryService,
-        private toastService: ToastService,
-        private translateService: TranslocoService,
+        private readonly fb: FormBuilder,
+        private readonly modalController: ModalController,
+        private readonly navParams: NavParams,
+        private readonly storeService: StoreService,
+        private readonly categoryService: CategoryService,
+        private readonly toastService: ToastService,
+        private readonly translateService: TranslocoService,
     ) {
     }
 

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import { Platform } from '@ionic/angular';
 
@@ -14,19 +14,15 @@ import { StoreService } from '../../shared/services/store.service';
     styleUrls: ['catalog.page.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CatalogPageComponent implements OnInit {
-    private willLeave$: Subject<void> = new Subject();
+export class CatalogPageComponent {
+    private readonly willLeave$: Subject<void> = new Subject();
 
-    public productsCatalog$: Observable<IProductCategory[]>;
+    public readonly productsCatalog$: Observable<IProductCategory[]> = this.storeService.getProducts();
 
     constructor(
-        private storeService: StoreService,
-        private platform: Platform,
+        private readonly storeService: StoreService,
+        private readonly platform: Platform,
     ) {
-    }
-
-    ngOnInit(): void {
-        this.productsCatalog$ = this.storeService.getProducts();
     }
 
     ionViewDidEnter(): void {

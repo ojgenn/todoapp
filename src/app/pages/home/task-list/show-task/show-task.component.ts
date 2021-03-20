@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 
 import { ModalController, NavParams, PickerController } from '@ionic/angular';
 
@@ -22,20 +22,21 @@ import { getUnitOptions } from './helpers/get-unit-options';
     selector: 'app-show-task',
     templateUrl: './show-task.component.html',
     styleUrls: ['./show-task.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ShowTaskComponent implements OnInit, OnDestroy {
-    private ngOnDestroy$: Subject<void> = new Subject();
+    private readonly ngOnDestroy$: Subject<void> = new Subject();
 
+    public readonly units: FlatMap<ISelect<EUnits>> = UNITS;
     public task: ITask;
     public fromLocalNotifications: boolean;
-    public units: FlatMap<ISelect<EUnits>> = UNITS;
 
     constructor(
-        private modalController: ModalController,
-        private navParams: NavParams,
-        private pickerController: PickerController,
-        private translateService: TranslocoService,
-        private categoryService: CategoryService,
+        private readonly modalController: ModalController,
+        private readonly navParams: NavParams,
+        private readonly pickerController: PickerController,
+        private readonly translateService: TranslocoService,
+        private readonly categoryService: CategoryService,
     ) {
     }
 

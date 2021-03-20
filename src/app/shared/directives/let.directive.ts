@@ -13,8 +13,8 @@ export class LetDirective<T> implements OnChanges {
     private context: ILetContext<T> = { appLet: null };
 
     constructor(
-        private vcr: ViewContainerRef,
-        private templateRef: TemplateRef<ILetContext<T>>,
+        private readonly vcr: ViewContainerRef,
+        private readonly templateRef: TemplateRef<ILetContext<T>>,
     ) {
         this.vcr.createEmbeddedView(this.templateRef, this.context);
     }

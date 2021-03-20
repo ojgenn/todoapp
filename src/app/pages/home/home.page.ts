@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 
 import { AlertController, IonItemSliding, ModalController, Platform } from '@ionic/angular';
 
@@ -19,20 +19,21 @@ import { ManageCatalogComponent } from './manage-catalog/manage-catalog.componen
     selector: 'app-home',
     templateUrl: 'home.page.html',
     styleUrls: ['home.page.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomePageComponent implements OnInit, OnDestroy {
-    private ngOnDestroy$: Subject<void> = new Subject();
-    private willLeave$: Subject<void> = new Subject();
+    private readonly ngOnDestroy$: Subject<void> = new Subject();
+    private readonly willLeave$: Subject<void> = new Subject();
 
-    public categoryList$: BehaviorSubject<FlatMap<ICategory>> = new BehaviorSubject(null);
+    public readonly categoryList$: BehaviorSubject<FlatMap<ICategory>> = new BehaviorSubject(null);
     public mockArray: { num: number; id: string }[] = [];
 
     constructor(
-        private alertController: AlertController,
-        private modalController: ModalController,
-        private storeService: StoreService,
-        private translateService: TranslocoService,
-        private platform: Platform,
+        private readonly alertController: AlertController,
+        private readonly modalController: ModalController,
+        private readonly storeService: StoreService,
+        private readonly translateService: TranslocoService,
+        private readonly platform: Platform,
     ) {
     }
 

@@ -15,8 +15,8 @@ export class CategoryColorDirective<T> implements OnChanges {
     private context: ICategoryContext<{ color: string, actualTasks: number }> = { appCategoryColor: null };
 
     constructor(
-        private vcr: ViewContainerRef,
-        private templateRef: TemplateRef<ICategoryContext<{ color: string, actualTasks: number }>>,
+        private readonly vcr: ViewContainerRef,
+        private readonly templateRef: TemplateRef<ICategoryContext<{ color: string, actualTasks: number }>>,
     ) {
         this.vcr.createEmbeddedView(this.templateRef, this.context);
     }

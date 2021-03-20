@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 
 import { Clipboard as IonClipboard } from '@ionic-native/clipboard';
 import { ModalController, Platform } from '@ionic/angular';
@@ -23,23 +23,24 @@ import { ShowTaskComponent } from '../home/task-list/show-task/show-task.compone
     selector: 'app-today-tasks',
     templateUrl: './today-tasks.page.html',
     styleUrls: ['./today-tasks.page.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TodayTasksComponent implements OnInit, OnDestroy {
-    private ngOnDestroy$: Subject<void> = new Subject();
-    private willLeave$: Subject<void> = new Subject();
+    private readonly ngOnDestroy$: Subject<void> = new Subject();
+    private readonly willLeave$: Subject<void> = new Subject();
 
-    public list$: BehaviorSubject<ITask[]> = new BehaviorSubject([]);
-    public units: FlatMap<ISelect<EUnits>> = UNITS;
-    public checkedTaskList$: BehaviorSubject<{ [key: string]: boolean }> = new BehaviorSubject({});
+    public readonly list$: BehaviorSubject<ITask[]> = new BehaviorSubject([]);
+    public readonly units: FlatMap<ISelect<EUnits>> = UNITS;
+    public readonly checkedTaskList$: BehaviorSubject<{ [key: string]: boolean }> = new BehaviorSubject({});
     public isListEditable: boolean = false;
 
     constructor(
-        private platform: Platform,
-        private storeService: StoreService,
-        private datePipe: DatePipe,
-        private modalController: ModalController,
-        private translateService: TranslocoService,
-        private toastService: ToastService,
+        private readonly platform: Platform,
+        private readonly storeService: StoreService,
+        private readonly datePipe: DatePipe,
+        private readonly modalController: ModalController,
+        private readonly translateService: TranslocoService,
+        private readonly toastService: ToastService,
     ) { }
 
     ngOnInit(): void {

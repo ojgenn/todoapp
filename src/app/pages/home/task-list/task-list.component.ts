@@ -28,21 +28,21 @@ import { ShowTaskComponent } from './show-task/show-task.component';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TaskListComponent implements OnInit, OnDestroy {
+    private readonly ngOnDestroy$: Subject<void> = new Subject();
     private id: string;
-    private ngOnDestroy$: Subject<void> = new Subject();
 
-    public category$: BehaviorSubject<ICategory> = new BehaviorSubject(null);
+    public readonly category$: BehaviorSubject<ICategory> = new BehaviorSubject(null);
+    public readonly checkedTaskList$: BehaviorSubject<{ [key: string]: boolean }> = new BehaviorSubject({});
     public units: FlatMap<ISelect<EUnits>> = UNITS;
     public productCategoryId: string = PRODUCT_CATEGORY_ID;
     public isListEditable: boolean = false;
-    public checkedTaskList$: BehaviorSubject<{ [key: string]: boolean }> = new BehaviorSubject({});
 
     constructor(
-        private route: ActivatedRoute,
-        private categoryService: CategoryService,
-        private modalController: ModalController,
-        private alertController: AlertController,
-        private translateService: TranslocoService,
+        private readonly route: ActivatedRoute,
+        private readonly categoryService: CategoryService,
+        private readonly modalController: ModalController,
+        private readonly alertController: AlertController,
+        private readonly translateService: TranslocoService,
     ) {
     }
 

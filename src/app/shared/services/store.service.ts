@@ -5,7 +5,7 @@ import { ILocalNotification, LocalNotifications } from '@ionic-native/local-noti
 import { Platform } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 
-import { combineLatest, merge, of, BehaviorSubject, EMPTY, Observable } from 'rxjs';
+import { combineLatest, of, BehaviorSubject, EMPTY, Observable } from 'rxjs';
 import { fromPromise } from 'rxjs/internal-compatibility';
 import { switchMap, tap } from 'rxjs/operators';
 
@@ -24,15 +24,15 @@ import { StoreType } from '../types/store.type';
     providedIn: 'root'
 })
 export class StoreService {
-    private store$: BehaviorSubject<ICategory[]> = new BehaviorSubject([]);
-    private productsCatalog$: BehaviorSubject<IProductCategory[]> = new BehaviorSubject(null);
+    private readonly store$: BehaviorSubject<ICategory[]> = new BehaviorSubject([]);
+    private readonly productsCatalog$: BehaviorSubject<IProductCategory[]> = new BehaviorSubject(null);
 
     constructor(
-        private storage: Storage,
-        private http: HttpClient,
-        private localNotification: LocalNotifications,
-        private translateService: TranslocoService,
-        private platform: Platform,
+        private readonly storage: Storage,
+        private readonly http: HttpClient,
+        private readonly localNotification: LocalNotifications,
+        private readonly translateService: TranslocoService,
+        private readonly platform: Platform,
     ) {
     }
 

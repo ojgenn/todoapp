@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { AlertController, IonItemSliding, ModalController } from '@ionic/angular';
@@ -21,19 +21,19 @@ import { ManageProductComponent } from './manage-product/manage-product.componen
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductListComponent implements OnInit, OnDestroy {
+    private readonly ngOnDestroy$: Subject<void> = new Subject();
     private id: string;
-    private ngOnDestroy$: Subject<void> = new Subject();
 
+    public readonly category$: BehaviorSubject<IProductCategory> = new BehaviorSubject(null);
+    public readonly filteredList$: BehaviorSubject<IProduct[]> = new BehaviorSubject([]);
     public filterValue: string = '';
-    public category$: BehaviorSubject<IProductCategory> = new BehaviorSubject(null);
-    public filteredList$: BehaviorSubject<IProduct[]> = new BehaviorSubject([]);
 
     constructor(
-        private alertController: AlertController,
-        private route: ActivatedRoute,
-        private modalController: ModalController,
-        private productsService: ProductService,
-        private translateService: TranslocoService,
+        private readonly alertController: AlertController,
+        private readonly route: ActivatedRoute,
+        private readonly modalController: ModalController,
+        private readonly productsService: ProductService,
+        private readonly translateService: TranslocoService,
     ) {
     }
 

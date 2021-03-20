@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
 
 import { File } from '@ionic-native/file/ngx';
 import { AlertController, Platform } from '@ionic/angular';
@@ -24,24 +24,22 @@ interface IStoreProductsInterface {
     selector: 'app-store-data',
     templateUrl: './store-data.component.html',
     styleUrls: ['./store-data.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class StoreDataComponent implements OnInit, OnDestroy {
-    private fileDir: string = this.file.externalDataDirectory;
-    private fileName: string = 'catalog.json';
-    private ngOnDestroy$: Subject<void> = new Subject();
-    private willLeave$: Subject<void> = new Subject();
+export class StoreDataComponent implements OnDestroy {
+    private readonly fileDir: string = this.file.externalDataDirectory;
+    private readonly fileName: string = 'catalog.json';
+    private readonly ngOnDestroy$: Subject<void> = new Subject();
+    private readonly willLeave$: Subject<void> = new Subject();
 
     constructor(
-        private file: File,
-        private storeService: StoreService,
-        private toastService: ToastService,
-        private translateService: TranslocoService,
-        private platform: Platform,
-        private alertController: AlertController,
+        private readonly file: File,
+        private readonly storeService: StoreService,
+        private readonly toastService: ToastService,
+        private readonly translateService: TranslocoService,
+        private readonly platform: Platform,
+        private readonly alertController: AlertController,
     ) { }
-
-    ngOnInit(): void {
-    }
 
     ngOnDestroy(): void {
         this.ngOnDestroy$.next();

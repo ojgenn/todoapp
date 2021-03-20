@@ -28,15 +28,15 @@ import { CategoryService } from '../../../../shared/services/category.service';
 export class ManageTaskComponent implements OnInit, OnDestroy {
     @ViewChild('input', { static: true }) private input: IonInput;
 
-    private ngOnDestroy$: Subject<void> = new Subject();
+    private readonly ngOnDestroy$: Subject<void> = new Subject();
     private categoryId: string;
     private task: ITask;
     private index: number;
 
     // TODO: unusable. fix it
-    public errorMessage$: BehaviorSubject<string> = new BehaviorSubject(null);
+    public readonly errorMessage$: BehaviorSubject<string> = new BehaviorSubject(null);
+    public readonly monthNames: string = getMonthNames();
     public form: FormGroup;
-    public monthNames: string = getMonthNames();
     public maxYear: number;
     public currentYear: number;
     // tslint:disable-next-line:no-any
@@ -44,12 +44,12 @@ export class ManageTaskComponent implements OnInit, OnDestroy {
     public units: FlatMap<ISelect<EUnits>> = UNITS;
 
     constructor(
-        private modalController: ModalController,
-        private fb: FormBuilder,
-        private translateService: TranslocoService,
-        private navParams: NavParams,
-        private categoryService: CategoryService,
-        private datePipe: DatePipe,
+        private readonly modalController: ModalController,
+        private readonly fb: FormBuilder,
+        private readonly translateService: TranslocoService,
+        private readonly navParams: NavParams,
+        private readonly categoryService: CategoryService,
+        private readonly datePipe: DatePipe,
     ) { }
 
     ngOnInit(): void {
