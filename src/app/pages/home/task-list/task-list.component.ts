@@ -33,8 +33,8 @@ export class TaskListComponent implements OnInit, OnDestroy {
 
     public readonly category$: BehaviorSubject<ICategory> = new BehaviorSubject(null);
     public readonly checkedTaskList$: BehaviorSubject<{ [key: string]: boolean }> = new BehaviorSubject({});
-    public units: FlatMap<ISelect<EUnits>> = UNITS;
-    public productCategoryId: string = PRODUCT_CATEGORY_ID;
+    public readonly units: FlatMap<ISelect<EUnits>> = UNITS;
+    public readonly productCategoryId: string = PRODUCT_CATEGORY_ID;
     public isListEditable: boolean = false;
 
     constructor(
@@ -49,10 +49,21 @@ export class TaskListComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.id = this.route.snapshot.params.id;
         this.categoryService.initCategory(this.id);
+        this.getCategory();
+        this.watchCategory();
+    }
+
+    ngOnDestroy(): void {
+        this.ngOnDestroy$.next();
+    }
+
+    private getCategory(): void {
         this.categoryService.getCategory().pipe(
             takeUntil(this.ngOnDestroy$)
         ).subscribe((category: ICategory) => this.category$.next(category));
+    }
 
+    private watchCategory(): void {
         this.category$.asObservable().pipe(
             map((category: ICategory) => category.list),
             take(1),
@@ -63,10 +74,6 @@ export class TaskListComponent implements OnInit, OnDestroy {
                 this.showTask(JSON.parse(givenTaskData['task']), true);
             }
         });
-    }
-
-    ngOnDestroy(): void {
-        this.ngOnDestroy$.next();
     }
 
     public async addTask(): Promise<void> {

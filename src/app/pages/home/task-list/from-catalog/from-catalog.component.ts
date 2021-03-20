@@ -46,9 +46,15 @@ export class FromCatalogComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.form = this.fb.group({});
-
         this.category = this.navParams.get('category');
+        this.addFormControls();
+    }
 
+    ngOnDestroy(): void {
+        this.ngOnDestroy$.next();
+    }
+
+    private addFormControls(): void {
         this.storeService.getProducts().pipe(
             takeUntil(this.ngOnDestroy$),
         ).subscribe((catalog: IProductCategory[]) => {
@@ -62,10 +68,6 @@ export class FromCatalogComponent implements OnInit, OnDestroy {
                 });
             });
         });
-    }
-
-    ngOnDestroy(): void {
-        this.ngOnDestroy$.next();
     }
 
     public close(): void {

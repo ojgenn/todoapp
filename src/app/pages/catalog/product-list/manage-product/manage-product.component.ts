@@ -37,22 +37,11 @@ export class ManageProductComponent implements OnInit, OnDestroy {
     ) { }
 
     ngOnInit(): void {
-        this.form = this.fb.group({
-            name: ['', [
-                Validators.required,
-                Validators.pattern(regex.safe),
-            ]],
-        });
-
+        this.form = this.initForm();
         this.categoryId = this.navParams.get('categoryId');
         this.product = this.navParams.get('product');
         this.index = this.navParams.get('index');
-
-        if (this.product) {
-            this.form.setValue({
-                name: this.product.name,
-            });
-        }
+        this.updateFormWithProduct(this.product);
     }
 
     ngOnDestroy(): void {
@@ -61,6 +50,23 @@ export class ManageProductComponent implements OnInit, OnDestroy {
 
     ionViewDidEnter(): void {
         this.input.setFocus();
+    }
+
+    private initForm(): FormGroup {
+        return this.fb.group({
+            name: ['', [
+                Validators.required,
+                Validators.pattern(regex.safe),
+            ]],
+        });
+    }
+
+    private updateFormWithProduct(product: IProduct): void {
+        if (product) {
+            this.form.setValue({
+                name: this.product.name,
+            });
+        }
     }
 
     private addProduct(form: FormGroup): void {

@@ -38,12 +38,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
-        Array.from(Array(4).keys()).forEach((item: number) => {
-            this.mockArray.push({
-                num: item,
-                id: uuid.v4(),
-            });
-        });
+        this.setMockArray();
         this.setCatalog();
     }
 
@@ -66,6 +61,15 @@ export class HomePageComponent implements OnInit, OnDestroy {
 
     ionViewWillLeave(): void {
         this.willLeave$.next();
+    }
+
+    private setMockArray(): void {
+        Array.from(Array(4).keys()).forEach((item: number) => {
+            this.mockArray.push({
+                num: item,
+                id: uuid.v4(),
+            });
+        });
     }
 
     private setCatalog(): void {

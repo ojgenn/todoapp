@@ -53,16 +53,7 @@ export class ManageTaskComponent implements OnInit, OnDestroy {
     ) { }
 
     ngOnInit(): void {
-        this.form = this.fb.group({
-            name: ['', [
-                Validators.required,
-                Validators.pattern(regex.safe),
-            ]],
-            alertTime: [null],
-            description: ['', [Validators.pattern(regex.safe)]],
-            qty: ['', [Validators.pattern(regex.safe)]],
-            units: [null],
-        });
+        this.form = this.initForm();
         this.categoryId = this.navParams.get('categoryId');
         this.currentYear = new Date().getFullYear();
         this.maxYear = this.currentYear + 50;
@@ -72,6 +63,31 @@ export class ManageTaskComponent implements OnInit, OnDestroy {
         this.task = this.navParams.get('task');
         this.index = this.navParams.get('index');
 
+        this.updateFormWithTask();
+    }
+
+    ngOnDestroy(): void {
+        this.ngOnDestroy$.next();
+    }
+
+    ionViewDidEnter(): void {
+        this.input.setFocus();
+    }
+
+    private initForm(): FormGroup {
+        return this.fb.group({
+            name: ['', [
+                Validators.required,
+                Validators.pattern(regex.safe),
+            ]],
+            alertTime: [null],
+            description: ['', [Validators.pattern(regex.safe)]],
+            qty: ['', [Validators.pattern(regex.safe)]],
+            units: [null],
+        });
+    }
+
+    private updateFormWithTask(): void {
         if (!!this.task) {
             let alertTime: string = null;
 
@@ -89,14 +105,6 @@ export class ManageTaskComponent implements OnInit, OnDestroy {
         }
     }
 
-    ngOnDestroy(): void {
-        this.ngOnDestroy$.next();
-    }
-
-    ionViewDidEnter(): void {
-        this.input.setFocus();
-    }
-
     private setCustomOptions(): void {
         // TODO: where is error handler
         combineLatest([
@@ -106,32 +114,36 @@ export class ManageTaskComponent implements OnInit, OnDestroy {
         ]).pipe(
             take(1),
         ).subscribe(([clear, ok, cancel]: string[]) => {
-            this.customOptions = {
-                buttons: [
-                    {
-                        text: clear,
-                        handler: () => this.form.controls['alertTime'].setValue(null),
-                    },
-                    {
-                        text: cancel,
-                    },
-                    {
-                        text: ok,
-                        // tslint:disable-next-line:typedef
-                        handler: data => {
-                            const year: string = data.year.value.toString();
-                            const month: string = data.month.value < 10 ? '0' + data.month.value.toString() : data.month.value.toString();
-                            const day: string = data.day.value.toString();
-                            const hour: string = data.hour.value.toString();
-                            const minutes: string = data.minute.value.toString();
-                            const date: string = `${year}-${month}-${day} ${hour}:${minutes}`;
-
-                            this.form.get('alertTime').setValue(date);
-                        },
-                    },
-                ]
-            };
+            this.updateCustomOptions(clear, ok, cancel);
         });
+    }
+
+    private updateCustomOptions(clear: string, ok: string, cancel: string): void {
+        this.customOptions = {
+            buttons: [
+                {
+                    text: clear,
+                    handler: () => this.form.controls['alertTime'].setValue(null),
+                },
+                {
+                    text: cancel,
+                },
+                {
+                    text: ok,
+                    // tslint:disable-next-line:typedef
+                    handler: data => {
+                        const year: string = data.year.value.toString();
+                        const month: string = data.month.value < 10 ? '0' + data.month.value.toString() : data.month.value.toString();
+                        const day: string = data.day.value.toString();
+                        const hour: string = data.hour.value.toString();
+                        const minutes: string = data.minute.value.toString();
+                        const date: string = `${year}-${month}-${day} ${hour}:${minutes}`;
+
+                        this.form.get('alertTime').setValue(date);
+                    },
+                },
+            ]
+        };
     }
 
     private addTask(form: FormGroup): void {

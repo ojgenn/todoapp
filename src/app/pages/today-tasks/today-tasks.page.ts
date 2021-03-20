@@ -44,6 +44,26 @@ export class TodayTasksComponent implements OnInit, OnDestroy {
     ) { }
 
     ngOnInit(): void {
+        this.updateTasks();
+    }
+
+    ngOnDestroy(): void {
+        this.ngOnDestroy$.next();
+    }
+
+    ionViewDidEnter(): void {
+        this.platform.backButton.pipe(
+            takeUntil(this.willLeave$),
+        ).subscribe(() => {
+            navigator['app'].exitApp();
+        });
+    }
+
+    ionViewWillLeave(): void {
+        this.willLeave$.next();
+    }
+
+    private updateTasks(): void {
         const simpleTasks: ITask[] = [];
         const alertTasks: ITask[] = [];
         const today: string = this.datePipe.transform(Date.now(), 'yyyy-MM-dd');
@@ -67,22 +87,6 @@ export class TodayTasksComponent implements OnInit, OnDestroy {
             });
             this.list$.next([...alertTasks, ...simpleTasks]);
         });
-    }
-
-    ngOnDestroy(): void {
-        this.ngOnDestroy$.next();
-    }
-
-    ionViewDidEnter(): void {
-        this.platform.backButton.pipe(
-            takeUntil(this.willLeave$),
-        ).subscribe(() => {
-            navigator['app'].exitApp();
-        });
-    }
-
-    ionViewWillLeave(): void {
-        this.willLeave$.next();
     }
 
     public trackByFn(_: number, item: ITask): string {

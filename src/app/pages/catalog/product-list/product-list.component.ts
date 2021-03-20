@@ -40,6 +40,14 @@ export class ProductListComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.id = this.route.snapshot.params.id;
         this.productsService.initCategory(this.id);
+        this.watchCategory();
+    }
+
+    ngOnDestroy(): void {
+        this.ngOnDestroy$.next();
+    }
+
+    private watchCategory(): void {
         this.productsService.getCategory().pipe(
             takeUntil(this.ngOnDestroy$),
         ).subscribe((category: IProductCategory) => {
@@ -48,8 +56,8 @@ export class ProductListComponent implements OnInit, OnDestroy {
         });
     }
 
-    ngOnDestroy(): void {
-        this.ngOnDestroy$.next();
+    private filterApply(productList: IProductCategory): void {
+        this.filteredList$.next(productList.list.filter((product: IProduct) => (product.name.toUpperCase()).includes(this.filterValue.toUpperCase())));
     }
 
     public async addProduct(): Promise<void> {
@@ -110,9 +118,4 @@ export class ProductListComponent implements OnInit, OnDestroy {
         this.filterValue = event.detail.value;
         this.filterApply(this.category$.value);
     }
-
-    private filterApply(productList: IProductCategory): void {
-        this.filteredList$.next(productList.list.filter((product: IProduct) => (product.name.toUpperCase()).includes(this.filterValue.toUpperCase())));
-    }
-
 }

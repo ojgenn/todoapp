@@ -37,13 +37,7 @@ export class AddMultiTaskComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.categoryId = this.navParams.get('categoryId');
-
-        this.form = this.fb.group({
-            tasks: ['', [
-                Validators.required,
-                Validators.pattern(regex.safe),
-            ]],
-        });
+        this.form = this.initForm();
     }
 
     ngOnDestroy(): void {
@@ -52,6 +46,15 @@ export class AddMultiTaskComponent implements OnInit, OnDestroy {
 
     ionViewDidEnter(): void {
         this.input.setFocus();
+    }
+
+    private initForm(): FormGroup {
+        return this.fb.group({
+            tasks: ['', [
+                Validators.required,
+                Validators.pattern(regex.safe),
+            ]],
+        });
     }
 
     public add(form: FormGroup): void {

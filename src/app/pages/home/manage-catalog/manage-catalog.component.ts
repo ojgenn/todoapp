@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 
 import { IonInput, ModalController, NavParams } from '@ionic/angular';
 
@@ -29,6 +29,7 @@ export class ManageCatalogComponent implements OnInit, OnDestroy {
     public form: FormControl;
 
     constructor(
+        private readonly fb: FormBuilder,
         private readonly modalController: ModalController,
         private readonly storeService: StoreService,
         private readonly translateService: TranslocoService,
@@ -37,13 +38,7 @@ export class ManageCatalogComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         const category: ICategory = this.navParams.get('category');
-
-        this.form = new FormControl(category ? category.name : '',
-            [
-                Validators.required,
-                Validators.pattern(regex.safe),
-            ]
-        );
+        this.form = this.initForm(category);
     }
 
     ngOnDestroy(): void {
@@ -52,6 +47,15 @@ export class ManageCatalogComponent implements OnInit, OnDestroy {
 
     ionViewDidEnter(): void {
         this.input.setFocus();
+    }
+
+    private initForm(category: ICategory): FormControl {
+        return this.fb.control(category ? category.name : '',
+            [
+                Validators.required,
+                Validators.pattern(regex.safe),
+            ]
+        );
     }
 
     private save(form: FormControl): void {
